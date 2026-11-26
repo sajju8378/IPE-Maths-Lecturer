@@ -1,0 +1,394 @@
+import type { LectureSolution, SolutionStep } from '../types/lecture';
+
+function s(
+  step_number: number,
+  section_label: string,
+  board_text: string,
+  speech: string,
+  key_point?: string
+): SolutionStep {
+  return { step_number, section_label, board_text, speech, key_point };
+}
+
+function sol(question_text: string, steps: SolutionStep[]): LectureSolution {
+  return {
+    question_text,
+    verified: true,
+    verification_note: 'Verified built-in TGBIE Intermediate solution.',
+    steps,
+  };
+}
+
+export const SOLUTIONS_IIA: Record<string, LectureSolution> = {
+  'iia-1-p1': sol(
+    'Express the complex number $z = 1 + i\\sqrt{3}$ in modulus-amplitude (polar) form.',
+    [
+      s(1, 'Given & Formula', 'Let $z = 1 + i\\sqrt{3} = r(\\cos\\theta + i\\sin\\theta)$.\nHere $x = 1$ and $y = \\sqrt{3}$ (both positive, so $z$ lies in Quadrant I).', 'Identify x equals 1 and y equals root 3 in the first quadrant.'),
+      s(2, 'Step 1 (Modulus & Argument)', '$$r = |z| = \\sqrt{1^2 + (\\sqrt{3})^2} = \\sqrt{1 + 3} = 2$$\n$$\\tan\\theta = \\frac{y}{x} = \\frac{\\sqrt{3}}{1} = \\sqrt{3} \\implies \\theta = \\frac{\\pi}{3}$$', 'Find modulus r equals 2 and principal argument theta equals pi by 3.'),
+      s(3, 'Final Answer', '$$z = 2\\left(\\cos\\frac{\\pi}{3} + i\\sin\\frac{\\pi}{3}\\right)$$', 'Write the polar form as 2 times cos pi by 3 plus i sin pi by 3.'),
+    ]
+  ),
+  'iia-1-p2': sol(
+    'Find the multiplicative inverse of $z = 4 - 3i$ in the form $a + ib$.',
+    [
+      s(1, 'Formula', 'Multiplicative inverse of $z = x + iy$ ($z \\neq 0$) is:\n$$z^{-1} = \\frac{\\bar{z}}{|z|^2}$$', 'Use the conjugate divided by modulus squared formula.'),
+      s(2, 'Final Answer', 'For $z = 4 - 3i$, $\\bar{z} = 4 + 3i$ and $|z|^2 = 4^2 + (-3)^2 = 16 + 9 = 25$.\n$$z^{-1} = \\frac{4 + 3i}{25} = \\frac{4}{25} + \\frac{3}{25}i$$', 'Substitute to get 4 by 25 plus 3 by 25 i.'),
+    ]
+  ),
+  'iia-1-p3': sol(
+    'Show that the points in the Argand plane represented by the complex numbers $-2 + 7i$, $-\\frac{3}{2} + \\frac{1}{2}i$, $4 - 3i$, and $\\frac{7}{2}(1 + i)$ are the vertices of a rhombus.',
+    [
+      s(1, 'Given', 'Let the four vertices in the Argand plane be:\n$A(-2, 7)$, $B\\left(-\\frac{3}{2}, \\frac{1}{2}\\right)$, $C(4, -3)$, $D\\left(\\frac{7}{2}, \\frac{7}{2}\\right)$.', 'Write the four complex numbers as ordered pairs in the Argand plane.'),
+      s(2, 'Step 1 (Side Lengths)', '$$AB = \\sqrt{\\left(-\\frac{3}{2} + 2\\right)^2 + \\left(\\frac{1}{2} - 7\\right)^2} = \\sqrt{\\frac{1}{4} + \\frac{169}{4}} = \\sqrt{\\frac{85}{2}}$$\n$$BC = \\sqrt{\\left(4 + \\frac{3}{2}\\right)^2 + \\left(-3 - \\frac{1}{2}\\right)^2} = \\sqrt{\\frac{121}{4} + \\frac{49}{4}} = \\sqrt{\\frac{85}{2}}$$\n$$CD = \\sqrt{\\left(\\frac{7}{2} - 4\\right)^2 + \\left(\\frac{7}{2} + 3\\right)^2} = \\sqrt{\\frac{1}{4} + \\frac{169}{4}} = \\sqrt{\\frac{85}{2}}$$\n$$DA = \\sqrt{\\left(-2 - \\frac{7}{2}\\right)^2 + \\left(7 - \\frac{7}{2}\\right)^2} = \\sqrt{\\frac{121}{4} + \\frac{49}{4}} = \\sqrt{\\frac{85}{2}}$$', 'All four side lengths AB, BC, CD, and DA equal root 85 by 2.'),
+      s(3, 'Final Answer (Diagonals)', '$$AC = \\sqrt{(4 + 2)^2 + (-3 - 7)^2} = \\sqrt{36 + 100} = \\sqrt{136}$$\n$$BD = \\sqrt{\\left(\\frac{7}{2} + \\frac{3}{2}\\right)^2 + \\left(\\frac{7}{2} - \\frac{1}{2}\\right)^2} = \\sqrt{25 + 9} = \\sqrt{34}$$\nSince $AB = BC = CD = DA$ and $AC \\neq BD$, the vertices form a rhombus.', 'Since all four sides are equal and the diagonals are unequal, the quadrilateral is a rhombus.'),
+    ]
+  ),
+  'iia-1-p4': sol(
+    'If $z = x + iy$ and the point $P$ represents $z$ in the Argand plane, find the locus of $z$ satisfying $\\left|\\frac{z - i}{z - 1}\\right| = 2$.',
+    [
+      s(1, 'Step 1', '$$\\left|\\frac{z - i}{z - 1}\\right| = 2 \\implies |z - i| = 2|z - 1| \\implies |z - i|^2 = 4|z - 1|^2$$', 'Cross-multiply and square both sides.'),
+      s(2, 'Step 2', 'Substitute $z = x + iy$:\n$$|x + i(y - 1)|^2 = 4|(x - 1) + iy|^2$$\n$$x^2 + (y - 1)^2 = 4[(x - 1)^2 + y^2]$$\n$$x^2 + y^2 - 2y + 1 = 4(x^2 - 2x + 1 + y^2)$$', 'Apply the modulus squared formula and expand.'),
+      s(3, 'Final Answer', '$$x^2 + y^2 - 2y + 1 = 4x^2 - 8x + 4 + 4y^2$$\n$$3x^2 + 3y^2 - 8x + 2y + 3 = 0$$', 'Collect all terms to one side to get the circle equation 3x square plus 3y square minus 8x plus 2y plus 3 equals zero.'),
+    ]
+  ),
+  'iia-1-p5': sol(
+    'If $\\arg\\left(\\frac{z - 1}{z + 1}\\right) = \\frac{\\pi}{4}$, show that the locus of $z = x + iy$ is a circle and find its centre and radius.',
+    [
+      s(1, 'Step 1', 'Let $z = x + iy$. Rationalize $\\frac{z - 1}{z + 1}$:\n$$\\frac{(x - 1) + iy}{(x + 1) + iy} \\cdot \\frac{(x + 1) - iy}{(x + 1) - iy} = \\frac{(x^2 + y^2 - 1) + i(2y)}{(x + 1)^2 + y^2}$$', 'Multiply numerator and denominator by the conjugate of z plus 1.'),
+      s(2, 'Step 2', 'Since $\\arg\\left(\\frac{z - 1}{z + 1}\\right) = \\frac{\\pi}{4}$:\n$$\\tan\\left(\\frac{\\pi}{4}\\right) = \\frac{2y}{x^2 + y^2 - 1} = 1 \\quad (\\text{with } y > 0)$$\n$$x^2 + y^2 - 1 = 2y \\implies x^2 + y^2 - 2y - 1 = 0$$', 'Equate the ratio of imaginary to real part to tan pi by 4 equals 1.'),
+      s(3, 'Final Answer', '$$x^2 + (y - 1)^2 = 2$$\nThis represents a circle (major arc $y > 0$) with centre $(0, 1)$ and radius $\\sqrt{2}$.', 'Completing the square shows the locus lies on a circle with centre 0, 1 and radius root 2.'),
+    ]
+  ),
+  'iia-2-p1': sol(
+    'If $1, \\omega, \\omega^2$ are the cube roots of unity, find the value of $(1 - \\omega + \\omega^2)^5 + (1 + \\omega - \\omega^2)^5$.',
+    [
+      s(1, 'Formula', 'Using $1 + \\omega + \\omega^2 = 0$ and $\\omega^3 = 1$:\n$1 + \\omega^2 = -\\omega$ and $1 + \\omega = -\\omega^2$.', 'Recall the fundamental cube roots of unity identities.'),
+      s(2, 'Final Answer', '$$(1 - \\omega + \\omega^2)^5 + (1 + \\omega - \\omega^2)^5 = (-\\omega - \\omega)^5 + (-\\omega^2 - \\omega^2)^5$$\n$$= (-2\\omega)^5 + (-2\\omega^2)^5 = -32(\\omega^5 + \\omega^{10})$$\n$$= -32(\\omega^2 + \\omega) = -32(-1) = 32$$', 'Simplify omega power 5 to omega square and omega power 10 to omega, whose sum is minus 1, giving 32.'),
+    ]
+  ),
+  'iia-2-p2': sol(
+    'Simplify $\\frac{(\\cos\\alpha + i\\sin\\alpha)^4}{(\\sin\\beta + i\\cos\\beta)^8}$.',
+    [
+      s(1, 'Step 1', 'Rewrite $\\sin\\beta + i\\cos\\beta = i(\\cos\\beta - i\\sin\\beta) = \\cos\\left(\\frac{\\pi}{2} - \\beta\\right) + i\\sin\\left(\\frac{\\pi}{2} - \\beta\\right)$.', 'Rewrite the denominator in cosine plus i sine form.'),
+      s(2, 'Final Answer', 'Using De Moivre\'s theorem:\n$$\\text{Numerator} = \\cos 4\\alpha + i\\sin 4\\alpha$$\n$$\\text{Denominator} = \\left[\\cos\\left(\\frac{\\pi}{2} - \\beta\\right) + i\\sin\\left(\\frac{\\pi}{2} - \\beta\\right)\\right]^8 = \\cos(4\\pi - 8\\beta) + i\\sin(4\\pi - 8\\beta) = \\cos 8\\beta - i\\sin 8\\beta$$\n$$\\frac{\\cos 4\\alpha + i\\sin 4\\alpha}{\\cos 8\\beta - i\\sin 8\\beta} = (\\cos 4\\alpha + i\\sin 4\\alpha)(\\cos 8\\beta + i\\sin 8\\beta) = \\cos(4\\alpha + 8\\beta) + i\\sin(4\\alpha + 8\\beta)$$', 'Multiply numerator and denominator angles cleanly to get cos(4alpha + 8beta) + i sin(4alpha + 8beta).'),
+    ]
+  ),
+  'iia-2-p3': sol(
+    'If $\\alpha, \\beta$ are the roots of $x^2 - 2x + 4 = 0$, then for any $n \\in \\mathbb{N}$, prove that $\\alpha^n + \\beta^n = 2^{n+1} \\cos\\left(\\frac{n\\pi}{3}\\right)$.',
+    [
+      s(1, 'Step 1 (Roots)', '$$x = \\frac{2 \\pm \\sqrt{4 - 16}}{2} = \\frac{2 \\pm i2\\sqrt{3}}{2} = 1 \\pm i\\sqrt{3}$$\nIn polar form: $1 \\pm i\\sqrt{3} = 2\\left(\\cos\\frac{\\pi}{3} \\pm i\\sin\\frac{\\pi}{3}\\right)$.', 'Solve the quadratic equation and convert the roots to polar form.'),
+      s(2, 'Final Answer', 'By De Moivre\'s theorem:\n$$\\alpha^n + \\beta^n = 2^n\\left(\\cos\\frac{n\\pi}{3} + i\\sin\\frac{n\\pi}{3}\\right) + 2^n\\left(\\cos\\frac{n\\pi}{3} - i\\sin\\frac{n\\pi}{3}\\right)$$\n$$= 2^n \\cdot 2\\cos\\left(\\frac{n\\pi}{3}\\right) = 2^{n+1}\\cos\\left(\\frac{n\\pi}{3}\\right)$$', 'The imaginary sine terms cancel on addition, leaving 2 power n+1 cos(n pi by 3).'),
+    ]
+  ),
+  'iia-2-p4': sol(
+    'If $n$ is a positive integer, prove that $(1 + i)^n + (1 - i)^n = 2^{\\frac{n+2}{2}} \\cos\\left(\\frac{n\\pi}{4}\\right)$.',
+    [
+      s(1, 'Step 1', 'Convert $1 \\pm i$ to polar form ($r = \\sqrt{1^2 + 1^2} = \\sqrt{2}$, $\\theta = \\frac{\\pi}{4}$):\n$$1 + i = \\sqrt{2}\\left(\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4}\\right), \\quad 1 - i = \\sqrt{2}\\left(\\cos\\frac{\\pi}{4} - i\\sin\\frac{\\pi}{4}\\right)$$', 'Express 1 plus i and 1 minus i in polar form.'),
+      s(2, 'Final Answer', 'Raising to power $n$ by De Moivre\'s theorem and adding:\n$$(1 + i)^n + (1 - i)^n = (\\sqrt{2})^n \\left[\\left(\\cos\\frac{n\\pi}{4} + i\\sin\\frac{n\\pi}{4}\\right) + \\left(\\cos\\frac{n\\pi}{4} - i\\sin\\frac{n\\pi}{4}\\right)\\right]$$\n$$= 2^{n/2} \\cdot 2\\cos\\left(\\frac{n\\pi}{4}\\right) = 2^{\\frac{n+2}{2}}\\cos\\left(\\frac{n\\pi}{4}\\right)$$', 'Combine 2 power n/2 times 2 into 2 power (n+2)/2 to complete the proof.'),
+    ]
+  ),
+  'iia-2-p5': sol(
+    'Solve the equation $x^7 + x^4 + x^3 + 1 = 0$ using De Moivre\'s theorem.',
+    [
+      s(1, 'Step 1 (Factorize)', '$$x^7 + x^4 + x^3 + 1 = x^4(x^3 + 1) + 1(x^3 + 1) = (x^4 + 1)(x^3 + 1) = 0$$\nSo either $x^3 = -1$ or $x^4 = -1$.', 'Factor by grouping into x power 4 plus 1 times x cubed plus 1.'),
+      s(2, 'Step 2 (Solve x^3 = -1)', '$$x^3 = -1 = \\cos(2k+1)\\pi + i\\sin(2k+1)\\pi$$\n$$x = \\cos\\frac{(2k+1)\\pi}{3} + i\\sin\\frac{(2k+1)\\pi}{3}, \\quad k = 0, 1, 2$$\nRoots: $\\frac{1 + i\\sqrt{3}}{2},\\ -1,\\ \\frac{1 - i\\sqrt{3}}{2}$.', 'Apply De Moivre root formula for cube roots of minus 1.'),
+      s(3, 'Final Answer (Solve x^4 = -1)', '$$x^4 = -1 = \\cos(2k+1)\\pi + i\\sin(2k+1)\\pi$$\n$$x = \\cos\\frac{(2k+1)\\pi}{4} + i\\sin\\frac{(2k+1)\\pi}{4}, \\quad k = 0, 1, 2, 3$$\nRoots: $\\pm\\frac{1 \\pm i}{\\sqrt{2}}$ (i.e. $\\frac{1+i}{\\sqrt{2}},\\frac{-1+i}{\\sqrt{2}},\\frac{-1-i}{\\sqrt{2}},\\frac{1-i}{\\sqrt{2}}$).\nAll $7$ roots: $-1,\\ \\frac{1 \\pm i\\sqrt{3}}{2},\\ \\pm\\frac{1 \\pm i}{\\sqrt{2}}$.', 'Solve x power 4 equals minus 1 to obtain the remaining four roots, listing all 7 roots.'),
+    ]
+  ),
+  'iia-3-p1': sol(
+    'Find the value(s) of $m$ for which the equation $(m + 1)x^2 + 2(m + 3)x + (m + 8) = 0$ has equal roots.',
+    [
+      s(1, 'Formula', 'For equal roots of $ax^2 + bx + c = 0$ ($a \\neq 0$), discriminant $\\Delta = b^2 - 4ac = 0$.', 'Set the discriminant b square minus 4ac equal to zero.'),
+      s(2, 'Final Answer', '$$[2(m + 3)]^2 - 4(m + 1)(m + 8) = 0$$\nDivide by $4$: $(m + 3)^2 - (m^2 + 9m + 8) = 0$\n$$(m^2 + 6m + 9) - (m^2 + 9m + 8) = 0 \\implies -3m + 1 = 0 \\implies m = \\frac{1}{3}$$', 'The m square terms cancel, yielding m equals 1 by 3.'),
+    ]
+  ),
+  'iia-3-p2': sol(
+    'Find the maximum or minimum value of the quadratic expression $3x^2 + 2x + 11$ for $x \\in \\mathbb{R}$.',
+    [
+      s(1, 'Formula', 'For $ax^2 + bx + c$, since $a = 3 > 0$, the expression has a minimum value at $x = -\\frac{b}{2a}$ given by:\n$$\\text{Minimum value} = \\frac{4ac - b^2}{4a}$$', 'Since the coefficient of x square is positive, the quadratic attains a minimum.'),
+      s(2, 'Final Answer', 'With $a = 3, b = 2, c = 11$:\n$$\\text{Minimum value} = \\frac{4(3)(11) - 2^2}{4(3)} = \\frac{132 - 4}{12} = \\frac{128}{12} = \\frac{32}{3}$$\n(attained at $x = -\\frac{1}{3}$).', 'Substitute a, b, c to get minimum value 32 by 3.'),
+    ]
+  ),
+  'iia-3-p3': sol(
+    'Determine the range of $x \\in \\mathbb{R}$ for which the expression $x^2 - 5x + 6 > 0$ and also check where $6x^2 - 5x - 6 < 0$.',
+    [
+      s(1, 'Step 1 (First Inequality)', '$$x^2 - 5x + 6 = (x - 2)(x - 3) > 0$$\nSince the leading coefficient $a = 1 > 0$, the expression is positive outside the roots $2$ and $3$:\n$$x \\in (-\\infty, 2) \\cup (3, \\infty)$$', 'Factorize x square minus 5x plus 6; it is positive outside 2 and 3.'),
+      s(2, 'Final Answer (Second Inequality)', '$$6x^2 - 5x - 6 = (3x + 2)(2x - 3) < 0$$\nSince $a = 6 > 0$, the expression is negative strictly between the roots $-\\frac{2}{3}$ and $\\frac{3}{2}$:\n$$x \\in \\left(-\\frac{2}{3}, \\frac{3}{2}\\right)$$', 'Factorize 6x square minus 5x minus 6; it is negative between minus 2 by 3 and 3 by 2.'),
+    ]
+  ),
+  'iia-3-p4': sol(
+    'If $x$ is real, prove that $\\frac{x}{x^2 - 5x + 9}$ lies between $-\\frac{1}{11}$ and $1$.',
+    [
+      s(1, 'Step 1', 'Let $y = \\frac{x}{x^2 - 5x + 9}$. Note $x^2 - 5x + 9 > 0$ for all $x \\in \\mathbb{R}$ since $\\Delta = 25 - 36 < 0$.\nCross-multiplying:\n$$yx^2 - (5y + 1)x + 9y = 0$$', 'Set the expression equal to y and rearrange into a quadratic in x.'),
+      s(2, 'Step 2', 'If $y \\neq 0$, since $x$ is real, discriminant $\\Delta \\ge 0$:\n$$(5y + 1)^2 - 4(y)(9y) \\ge 0 \\implies 25y^2 + 10y + 1 - 36y^2 \\ge 0$$\n$$-11y^2 + 10y + 1 \\ge 0 \\implies 11y^2 - 10y - 1 \\le 0$$', 'Apply discriminant >= 0 for real x.'),
+      s(3, 'Final Answer', '$$(11y + 1)(y - 1) \\le 0 \\implies -\\frac{1}{11} \\le y \\le 1$$\n(Also $y = 0$ is achieved when $x = 0$). Hence $\\frac{x}{x^2 - 5x + 9}$ lies between $-\\frac{1}{11}$ and $1$.', 'Factorize the y-quadratic to prove y lies in closed interval minus 1 by 11 to 1.'),
+    ]
+  ),
+  'iia-3-p5': sol(
+    'If the equations $x^2 + ax + b = 0$ and $x^2 + cx + d = 0$ have a common root and the first equation has equal roots, prove that $2(b + d) = ac$.',
+    [
+      s(1, 'Step 1', 'Since $x^2 + ax + b = 0$ has equal roots, let both roots be $\\alpha$.\nSum of roots: $2\\alpha = -a \\implies \\alpha = -\\frac{a}{2}$.\nProduct of roots: $\\alpha^2 = b \\implies \\frac{a^2}{4} = b \\implies a^2 = 4b$.', 'Since the first equation has equal roots, its repeated root alpha is minus a by 2 and a square equals 4b.'),
+      s(2, 'Final Answer', 'Since $\\alpha$ is also a root of $x^2 + cx + d = 0$:\n$$\\alpha^2 + c\\alpha + d = 0 \\implies b + c\\left(-\\frac{a}{2}\\right) + d = 0$$\nMultiply through by $2$:\n$$2b - ac + 2d = 0 \\implies 2(b + d) = ac$$', 'Substitute alpha into the second equation and multiply by 2 to prove 2 times b plus d equals ac.'),
+    ]
+  ),
+  'iia-4-p1': sol(
+    'If $\\alpha, \\beta, \\gamma$ are the roots of $x^3 - 2x^2 + 3x - 4 = 0$, find $\\sum \\alpha^2\\beta^2$.',
+    [
+      s(1, 'Given', 'From $x^3 - 2x^2 + 3x - 4 = 0$, using Vieta\'s relations:\n$$s_1 = \\alpha + \\beta + \\gamma = 2, \\quad s_2 = \\alpha\\beta + \\beta\\gamma + \\gamma\\alpha = 3, \\quad s_3 = \\alpha\\beta\\gamma = 4$$', 'Write down s1, s2, s3 from the coefficients.'),
+      s(2, 'Final Answer', 'Using $\\sum \\alpha^2\\beta^2 = (\\alpha\\beta + \\beta\\gamma + \\gamma\\alpha)^2 - 2\\alpha\\beta\\gamma(\\alpha + \\beta + \\gamma)$:\n$$\\sum \\alpha^2\\beta^2 = s_2^2 - 2 s_3 s_1 = 3^2 - 2(4)(2) = 9 - 16 = -7$$', 'Substitute s1, s2, s3 into the symmetric identity to get minus 7.'),
+    ]
+  ),
+  'iia-4-p2': sol(
+    'Form the monic polynomial equation of degree $3$ whose roots are $2, 3, 6$.',
+    [
+      s(1, 'Step 1', 'Sum of roots $s_1 = 2 + 3 + 6 = 11$.\nSum of products taken two at a time $s_2 = 2(3) + 3(6) + 6(2) = 6 + 18 + 12 = 36$.\nProduct of roots $s_3 = 2 \\cdot 3 \\cdot 6 = 36$.', 'Compute the three elementary symmetric sums s1, s2, s3.'),
+      s(2, 'Final Answer', '$$x^3 - s_1 x^2 + s_2 x - s_3 = 0$$\n$$x^3 - 11x^2 + 36x - 36 = 0$$', 'Substitute into the monic cubic formula x cubed minus s1 x square plus s2 x minus s3 equals zero.'),
+    ]
+  ),
+  'iia-4-p3': sol(
+    'Solve $4x^3 - 24x^2 + 23x + 18 = 0$, given that the roots are in arithmetic progression (A.P.).',
+    [
+      s(1, 'Step 1', 'Let the roots in A.P. be $a - d,\\ a,\\ a + d$.\nSum of roots: $(a - d) + a + (a + d) = \\frac{24}{4} \\implies 3a = 6 \\implies a = 2$.', 'Using the sum of roots gives the middle root a equals 2.'),
+      s(2, 'Step 2', 'Product of roots: $(a - d)a(a + d) = -\\frac{18}{4} = -\\frac{9}{2}$.\nSubstitute $a = 2$: $2(4 - d^2) = -\\frac{9}{2} \\implies 4 - d^2 = -\\frac{9}{4} \\implies d^2 = \\frac{25}{4} \\implies d = \\pm\\frac{5}{2}$.', 'Use the product of roots to find d equals plus or minus 5 by 2.'),
+      s(3, 'Final Answer', 'For $a = 2$ and $d = \\frac{5}{2}$, the roots are:\n$$2 - \\frac{5}{2} = -\\frac{1}{2}, \\quad 2, \\quad 2 + \\frac{5}{2} = \\frac{9}{2}$$\nRoots: $-\\frac{1}{2},\\ 2,\\ \\frac{9}{2}$.', 'Compute the three roots minus half, 2, and 9 by 2.'),
+    ]
+  ),
+  'iia-4-p4': sol(
+    'Solve the reciprocal equation $6x^5 - x^4 - 43x^3 + 43x^2 + x - 6 = 0$.',
+    [
+      s(1, 'Step 1', 'This is an odd-degree reciprocal equation of Type II (coefficients equidistant from ends are equal and opposite in sign), so $x = 1$ is a root.\nDividing by $(x - 1)$ using synthetic division:\n$$6x^4 + 5x^3 - 38x^2 + 5x + 6 = 0$$', 'Notice x equals 1 satisfies the equation, and deflate by dividing out x minus 1.'),
+      s(2, 'Step 2', 'Divide by $x^2$ and group symmetric terms:\n$$6\\left(x^2 + \\frac{1}{x^2}\\right) + 5\\left(x + \\frac{1}{x}\\right) - 38 = 0$$\nPut $t = x + \\frac{1}{x}$, so $x^2 + \\frac{1}{x^2} = t^2 - 2$:\n$$6(t^2 - 2) + 5t - 38 = 0 \\implies 6t^2 + 5t - 50 = 0$$\n$$(2t - 5)(3t + 10) = 0 \\implies t = \\frac{5}{2}\\text{ or } t = -\\frac{10}{3}$$', 'Substitute t equals x plus 1 by x and factorize the quadratic in t.'),
+      s(3, 'Final Answer', 'Case 1: $x + \\frac{1}{x} = \\frac{5}{2} \\implies 2x^2 - 5x + 2 = 0 \\implies x = 2,\\ \\frac{1}{2}$.\nCase 2: $x + \\frac{1}{x} = -\\frac{10}{3} \\implies 3x^2 + 10x + 3 = 0 \\implies x = -3,\\ -\\frac{1}{3}$.\nAll $5$ roots: $1,\\ 2,\\ \\frac{1}{2},\\ -3,\\ -\\frac{1}{3}$.', 'Solve each quadratic for x to obtain all five roots.'),
+    ]
+  ),
+  'iia-4-p5': sol(
+    'Transform the equation $x^4 + 4x^3 + 2x^2 - 4x - 2 = 0$ into one in which the second term is absent, and hence solve it.',
+    [
+      s(1, 'Step 1 (Shift to Remove x^3)', 'Here $n = 4, a_0 = 1, a_1 = 4$. Shift roots by $h = -\\frac{a_1}{n a_0} = -\\frac{4}{4(1)} = -1$, so put $x = y - 1$.\nSubstitute $x = y - 1$:\n$$(y - 1)^4 + 4(y - 1)^3 + 2(y - 1)^2 - 4(y - 1) - 2 = 0$$\nExpanding and simplifying gives:\n$$y^4 - 4y^2 + 1 = 0$$', 'Substitute x equals y minus 1 to eliminate the cubic term, obtaining y power 4 minus 4y square plus 1 equals zero.'),
+      s(2, 'Step 2 (Solve for y)', 'Solve as a quadratic in $y^2$:\n$$y^2 = \\frac{4 \\pm \\sqrt{16 - 4}}{2} = 2 \\pm \\sqrt{3}$$\nNotice $2 \\pm \\sqrt{3} = \\frac{4 \\pm 2\\sqrt{3}}{2} = \\left(\\frac{\\sqrt{3} \\pm 1}{\\sqrt{2}}\\right)^2 = \\left(\\frac{\\sqrt{6} \\pm \\sqrt{2}}{2}\\right)^2$, so:\n$$y = \\pm\\frac{\\sqrt{6} + \\sqrt{2}}{2}, \\quad \\pm\\frac{\\sqrt{6} - \\sqrt{2}}{2}$$', 'Take square roots cleanly using the identity for root 2 plus or minus root 3.'),
+      s(3, 'Final Answer', 'Since $x = y - 1$, the four roots of the original equation are:\n$$x = -1 \\pm \\frac{\\sqrt{6} + \\sqrt{2}}{2}, \\quad -1 \\pm \\frac{\\sqrt{6} - \\sqrt{2}}{2}$$', 'Subtract 1 from all four values of y to get the four roots for x.'),
+    ]
+  ),
+  'iia-5-p1': sol(
+    'If ${}^nP_7 = 42 \\cdot {}^nP_5$, find the value of $n$.',
+    [
+      s(1, 'Step 1', 'By definition ($n \\ge 7$):\n$${}^nP_7 = n(n - 1)(n - 2)(n - 3)(n - 4)(n - 5)(n - 6)$$\n$${}^nP_5 = n(n - 1)(n - 2)(n - 3)(n - 4)$$\nDividing both sides by ${}^nP_5$ ($> 0$):\n$$(n - 5)(n - 6) = 42$$', 'Cancel the first five factors from both permutations.'),
+      s(2, 'Final Answer', 'Since $42 = 7 \\times 6$ is a product of two consecutive integers:\n$$n - 5 = 7 \\implies n = 12$$', 'Equate the larger factor n minus 5 to 7 to get n equals 12.'),
+    ]
+  ),
+  'iia-5-p2': sol(
+    'If ${}^{12}C_{r+1} = {}^{12}C_{3r-5}$, find the value of $r$.',
+    [
+      s(1, 'Formula', 'Property: If ${}^nC_a = {}^nC_b$, then either $a = b$ or $a + b = n$.', 'Recall the two cases when two binomial coefficients are equal.'),
+      s(2, 'Final Answer', 'Case 1: $r + 1 = 3r - 5 \\implies 2r = 6 \\implies r = 3$.\nCase 2: $(r + 1) + (3r - 5) = 12 \\implies 4r - 4 = 12 \\implies r = 4$.\nBoth $r = 3$ and $r = 4$ satisfy $0 \\le r + 1 \\le 12$ and $0 \\le 3r - 5 \\le 12$.\nThus $r = 3$ or $r = 4$.', 'Both cases give valid integers r equals 3 and r equals 4.'),
+    ]
+  ),
+  'iia-5-p3': sol(
+    'Find the rank of the word $\\text{MASTER}$ when all permutations of its letters are arranged in dictionary order.',
+    [
+      s(1, 'Step 1', 'Alphabetical order of the $6$ distinct letters of $\\text{MASTER}$: $\\text{A, E, M, R, S, T}$.', 'Arrange the letters of MASTER alphabetically.'),
+      s(2, 'Step 2 (Count Preceding Words)', 'Words starting with A or E: $2 \\times 5! = 240$.\nFix M; remaining $\\{\\text{A, E, R, S, T}\\}$. Next letter A needs $0 \\times 4! = 0$.\nFix MA; remaining $\\{\\text{E, R, S, T}\\}$. Before S come E, R: $2 \\times 3! = 12$.\nFix MAS; remaining $\\{\\text{E, R, T}\\}$. Before T come E, R: $2 \\times 2! = 4$.\nFix MAST; remaining $\\{\\text{E, R}\\}$. E comes first: $0 \\times 1! = 0$.\nFix MASTE; remaining R (the word itself): $+1$.', 'Count permutations strictly preceding MASTER letter by letter.'),
+      s(3, 'Final Answer', '$$\\text{Rank} = 240 + 0 + 12 + 4 + 0 + 1 = 257$$', 'Add all counts to get rank 257.'),
+    ]
+  ),
+  'iia-5-p4': sol(
+    'Find the number of ways of forming a committee of $5$ members out of $6$ Indians and $5$ Americans so that always the Indians will be in majority in the committee.',
+    [
+      s(1, 'Step 1 (Possible Cases)', 'For Indians to be in strict majority in a $5$-member committee, Indians can be $3$, $4$, or $5$:\n1. $3$ Indians & $2$ Americans: ${}^6C_3 \\times {}^5C_2 = 20 \\times 10 = 200$\n2. $4$ Indians & $1$ American: ${}^6C_4 \\times {}^5C_1 = 15 \\times 5 = 75$\n3. $5$ Indians & $0$ Americans: ${}^6C_5 \\times {}^5C_0 = 6 \\times 1 = 6$', 'List the three disjoint compositions where Indians outnumber Americans.'),
+      s(2, 'Final Answer', 'Total number of ways $= 200 + 75 + 6 = 281$.', 'Sum the three cases to get 281 ways.'),
+    ]
+  ),
+  'iia-5-p5': sol(
+    'Find the sum of all $4$-digit numbers that can be formed using the digits $1, 3, 5, 7, 9$ without repetition.',
+    [
+      s(1, 'Formula', 'Sum of all $r$-digit numbers formed from $n$ non-zero distinct digits without repetition is:\n$$\\text{Sum} = {}^{n-1}P_{r-1} \\times (\\text{sum of digits}) \\times \\underbrace{11\\dots 1}_{r\\text{ ones}}$$', 'Apply the positional-frequency formula for the sum of permutations.'),
+      s(2, 'Step 1', 'Here $n = 5$, $r = 4$, and sum of digits $= 1 + 3 + 5 + 7 + 9 = 25$.\nEach digit appears in each place ${}^{5-1}P_{4-1} = {}^4P_3 = 4 \\times 3 \\times 2 = 24$ times.', 'Each digit occurs 24 times in every place value.'),
+      s(3, 'Final Answer', '$$\\text{Sum} = 24 \\times 25 \\times 1111 = 600 \\times 1111 = 6,66,600$$', 'Multiply 24 by 25 by 1111 to get 6,66,600.'),
+    ]
+  ),
+  'iia-6-p1': sol(
+    'Find the term independent of $x$ in the expansion of $\\left(\\sqrt{\\frac{x}{3}} + \\frac{3}{2x^2}\\right)^{10}$.',
+    [
+      s(1, 'Step 1 (General Term)', '$$T_{r+1} = {}^{10}C_r \\left(\\frac{x}{3}\\right)^{\\frac{10-r}{2}} \\left(\\frac{3}{2x^2}\\right)^r = {}^{10}C_r \\frac{3^r}{3^{(10-r)/2} 2^r} x^{\\frac{10-r}{2} - 2r}$$', 'Write the general (r+1)th term and collect the power of x.'),
+      s(2, 'Step 2', 'For the term independent of $x$, set the exponent of $x$ to $0$:\n$$\\frac{10 - r}{2} - 2r = 0 \\implies 10 - 5r = 0 \\implies r = 2$$', 'Equating the exponent of x to zero gives r equals 2.'),
+      s(3, 'Final Answer', '$$T_3 = {}^{10}C_2 \\cdot \\frac{3^2}{3^4 \\cdot 2^2} = 45 \\cdot \\frac{1}{9 \\cdot 4} = \\frac{45}{36} = \\frac{5}{4}$$', 'Substitute r equals 2 to obtain 5 by 4.'),
+    ]
+  ),
+  'iia-6-p2': sol(
+    'Find the middle term(s) in the expansion of $\\left(\\frac{3x}{7} - 2y\\right)^{10}$.',
+    [
+      s(1, 'Step 1', 'Here $n = 10$ is even, so there is only one middle term: $T_{\\frac{10}{2} + 1} = T_6$ ($r = 5$).', 'Since power 10 is even, the 6th term is the single middle term.'),
+      s(2, 'Final Answer', '$$T_6 = {}^{10}C_5 \\left(\\frac{3x}{7}\\right)^{10-5} (-2y)^5 = -252 \\cdot \\left(\\frac{6}{7}\\right)^5 x^5 y^5$$', 'Compute T6 with r equals 5 to get minus 252 times (6 by 7) power 5 x power 5 y power 5.'),
+    ]
+  ),
+  'iia-6-p3': sol(
+    'If the coefficients of $x^9, x^{10}, x^{11}$ in the expansion of $(1 + x)^n$ are in A.P., find the value(s) of $n$.',
+    [
+      s(1, 'Step 1', 'The coefficients of $x^9, x^{10}, x^{11}$ in $(1 + x)^n$ are ${}^nC_9,\\ {}^nC_{10},\\ {}^nC_{11}$.\nSince they are in A.P.: $2\\cdot{}^nC_{10} = {}^nC_9 + {}^nC_{11}$.', 'Set twice the middle coefficient equal to the sum of the outer two.'),
+      s(2, 'Step 2', 'Divide throughout by ${}^nC_{10}$:\n$$2 = \\frac{10}{n - 9} + \\frac{n - 10}{11}$$\nMultiply by $11(n - 9)$:\n$$22(n - 9) = 110 + (n - 10)(n - 9) \\implies n^2 - 41n + 398 = 0$$', 'Simplify the ratio of consecutive binomial coefficients to form a quadratic in n.'),
+      s(3, 'Final Answer', 'Discriminant $\\Delta = 41^2 - 4(398) = 1681 - 1592 = 89$, which is not a perfect square, so no integer $n$ satisfies this literally for $x^9, x^{10}, x^{11}$.\n(Note: If the problem means the $9^{\\text{th}}, 10^{\\text{th}}, 11^{\\text{th}}$ terms—i.e., $x^8, x^9, x^{10}$—then $n^2 - 37n + 322 = 0 \\implies n = 14\\text{ or } 23$.)', 'Note that literally for x power 9, 10, 11 there is no integer solution n, whereas for the 9th, 10th, 11th terms n equals 14 or 23.'),
+    ]
+  ),
+  'iia-6-p4': sol(
+    'Find the sum of the infinite series $1 + \\frac{1}{3} + \\frac{1 \\cdot 3}{3 \\cdot 6} + \\frac{1 \\cdot 3 \\cdot 5}{3 \\cdot 6 \\cdot 9} + \\dots$',
+    [
+      s(1, 'Step 1', 'Let $S = 1 + \\frac{1}{3} + \\frac{1\\cdot 3}{3\\cdot 6} + \\frac{1\\cdot 3\\cdot 5}{3\\cdot 6\\cdot 9} + \\dots$\nRewrite using factorials:\n$$S = 1 + \\frac{1}{1!}\\left(\\frac{1}{3}\\right) + \\frac{1\\cdot 3}{2!}\\left(\\frac{1}{3}\\right)^2 + \\frac{1\\cdot 3\\cdot 5}{3!}\\left(\\frac{1}{3}\\right)^3 + \\dots$$', 'Factor powers of 3 out of the denominators to reveal 1 factorial, 2 factorial, 3 factorial.'),
+      s(2, 'Step 2', 'Compare with $(1 - x)^{-p/q} = 1 + \\frac{p}{1!}\\left(\\frac{x}{q}\\right) + \\frac{p(p+q)}{2!}\\left(\\frac{x}{q}\\right)^2 + \\dots$:\n$$p = 1, \\quad p + q = 3 \\implies q = 2, \\quad \\frac{x}{q} = \\frac{1}{3} \\implies x = \\frac{2}{3}$$', 'Match p, q, and x against the negative-index binomial series.'),
+      s(3, 'Final Answer', '$$S = \\left(1 - \\frac{2}{3}\\right)^{-1/2} = \\left(\\frac{1}{3}\\right)^{-1/2} = \\sqrt{3}$$', 'Evaluate (1 minus 2 by 3) power minus half to get root 3.'),
+    ]
+  ),
+  'iia-6-p5': sol(
+    'If the coefficients of $4$ consecutive terms in the expansion of $(1 + x)^n$ are $a_1, a_2, a_3, a_4$ respectively, prove that $\\frac{a_1}{a_1 + a_2} + \\frac{a_3}{a_3 + a_4} = \\frac{2a_2}{a_2 + a_3}$.',
+    [
+      s(1, 'Step 1', 'Let $a_1 = {}^nC_{r-1},\\ a_2 = {}^nC_r,\\ a_3 = {}^nC_{r+1},\\ a_4 = {}^nC_{r+2}$.\nUsing ${}^nC_{k-1} + {}^nC_k = {}^{n+1}C_k$:\n$$\\frac{a_1}{a_1 + a_2} = \\frac{{}^nC_{r-1}}{{}^{n+1}C_r} = \\frac{r}{n + 1}$$', 'Use Pascal\'s identity to simplify a1 over a1 plus a2 to r over n plus 1.'),
+      s(2, 'Step 2', 'Similarly:\n$$\\frac{a_3}{a_3 + a_4} = \\frac{{}^nC_{r+1}}{{}^{n+1}C_{r+2}} = \\frac{r + 2}{n + 1}, \\quad \\frac{a_2}{a_2 + a_3} = \\frac{{}^nC_r}{{}^{n+1}C_{r+1}} = \\frac{r + 1}{n + 1}$$', 'Simplify the other two fractions in the exact same way.'),
+      s(3, 'Final Answer', '$$\\text{LHS} = \\frac{r}{n + 1} + \\frac{r + 2}{n + 1} = \\frac{2r + 2}{n + 1} = 2\\left(\\frac{r + 1}{n + 1}\\right) = \\frac{2a_2}{a_2 + a_3} = \\text{RHS}$$', 'Add the two terms on the LHS to match the RHS.'),
+    ]
+  ),
+  'iia-7-p1': sol(
+    'Resolve $\\frac{2x + 3}{(x + 1)(x - 3)}$ into partial fractions.',
+    [
+      s(1, 'Step 1', 'Let $\\frac{2x + 3}{(x + 1)(x - 3)} = \\frac{A}{x + 1} + \\frac{B}{x - 3}$.\n$$2x + 3 = A(x - 3) + B(x + 1)$$', 'Set up partial fractions for distinct linear factors.'),
+      s(2, 'Final Answer', 'Put $x = -1$: $1 = -4A \\implies A = -\\frac{1}{4}$.\nPut $x = 3$: $9 = 4B \\implies B = \\frac{9}{4}$.\n$$\\frac{2x + 3}{(x + 1)(x - 3)} = -\\frac{1}{4(x + 1)} + \\frac{9}{4(x - 3)}$$', 'Substitute x equals minus 1 and x equals 3 to find A and B.'),
+    ]
+  ),
+  'iia-7-p2': sol(
+    'Resolve $\\frac{3x + 7}{x^2 - 3x + 2}$ into partial fractions.',
+    [
+      s(1, 'Step 1', 'Factorize denominator: $x^2 - 3x + 2 = (x - 1)(x - 2)$.\nLet $\\frac{3x + 7}{(x - 1)(x - 2)} = \\frac{A}{x - 1} + \\frac{B}{x - 2} \\implies 3x + 7 = A(x - 2) + B(x - 1)$.', 'Factorize the quadratic denominator and write partial fractions.'),
+      s(2, 'Final Answer', 'Put $x = 1$: $10 = -A \\implies A = -10$.\nPut $x = 2$: $13 = B \\implies B = 13$.\n$$\\frac{3x + 7}{x^2 - 3x + 2} = \\frac{13}{x - 2} - \\frac{10}{x - 1}$$', 'Find A equals minus 10 and B equals 13.'),
+    ]
+  ),
+  'iia-7-p3': sol(
+    'Resolve $\\frac{x^2 + 5x + 7}{(x - 3)^3}$ into partial fractions.',
+    [
+      s(1, 'Step 1', 'Put $x - 3 = t \\implies x = t + 3$.\nNumerator $= (t + 3)^2 + 5(t + 3) + 7 = (t^2 + 6t + 9) + (5t + 15) + 7 = t^2 + 11t + 31$.', 'Use the substitution t equals x minus 3 to expand the numerator cleanly.'),
+      s(2, 'Final Answer', '$$\\frac{t^2 + 11t + 31}{t^3} = \\frac{1}{t} + \\frac{11}{t^2} + \\frac{31}{t^3} = \\frac{1}{x - 3} + \\frac{11}{(x - 3)^2} + \\frac{31}{(x - 3)^3}$$', 'Divide term by term and replace t by x minus 3.'),
+    ]
+  ),
+  'iia-7-p4': sol(
+    'Resolve $\\frac{2x^2 + 3x + 4}{(x - 1)(x^2 + 2)}$ into partial fractions.',
+    [
+      s(1, 'Step 1', 'Let $\\frac{2x^2 + 3x + 4}{(x - 1)(x^2 + 2)} = \\frac{A}{x - 1} + \\frac{Bx + C}{x^2 + 2}$.\n$$2x^2 + 3x + 4 = A(x^2 + 2) + (Bx + C)(x - 1)$$', 'Use Bx plus C over the irreducible quadratic x square plus 2.'),
+      s(2, 'Step 2', 'Put $x = 1$: $9 = 3A \\implies A = 3$.\nEquate coefficients of $x^2$: $2 = A + B \\implies B = 2 - 3 = -1$.\nEquate constant terms: $4 = 2A - C \\implies C = 6 - 4 = 2$.', 'Find A, B, and C by substituting x equals 1 and comparing coefficients.'),
+      s(3, 'Final Answer', '$$\\frac{2x^2 + 3x + 4}{(x - 1)(x^2 + 2)} = \\frac{3}{x - 1} + \\frac{2 - x}{x^2 + 2}$$', 'Write the decomposed partial fractions.'),
+    ]
+  ),
+  'iia-7-p5': sol(
+    'Resolve $\\frac{x^3}{(x - 1)(x + 2)}$ into partial fractions.',
+    [
+      s(1, 'Step 1 (Long Division)', 'Since degree of numerator ($3$) $>$ degree of denominator ($2$), divide $x^3$ by $(x - 1)(x + 2) = x^2 + x - 2$:\n$$x^3 = (x - 1)(x^2 + x - 2) + (3x - 2)$$\n$$\\frac{x^3}{(x - 1)(x + 2)} = (x - 1) + \\frac{3x - 2}{(x - 1)(x + 2)}$$', 'Perform polynomial division first because the fraction is improper.', 'Always divide first whenever numerator degree >= denominator degree.'),
+      s(2, 'Step 2', 'Resolve $\\frac{3x - 2}{(x - 1)(x + 2)} = \\frac{A}{x - 1} + \\frac{B}{x + 2}$:\n$$3x - 2 = A(x + 2) + B(x - 1)$$\nPut $x = 1$: $1 = 3A \\implies A = \\frac{1}{3}$. Put $x = -2$: $-8 = -3B \\implies B = \\frac{8}{3}$.', 'Decompose the proper remainder fraction.'),
+      s(3, 'Final Answer', '$$\\frac{x^3}{(x - 1)(x + 2)} = x - 1 + \\frac{1}{3(x - 1)} + \\frac{8}{3(x + 2)}$$', 'Combine quotient and partial fractions for the final result.'),
+    ]
+  ),
+  'iia-8-p1': sol(
+    'Find the mean deviation about the mean for the data: $3, 6, 10, 4, 9, 10$.',
+    [
+      s(1, 'Step 1 (Mean)', '$$\\bar{x} = \\frac{3 + 6 + 10 + 4 + 9 + 10}{6} = \\frac{42}{6} = 7$$', 'Find the arithmetic mean x-bar equals 7.'),
+      s(2, 'Final Answer', 'Absolute deviations $|x_i - \\bar{x}|$: $|3-7|=4,\\ |6-7|=1,\\ |10-7|=3,\\ |4-7|=3,\\ |9-7|=2,\\ |10-7|=3$.\n$$\\text{M.D.}(\\bar{x}) = \\frac{4 + 1 + 3 + 3 + 2 + 3}{6} = \\frac{16}{6} = \\frac{8}{3} \\approx 2.67$$', 'Average the six absolute deviations to get 8 by 3.'),
+    ]
+  ),
+  'iia-8-p2': sol(
+    'Find the mean deviation about the median for the data: $4, 6, 9, 3, 10, 13, 2$.',
+    [
+      s(1, 'Step 1 (Median)', 'Arrange in ascending order: $2, 3, 4, 6, 9, 10, 13$ ($n = 7$).\nMedian $M = 4^{\\text{th}}$ observation $= 6$.', 'Sort the 7 values and pick the 4th term, which is 6.'),
+      s(2, 'Final Answer', 'Absolute deviations $|x_i - 6|$: $4, 3, 2, 0, 3, 4, 7$.\n$$\\text{M.D.}(M) = \\frac{4 + 3 + 2 + 0 + 3 + 4 + 7}{7} = \\frac{23}{7} \\approx 3.29$$', 'Average the absolute deviations from 6 to obtain 23 by 7.'),
+    ]
+  ),
+  'iia-8-p3': sol(
+    'Find the variance and standard deviation for the discrete frequency distribution: $x_i: 4, 8, 11, 17, 20, 24, 32$ with $f_i: 3, 5, 9, 5, 4, 3, 1$.',
+    [
+      s(1, 'Step 1 (Mean)', '$N = \\sum f_i = 3 + 5 + 9 + 5 + 4 + 3 + 1 = 30$.\n$$\\sum f_i x_i = 12 + 40 + 99 + 85 + 80 + 72 + 32 = 420$$\n$$\\bar{x} = \\frac{420}{30} = 14$$', 'Compute total frequency N equals 30 and mean x-bar equals 14.'),
+      s(2, 'Step 2', 'Squared deviations $(x_i - 14)^2$: $100, 36, 9, 9, 36, 100, 324$.\n$$\\sum f_i(x_i - 14)^2 = 300 + 180 + 81 + 45 + 144 + 300 + 324 = 1374$$', 'Multiply each squared deviation by its frequency and sum to 1374.'),
+      s(3, 'Final Answer', '$$\\text{Variance } \\sigma^2 = \\frac{1374}{30} = 45.8$$\n$$\\text{Standard Deviation } \\sigma = \\sqrt{45.8} \\approx 6.77$$', 'Divide by 30 to get variance 45.8 and standard deviation about 6.77.'),
+    ]
+  ),
+  'iia-8-p4': sol(
+    'Calculate the mean deviation about the mean for the continuous distribution: Classes $0\\text{--}10, 10\\text{--}20, 20\\text{--}30, 30\\text{--}40, 40\\text{--}50$ with frequencies $5, 8, 15, 16, 6$.',
+    [
+      s(1, 'Step 1 (Mean)', 'Midpoints $x_i$: $5, 15, 25, 35, 45$; $N = \\sum f_i = 50$.\n$$\\sum f_i x_i = 5(5) + 8(15) + 15(25) + 16(35) + 6(45) = 25 + 120 + 375 + 560 + 270 = 1350$$\n$$\\bar{x} = \\frac{1350}{50} = 27$$', 'Find class midpoints and compute the mean as 27.'),
+      s(2, 'Final Answer', 'Absolute deviations $|x_i - 27|$: $22, 12, 2, 8, 18$.\n$$\\sum f_i|x_i - 27| = 5(22) + 8(12) + 15(2) + 16(8) + 6(18) = 110 + 96 + 30 + 128 + 108 = 472$$\n$$\\text{M.D.}(\\bar{x}) = \\frac{472}{50} = 9.44$$', 'Sum f_i |x_i - 27| to 472 and divide by 50 to get 9.44.'),
+    ]
+  ),
+  'iia-8-p5': sol(
+    'Calculate the variance and standard deviation of the following continuous frequency distribution: Classes $30\\text{--}40, 40\\text{--}50, 50\\text{--}60, 60\\text{--}70, 70\\text{--}80, 80\\text{--}90, 90\\text{--}100$ with frequencies $3, 7, 12, 15, 8, 3, 2$.',
+    [
+      s(1, 'Step 1 (Step-Deviation)', 'Midpoints $x_i$: $35, 45, 55, 65, 75, 85, 95$. Take assumed mean $A = 65$, class width $h = 10$, $N = 50$.\nLet $y_i = \\frac{x_i - 65}{10} = -3, -2, -1, 0, 1, 2, 3$.', 'Use the step-deviation method with A equals 65 and h equals 10.'),
+      s(2, 'Step 2', '$$\\sum f_i y_i = 3(-3) + 7(-2) + 12(-1) + 15(0) + 8(1) + 3(2) + 2(3) = -15$$\n$$\\sum f_i y_i^2 = 3(9) + 7(4) + 12(1) + 0 + 8(1) + 3(4) + 2(9) = 105$$', 'Compute sums of fi yi and fi yi square.'),
+      s(3, 'Final Answer', '$$\\sigma^2 = h^2\\left[\\frac{\\sum f_i y_i^2}{N} - \\left(\\frac{\\sum f_i y_i}{N}\\right)^2\\right] = 100\\left[\\frac{105}{50} - \\left(\\frac{-15}{50}\\right)^2\\right] = 100(2.1 - 0.09) = 201$$\n$$\\sigma = \\sqrt{201} \\approx 14.18$$', 'Variance equals 201 and standard deviation is root 201, approximately 14.18.'),
+    ]
+  ),
+  'iia-9-p1': sol(
+    'Find the probability that a non-leap year contains $53$ Sundays.',
+    [
+      s(1, 'Step 1', 'A non-leap year has $365$ days $= 52 \\text{ weeks} + 1 \\text{ extra day}$.\nThe $52$ weeks already contain $52$ Sundays.', 'Notice 365 days equals 52 full weeks plus 1 extra day.'),
+      s(2, 'Final Answer', 'The sample space for that $1$ extra day is $S = \\{\\text{Sun, Mon, Tue, Wed, Thu, Fri, Sat}\\}$, so $n(S) = 7$.\nFor $53$ Sundays, the extra day must be Sunday ($n(E) = 1$):\n$$P(E) = \\frac{1}{7}$$', 'The probability that the extra day is Sunday is 1 by 7.'),
+    ]
+  ),
+  'iia-9-p2': sol(
+    'If $A$ and $B$ are independent events with $P(A) = 0.2$ and $P(B) = 0.5$, find $P(A \\cup B)$.',
+    [
+      s(1, 'Formula', 'For independent events, $P(A \\cap B) = P(A)\\cdot P(B)$.\nAddition theorem: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.', 'Use independence to compute P(A intersection B).'),
+      s(2, 'Final Answer', '$$P(A \\cap B) = 0.2 \\times 0.5 = 0.1$$\n$$P(A \\cup B) = 0.2 + 0.5 - 0.1 = 0.6$$', 'Hence P(A union B) equals 0.6.'),
+    ]
+  ),
+  'iia-9-p3': sol(
+    'A, B, C are three horses in a race. The probability of A to win the race is twice that of B, and probability of B is twice that of C. What are the probabilities of A, B, and C winning the race?',
+    [
+      s(1, 'Step 1', 'Since $A, B, C$ are mutually exclusive and exhaustive winners:\n$P(A) = 2P(B)$, $P(B) = 2P(C) \\implies P(A) = 4P(C)$.\nAlso $P(A) + P(B) + P(C) = 1$.', 'Express all probabilities in terms of P(C) and set their sum to 1.'),
+      s(2, 'Final Answer', '$$4P(C) + 2P(C) + P(C) = 1 \\implies 7P(C) = 1 \\implies P(C) = \\frac{1}{7}$$\nTherefore $P(A) = \\frac{4}{7}$, $P(B) = \\frac{2}{7}$, $P(C) = \\frac{1}{7}$.', 'Solving gives P(C) = 1/7, P(B) = 2/7, and P(A) = 4/7.'),
+    ]
+  ),
+  'iia-9-p4': sol(
+    'State and prove the Addition Theorem on Probability: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.',
+    [
+      s(1, 'Statement', 'If $A$ and $B$ are any two events of a random experiment, then:\n$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$', 'State the addition theorem clearly.'),
+      s(2, 'Step 1 (Proof)', 'Write $A \\cup B = A \\cup (B - A)$, where $A$ and $(B - A)$ are mutually exclusive events.\nBy the axiom of finite additivity:\n$$P(A \\cup B) = P(A) + P(B - A)$$', 'Split A union B into disjoint parts A and B minus A.'),
+      s(3, 'Final Answer', 'Also $B = (A \\cap B) \\cup (B - A)$ is a disjoint union, so:\n$$P(B) = P(A \\cap B) + P(B - A) \\implies P(B - A) = P(B) - P(A \\cap B)$$\nSubstituting gives:\n$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$', 'Substitute P(B - A) to complete the proof.'),
+    ]
+  ),
+  'iia-9-p5': sol(
+    'Three boxes $B_1, B_2, B_3$ contain balls with different colours: $B_1$ (2 white, 1 black, 2 red), $B_2$ (3 white, 2 black, 4 red), $B_3$ (4 white, 3 black, 2 red). A die is thrown; $B_1$ is chosen if $1$ or $2$ turns up, $B_2$ if $3$ or $4$, and $B_3$ if $5$ or $6$. Having chosen a box, a ball is chosen at random. If the ball is red, find the probability it came from $B_2$.',
+    [
+      s(1, 'Step 1 (Prior & Likelihoods)', '$$P(B_1) = \\frac{2}{6} = \\frac{1}{3}, \\quad P(B_2) = \\frac{1}{3}, \\quad P(B_3) = \\frac{1}{3}$$\nLet $R$ be the event of drawing a red ball:\n$$P(R \\mid B_1) = \\frac{2}{5}, \\quad P(R \\mid B_2) = \\frac{4}{9}, \\quad P(R \\mid B_3) = \\frac{2}{9}$$', 'Write prior probabilities 1/3 each and conditional red ball probabilities.'),
+      s(2, 'Final Answer (Bayes\' Theorem)', '$$P(B_2 \\mid R) = \\frac{P(B_2)P(R \\mid B_2)}{P(B_1)P(R \\mid B_1) + P(B_2)P(R \\mid B_2) + P(B_3)P(R \\mid B_3)}$$\n$$= \\frac{\\frac{1}{3}\\cdot\\frac{4}{9}}{\\frac{1}{3}\\left(\\frac{2}{5} + \\frac{4}{9} + \\frac{2}{9}\\right)} = \\frac{4/9}{\\frac{2}{5} + \\frac{2}{3}} = \\frac{4/9}{16/15} = \\frac{4}{9}\\cdot\\frac{15}{16} = \\frac{5}{12}$$', 'Apply Bayes theorem to get 5 by 12.'),
+    ]
+  ),
+  'iia-10-p1': sol(
+    'A Poisson variable satisfies $P(X = 1) = P(X = 2)$. Find $P(X = 5)$.',
+    [
+      s(1, 'Step 1', 'For a Poisson variate with parameter $\\lambda > 0$, $P(X = k) = \\frac{e^{-\\lambda}\\lambda^k}{k!}$.\nGiven $P(X = 1) = P(X = 2)$:\n$$\\frac{e^{-\\lambda}\\lambda^1}{1!} = \\frac{e^{-\\lambda}\\lambda^2}{2!} \\implies \\lambda = \\frac{\\lambda^2}{2} \\implies \\lambda = 2$$', 'Equate P(X=1) and P(X=2) to find lambda equals 2.'),
+      s(2, 'Final Answer', '$$P(X = 5) = \\frac{e^{-2} \\cdot 2^5}{5!} = \\frac{32 e^{-2}}{120} = \\frac{4}{15}e^{-2}$$', 'Substitute lambda equals 2 and k equals 5 to get 4 by 15 e power minus 2.'),
+    ]
+  ),
+  'iia-10-p2': sol(
+    'The mean and variance of a binomial distribution are $4$ and $3$ respectively. Find $P(X \\ge 1)$.',
+    [
+      s(1, 'Step 1', 'For $X \\sim B(n, p)$, Mean $= np = 4$ and Variance $= npq = 3$.\nDividing: $q = \\frac{npq}{np} = \\frac{3}{4} \\implies p = 1 - \\frac{3}{4} = \\frac{1}{4}$.\nFrom $np = 4$: $n\\left(\\frac{1}{4}\\right) = 4 \\implies n = 16$.', 'Find q = 3/4, p = 1/4, and n = 16.'),
+      s(2, 'Final Answer', '$$P(X \\ge 1) = 1 - P(X = 0) = 1 - {}^{16}C_0 p^0 q^{16} = 1 - \\left(\\frac{3}{4}\\right)^{16}$$', 'Use complement rule 1 minus P(X=0) to get 1 minus (3 by 4) power 16.'),
+    ]
+  ),
+  'iia-10-p3': sol(
+    'A random variable $X$ has the probability distribution $P(X = x) = k(x + 1)$ for $x = 0, 1, 2, 3, 4$ and $0$ otherwise. Find $k$, the mean, and $P(1 < X < 4)$.',
+    [
+      s(1, 'Step 1 (Find k)', 'Total probability equals $1$:\n$$\\sum_{x=0}^4 P(X = x) = k(1 + 2 + 3 + 4 + 5) = 15k = 1 \\implies k = \\frac{1}{15}$$', 'Sum the five probabilities to 1 to find k equals 1 by 15.'),
+      s(2, 'Step 2 (Mean)', '$$\\mu = \\sum_{x=0}^4 x P(X = x) = \\frac{1}{15}[0(1) + 1(2) + 2(3) + 3(4) + 4(5)] = \\frac{0 + 2 + 6 + 12 + 20}{15} = \\frac{40}{15} = \\frac{8}{3}$$', 'Compute the expected value E(X) equals 8 by 3.'),
+      s(3, 'Final Answer', '$$P(1 < X < 4) = P(X = 2) + P(X = 3) = \\frac{3}{15} + \\frac{4}{15} = \\frac{7}{15}$$', 'Add P(X=2) and P(X=3) to get 7 by 15.'),
+    ]
+  ),
+  'iia-10-p4': sol(
+    'The range of a random variable $X$ is $\\{0, 1, 2\\}$. Given $P(X = 0) = 3c^3$, $P(X = 1) = 4c - 10c^2$, and $P(X = 2) = 5c - 1$. Find the value of $c$, $P(X < 1)$, and $P(1 < X \\le 2)$.',
+    [
+      s(1, 'Step 1 (Find c)', 'Sum of probabilities $= 1$:\n$$3c^3 + (4c - 10c^2) + (5c - 1) = 1 \\implies 3c^3 - 10c^2 + 9c - 2 = 0$$\nNotice $c = 1$ is a root: $(c - 1)(3c^2 - 7c + 2) = (c - 1)(3c - 1)(c - 2) = 0$.\nSince $0 \\le P(X = 0) = 3c^3 \\le 1$, $c = 1$ and $c = 2$ are invalid. Hence $c = \\frac{1}{3}$.', 'Solve the cubic and keep only c equals 1 by 3 so all probabilities lie in 0 to 1.', 'Always verify every probability lies between 0 and 1 after solving for c.'),
+      s(2, 'Final Answer', 'For $c = \\frac{1}{3}$:\n$$P(X < 1) = P(X = 0) = 3\\left(\\frac{1}{3}\\right)^3 = \\frac{1}{9}$$\n$$P(1 < X \\le 2) = P(X = 2) = 5\\left(\\frac{1}{3}\\right) - 1 = \\frac{2}{3}$$', 'Evaluate P(X < 1) = 1/9 and P(1 < X <= 2) = 2/3.'),
+    ]
+  ),
+  'iia-10-p5': sol(
+    'In a city, $10$ accidents take place in a span of $50$ days. Assuming that the number of accidents follows a Poisson distribution, find the probability that there will be three or more accidents in a day.',
+    [
+      s(1, 'Given', 'Average accidents per day $\\lambda = \\frac{10}{50} = 0.2$.\n$X \\sim \\text{Poisson}(\\lambda = 0.2)$, so $P(X = k) = \\frac{e^{-0.2}(0.2)^k}{k!}$.', 'Compute the daily mean rate lambda equals 0.2.'),
+      s(2, 'Final Answer', '$$P(X \\ge 3) = 1 - [P(X = 0) + P(X = 1) + P(X = 2)]$$\n$$= 1 - e^{-0.2}\\left(1 + 0.2 + \\frac{(0.2)^2}{2}\\right) = 1 - 1.22 e^{-0.2}$$', 'Subtract P(0) + P(1) + P(2) from 1 to get 1 minus 1.22 e power minus 0.2.'),
+    ]
+  ),
+};

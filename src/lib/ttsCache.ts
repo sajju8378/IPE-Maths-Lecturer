@@ -1,5 +1,5 @@
 import type { LanguageMode } from '../types/lecture';
-import { apiUrl } from './apiBase';
+import { apiUrl, hasBackendApi } from './apiBase';
 
 // 44-byte minimal valid silent WAV for unlocking HTMLAudioElement on mobile Safari/Chrome tap
 const SILENT_WAV_DATA_URI =
@@ -51,6 +51,7 @@ class TtsManager {
   }
 
   async fetchTtsUrl(text: string, language: LanguageMode): Promise<string | null> {
+    if (!hasBackendApi()) return null;
     const clean = text.trim();
     if (!clean) return null;
     const key = this.getKey(clean, language);

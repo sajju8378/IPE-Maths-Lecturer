@@ -26,7 +26,7 @@ import type {
 } from '../types/lecture';
 import { ChalkStepView } from './ChalkStepView';
 import { MathText } from './MathText';
-import { apiUrl, readApiJson } from '../lib/apiBase';
+import { apiUrl, hasBackendApi, readApiJson } from '../lib/apiBase';
 import { ttsManager } from '../lib/ttsCache';
 
 interface BoardScreenProps {
@@ -34,6 +34,7 @@ interface BoardScreenProps {
   paperLabel: string;
   chapterName: string;
   language: LanguageMode;
+  initialShowFullSolution?: boolean;
   onChangeLanguage: (lang: LanguageMode) => void;
   onBackToSelection: () => void;
 }
@@ -50,16 +51,19 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
   paperLabel,
   chapterName,
   language,
+  initialShowFullSolution = false,
   onChangeLanguage,
   onBackToSelection,
 }) => {
-  const [currentStepIdx, setCurrentStepIdx] = useState(0);
-  const [stepProgress, setStepProgress] = useState(0);
+  const [currentStepIdx, setCurrentStepIdx] = useState(() =>
+    initialShowFullSolution ? Math.max(0, solution.steps.length - 1) : 0
+  );
+  const [stepProgress, setStepProgress] = useState(() => (initialShowFullSolution ? 1 : 0));
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoadingAudio, setIsLoadingAudio] = useState(false);
   const [speed, setSpeed] = useState<PlaybackSpeed>(1);
   const [isMuted, setIsMuted] = useState(false);
-  const [showFullSolution, setShowFullSolution] = useState(false);
+  const [showFullSolution, setShowFullSolution] = useState(initialShowFullSolution);
 
   // Clarification / Doubt states
   const [clarification, setClarification] = useState<ClarificationState | null>(null);
@@ -306,14 +310,24 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     [language, runFallbackSpeechAndSync, steps, stopAllAudio]
   );
 
-  // Auto-start lecture when BoardScreen mounts with a new solution
+  // Auto-start lecture when BoardScreen mounts unless opened directly in full-solution mode
   useEffect(() => {
-    void startStepPlayback(0, 0);
+    if (initialShowFullSolution) {
+      playbackTokenRef.current++;
+      stopAllAudio();
+      setIsPlaying(false);
+      setIsLoadingAudio(false);
+      setShowFullSolution(true);
+      setCurrentStepIdx(Math.max(0, solution.steps.length - 1));
+      setStepProgress(1);
+    } else {
+      void startStepPlayback(0, 0);
+    }
     return () => {
       playbackTokenRef.current++;
       stopAllAudio();
     };
-  }, [solution, startStepPlayback, stopAllAudio]);
+  }, [initialShowFullSolution, solution, startStepPlayback, stopAllAudio]);
 
   const handlePause = useCallback(() => {
     playbackTokenRef.current++;
@@ -326,7 +340,8 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     ttsManager.unlockOnGesture();
     setClarification(null);
     if (showFullSolution) {
-      void startStepPlayback(currentStepIdx, 0);
+      const targetIdx = currentStepIdx >= steps.length - 1 ? 0 : currentStepIdx;
+      void startStepPlayback(targetIdx, 0);
       return;
     }
     if (stepProgress >= 0.99) {
@@ -427,6 +442,19 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     ttsManager.unlockOnGesture();
     handlePause();
     setClarificationError(null);
+    if (!hasBackendApi()) {
+      const localSpeech = activeStep.key_point
+        ? `${activeStep.speech} Key tip: ${activeStep.key_point}`
+        : activeStep.speech;
+      setClarification({
+        kind: 'simpler',
+        title: `Step Summary · ${activeStep.section_label}`,
+        boardNote: activeStep.board_text,
+        speech: localSpeech,
+      });
+      void playClarificationAudio(localSpeech);
+      return;
+    }
     setClarificationLoading(true);
     try {
       const res = await fetch(apiUrl('/api/explain-simpler'), {
@@ -459,6 +487,12 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     ttsManager.unlockOnGesture();
     handlePause();
     setClarificationError(null);
+    if (!hasBackendApi()) {
+      setClarificationError(
+        'Custom AI doubt-answering requires the live server with GEMINI_API_KEY. Use the step breakdown and captions above on this static host.'
+      );
+      return;
+    }
     setClarificationLoading(true);
 
     try {

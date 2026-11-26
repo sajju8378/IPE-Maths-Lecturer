@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { AlertCircle, Loader2, RefreshCw } from 'lucide-react';
+import { AlertCircle, Eye, Loader2, RefreshCw } from 'lucide-react';
 import { SYLLABUS_PAPERS } from './data/syllabus';
+import { getBuiltInSolution } from './data/solutionsIndex';
 import { BoardScreen } from './components/BoardScreen';
 import { SelectionFlow } from './components/SelectionFlow';
 import { MathText } from './components/MathText';
 import { OfflineIndicator } from './components/OfflineIndicator';
-import { apiUrl, readApiJson } from './lib/apiBase';
+import { apiUrl, hasBackendApi, readApiJson } from './lib/apiBase';
 import { ttsManager } from './lib/ttsCache';
 import type {
   Chapter,
@@ -23,6 +24,9 @@ interface ActiveRequest {
   questionType?: string;
   imageBase64?: string;
   imageMimeType?: string;
+  problem?: Problem;
+  paperId?: PaperId;
+  isBuiltInOffline?: boolean;
 }
 
 export default function App() {
@@ -35,6 +39,7 @@ export default function App() {
   const [solveError, setSolveError] = useState<string | null>(null);
   const [activeRequest, setActiveRequest] = useState<ActiveRequest | null>(null);
   const [activeSolution, setActiveSolution] = useState<LectureSolution | null>(null);
+  const [initialFullSolution, setInitialFullSolution] = useState(false);
 
   const solveAndOpenBoard = async (req: ActiveRequest, targetLang: LanguageMode = language) => {
     // Unlock audio element right inside the user's tap gesture for mobile browsers
@@ -43,6 +48,7 @@ export default function App() {
     setActiveRequest(req);
     setActiveSolution(null);
     setSolveError(null);
+    setInitialFullSolution(false);
     setIsSolving(true);
 
     try {
@@ -78,6 +84,32 @@ export default function App() {
     }
   };
 
+  const handleShowSolution = async (problem: Problem, targetPaperId: PaperId = paperId) => {
+    ttsManager.unlockOnGesture();
+    const paper = SYLLABUS_PAPERS[targetPaperId];
+    const req: ActiveRequest = {
+      question: problem.questionLatex,
+      paperLabel: paper.title,
+      chapterName: selectedChapter?.name || paper.title,
+      questionType: `${problem.type} (${problem.marks} Marks)`,
+      problem,
+      paperId: targetPaperId,
+      isBuiltInOffline: true,
+    };
+
+    setSolveError(null);
+    setActiveRequest(req);
+    const builtIn = await getBuiltInSolution(targetPaperId, problem.id);
+    if (builtIn) {
+      setInitialFullSolution(true);
+      setActiveSolution(builtIn);
+      return;
+    }
+
+    // Fallback to live AI solve if not in built-in index
+    void solveAndOpenBoard(req);
+  };
+
   const handleStartProblem = (problem: Problem) => {
     const paper = SYLLABUS_PAPERS[paperId];
     void solveAndOpenBoard({
@@ -85,6 +117,8 @@ export default function App() {
       paperLabel: paper.title,
       chapterName: selectedChapter?.name || paper.title,
       questionType: `${problem.type} (${problem.marks} Marks)`,
+      problem,
+      paperId,
     });
   };
 
@@ -108,6 +142,9 @@ export default function App() {
     if (nextLang === language) return;
     setLanguage(nextLang);
     if (activeRequest) {
+      if (activeRequest.isBuiltInOffline && !hasBackendApi()) {
+        return;
+      }
       void solveAndOpenBoard(activeRequest, nextLang);
     }
   };
@@ -155,10 +192,28 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
+                  {activeRequest?.problem && (
+                    <button
+                      onClick={() =>
+                        void handleShowSolution(
+                          activeRequest.problem!,
+                          activeRequest.paperId ?? paperId
+                        )
+                      }
+                      className="min-h-[44px] px-4 rounded-xl bg-[#FDE047] text-[#113224] text-sm font-semibold inline-flex items-center gap-2 hover:bg-[#FEF08A] cursor-pointer"
+                    >
+                      <Eye className="w-4 h-4" />
+                      <span>Show Built-in Solution</span>
+                    </button>
+                  )}
                   {activeRequest && (
                     <button
                       onClick={() => void solveAndOpenBoard(activeRequest)}
-                      className="min-h-[44px] px-4 rounded-xl bg-[#FDE047] text-[#113224] text-sm font-semibold inline-flex items-center gap-2 hover:bg-[#FEF08A] cursor-pointer"
+                      className={`min-h-[44px] px-4 rounded-xl text-sm font-semibold inline-flex items-center gap-2 cursor-pointer ${
+                        activeRequest.problem
+                          ? 'border border-white/25 text-[#F4F7F2] hover:bg-white/10'
+                          : 'bg-[#FDE047] text-[#113224] hover:bg-[#FEF08A]'
+                      }`}
                     >
                       <RefreshCw className="w-4 h-4" />
                       <span>Try Again</span>
@@ -191,10 +246,12 @@ export default function App() {
           paperLabel={activeRequest.paperLabel}
           chapterName={activeRequest.chapterName}
           language={language}
+          initialShowFullSolution={initialFullSolution}
           onChangeLanguage={handleLanguageChangeOnBoard}
           onBackToSelection={() => {
             setActiveSolution(null);
             setActiveRequest(null);
+            setInitialFullSolution(false);
           }}
         />
         <OfflineIndicator />
@@ -218,6 +275,7 @@ export default function App() {
         onSelectChapter={setSelectedChapter}
         onSelectLanguage={setLanguage}
         onStartProblem={handleStartProblem}
+        onShowSolution={(prob) => void handleShowSolution(prob)}
         onStartCustomQuestion={handleStartCustomQuestion}
       />
       <OfflineIndicator />

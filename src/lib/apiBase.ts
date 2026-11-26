@@ -1,5 +1,15 @@
 const CONFIGURED_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
 
+export function hasBackendApi(): boolean {
+  if (CONFIGURED_BASE) return true;
+  if (typeof window === 'undefined') return true;
+  const isStaticHost =
+    window.location.hostname.endsWith('github.io') ||
+    window.location.protocol === 'capacitor:' ||
+    window.location.protocol === 'file:';
+  return !isStaticHost;
+}
+
 export function apiUrl(path: string): string {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   if (CONFIGURED_BASE) {

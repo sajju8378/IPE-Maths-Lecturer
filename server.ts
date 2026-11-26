@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import fs from 'fs';
 import path from 'path';
 import { GoogleGenAI, Type, ThinkingLevel } from '@google/genai';
 
@@ -457,10 +458,27 @@ Student's Doubt: ${doubt.trim()}`,
   }
 });
 
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
+app.use('/api', (_req, res) => {
+  res.status(404).json({ error: 'API route not found.' });
+});
+
 async function startServer() {
   const PORT = Number(process.env.PORT) || 3000;
+  const distPath = path.resolve(process.cwd(), 'dist');
+  const distIndex = path.join(distPath, 'index.html');
+  const isDevLifecycle = process.env.npm_lifecycle_event === 'dev';
+  const useProdStatic =
+    process.env.NODE_ENV === 'production' ||
+    (!isDevLifecycle &&
+      process.env.NODE_ENV !== 'development' &&
+      fs.existsSync(distIndex) &&
+      (process.env.RENDER === 'true' || process.env.npm_lifecycle_event === 'start'));
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!useProdStatic) {
     const { createServer } = await import('vite');
     const vite = await createServer({
       server: { middlewareMode: true },
@@ -468,10 +486,9 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      res.sendFile(distIndex);
     });
   }
 

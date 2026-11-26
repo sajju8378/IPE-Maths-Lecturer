@@ -440,8 +440,8 @@ const IIA_CHAPTERS: PaperConfig['chapters'] = [
       makeProblem('iia-8', 1, 'VSAQ', 'Mean Deviation About Mean', 'Find the mean deviation about the mean for the data: $3, 6, 10, 4, 9, 10$.'),
       makeProblem('iia-8', 2, 'VSAQ', 'Mean Deviation About Median', 'Find the mean deviation about the median for the data: $4, 6, 9, 3, 10, 13, 2$.'),
       makeProblem('iia-8', 3, 'SAQ', 'Variance and Standard Deviation', 'Find the variance and standard deviation for the discrete frequency distribution: $x_i: 4, 8, 11, 17, 20, 24, 32$ with $f_i: 3, 5, 9, 5, 4, 3, 1$.'),
-      makeProblem('iia-8', 4, 'LAQ', 'Grouped Data Mean Deviation', 'Calculate the mean deviation about the mean for the continuous distribution: Classes $0\text{--}10, 10\text{--}20, 20\text{--}30, 30\text{--}40, 40\text{--}50$ with frequencies $5, 8, 15, 16, 6$.'),
-      makeProblem('iia-8', 5, 'LAQ', 'Grouped Data Variance & SD', 'Calculate the variance and standard deviation of the following continuous frequency distribution: Classes $30\text{--}40, 40\text{--}50, 50\text{--}60, 60\text{--}70, 70\text{--}80, 80\text{--}90, 90\text{--}100$ with frequencies $3, 7, 12, 15, 8, 3, 2$.'),
+      makeProblem('iia-8', 4, 'LAQ', 'Grouped Data Mean Deviation', 'Calculate the mean deviation about the mean for the continuous distribution: Classes $0\\text{--}10, 10\\text{--}20, 20\\text{--}30, 30\\text{--}40, 40\\text{--}50$ with frequencies $5, 8, 15, 16, 6$.'),
+      makeProblem('iia-8', 5, 'LAQ', 'Grouped Data Variance & SD', 'Calculate the variance and standard deviation of the following continuous frequency distribution: Classes $30\\text{--}40, 40\\text{--}50, 50\\text{--}60, 60\\text{--}70, 70\\text{--}80, 80\\text{--}90, 90\\text{--}100$ with frequencies $3, 7, 12, 15, 8, 3, 2$.'),
     ],
   },
   {

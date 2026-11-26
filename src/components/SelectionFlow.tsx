@@ -5,6 +5,7 @@ import {
   Camera,
   ChevronLeft,
   ChevronRight,
+  Eye,
   FileText,
   Image as ImageIcon,
   PenLine,
@@ -34,6 +35,7 @@ interface SelectionFlowProps {
   onSelectChapter: (chapter: Chapter | null) => void;
   onSelectLanguage: (lang: LanguageMode) => void;
   onStartProblem: (problem: Problem) => void;
+  onShowSolution: (problem: Problem) => void;
   onStartCustomQuestion: (payload: {
     question: string;
     imageBase64?: string;
@@ -53,6 +55,7 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
   onSelectChapter,
   onSelectLanguage,
   onStartProblem,
+  onShowSolution,
   onStartCustomQuestion,
 }) => {
   const [customMode, setCustomMode] = useState<'none' | 'text' | 'photo'>('none');
@@ -563,10 +566,9 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
 
                   <div className="space-y-2.5">
                     {groupProblems.map((prob, idx) => (
-                      <button
+                      <div
                         key={prob.id}
-                        onClick={() => onStartProblem(prob)}
-                        className="w-full rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F] p-4 sm:p-5 text-left transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 group cursor-pointer"
+                        className="w-full rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F]/45 p-4 sm:p-5 text-left transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4"
                       >
                         <div className="space-y-1.5 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 text-xs text-[#526058]">
@@ -583,12 +585,27 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
                           </div>
                         </div>
 
-                        <div className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#14452F] sm:pl-4">
-                          <FileText className="w-4 h-4" />
-                          <span className="whitespace-nowrap">Teach on Board</span>
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                        <div className="shrink-0 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+                          <button
+                            type="button"
+                            onClick={() => onShowSolution(prob)}
+                            className="min-h-[44px] flex-1 sm:flex-initial px-3.5 rounded-xl border border-[#14452F]/25 bg-[#F7F6F2] text-xs sm:text-sm font-semibold text-[#14452F] hover:bg-[#ECEAE1] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                          >
+                            <Eye className="w-4 h-4 shrink-0" />
+                            <span>Show Solution</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => onStartProblem(prob)}
+                            className="min-h-[44px] flex-1 sm:flex-initial px-4 rounded-xl bg-[#14452F] text-white text-xs sm:text-sm font-semibold hover:bg-[#0F3624] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                          >
+                            <FileText className="w-4 h-4 shrink-0" />
+                            <span>Teach on Board</span>
+                            <ArrowRight className="w-4 h-4 shrink-0" />
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     ))}
                   </div>
                 </div>
