@@ -1,0 +1,6 @@
+{
+  "name": "IPE Maths Lecturer",
+  "description": "Interactive chalkboard maths lecturer for Telangana Intermediate (TGBIE) students with synchronized step-by-step writing, KaTeX equations, and voice explanations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
