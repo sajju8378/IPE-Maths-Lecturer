@@ -90,7 +90,7 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "revision": "9e490123e591c0bff43b3f5cf88aa606"
   }, {
     "url": "index.html",
-    "revision": "90c50863c2ae999fa9af27be15479d25"
+    "revision": "ff451ba517615b72f442fb38e4a30fad"
   }, {
     "url": "icon.svg",
     "revision": "5008f07c0b8607220417e1d0f09062db"
@@ -101,10 +101,10 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "url": "apple-touch-icon.png",
     "revision": "1288cdfff1363ba0f5f1bf7113cd88d7"
   }, {
-    "url": "assets/index-DoVD9nNo.js",
+    "url": "assets/index-DxHjmA0_.css",
     "revision": null
   }, {
-    "url": "assets/index-DfECgdyx.css",
+    "url": "assets/index-BBbOzHNC.js",
     "revision": null
   }, {
     "url": "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
@@ -224,10 +224,22 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "url": "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
     "revision": null
   }, {
+    "url": "assets/aistudio/image_e2656dd0.png",
+    "revision": null
+  }, {
     "url": "assets/aistudio/image_cbdff388.png",
     "revision": null
   }, {
+    "url": "assets/aistudio/image_bae638e2.png",
+    "revision": null
+  }, {
     "url": "assets/aistudio/image_a9f1eaff.png",
+    "revision": null
+  }, {
+    "url": "assets/aistudio/image_9bda1df3.png",
+    "revision": null
+  }, {
+    "url": "assets/aistudio/image_2ab1c6f3.png",
     "revision": null
   }, {
     "url": "apple-touch-icon.png",
