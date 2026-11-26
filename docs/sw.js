@@ -90,7 +90,7 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "revision": "9e490123e591c0bff43b3f5cf88aa606"
   }, {
     "url": "index.html",
-    "revision": "1f4667315b8f6e168933598a2eb1e834"
+    "revision": "eec740cd146a21d4b11bac7750703aa3"
   }, {
     "url": "icon.svg",
     "revision": "5008f07c0b8607220417e1d0f09062db"
@@ -101,10 +101,22 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "url": "apple-touch-icon.png",
     "revision": "1288cdfff1363ba0f5f1bf7113cd88d7"
   }, {
-    "url": "assets/index-DxHjmA0_.css",
+    "url": "assets/solutionsIIB-DLlQ2OBl.js",
     "revision": null
   }, {
-    "url": "assets/index-BEXgsPYU.js",
+    "url": "assets/solutionsIIA-hX-7YquZ.js",
+    "revision": null
+  }, {
+    "url": "assets/solutionsIB-VE1RZWq2.js",
+    "revision": null
+  }, {
+    "url": "assets/solutionsIA-BWM8gfqH.js",
+    "revision": null
+  }, {
+    "url": "assets/index-DRg762GY.css",
+    "revision": null
+  }, {
+    "url": "assets/index-CUdnLGGc.js",
     "revision": null
   }, {
     "url": "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",

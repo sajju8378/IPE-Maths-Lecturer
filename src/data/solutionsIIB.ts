@@ -314,4 +314,296 @@ export const SOLUTIONS_IIB: Record<string, LectureSolution> = {
       s(3, 'Final Answer', 'Replace $t = x - y$:\n$$2(x - y) + \\log|x - y + 2| = x + C \\implies x - 2y + \\log|x - y + 2| = C$$', 'Substitute back t equals x minus y to get x minus 2y plus log mod x minus y plus 2 equals C.'),
     ]
   ),
+  'iib-1-p6': sol(
+    'Find the equation of the circle having $(1, 2)$ and $(4, 6)$ as the extremities of a diameter.',
+    [
+      s(1, 'Formula', 'Circle with diameter endpoints $(x_1, y_1)$ and $(x_2, y_2)$ is $(x - x_1)(x - x_2) + (y - y_1)(y - y_2) = 0$.', 'Use the diameter form of a circle.'),
+      s(2, 'Final Answer', '$$(x - 1)(x - 4) + (y - 2)(y - 6) = 0$$\n$$x^2 - 5x + 4 + y^2 - 8y + 12 = 0 \\implies x^2 + y^2 - 5x - 8y + 16 = 0$$', 'Expand to obtain x^2 + y^2 - 5x - 8y + 16 = 0.'),
+    ]
+  ),
+  'iib-1-p7': sol(
+    'If the length of the tangent from $(5, 4)$ to the circle $x^2 + y^2 + 2ky = 0$ is $1$, find the value of $k$.',
+    [
+      s(1, 'Formula', 'Length of tangent from $(x_1, y_1)$ to $S = 0$ is $\\sqrt{S_{11}}$.', 'Use the length of tangent formula root S11.'),
+      s(2, 'Final Answer', 'Here $S_{11} = 5^2 + 4^2 + 2k(4) = 25 + 16 + 8k = 41 + 8k$.\nGiven $\\sqrt{S_{11}} = 1 \\implies S_{11} = 1$:\n$$41 + 8k = 1 \\implies 8k = -40 \\implies k = -5$$', 'Set S11 = 1 to get k = -5.'),
+    ]
+  ),
+  'iib-1-p8': sol(
+    'Find the pole of $3x + 4y - 45 = 0$ with respect to $x^2 + y^2 - 6x - 8y + 5 = 0$.',
+    [
+      s(1, 'Step 1 (Polar Equation)', 'Let the pole be $P(x_1, y_1)$. The polar of $P$ with respect to $x^2 + y^2 - 6x - 8y + 5 = 0$ is $S_1 = 0$:\n$$xx_1 + yy_1 - 3(x + x_1) - 4(y + y_1) + 5 = 0$$\n$$(x_1 - 3)x + (y_1 - 4)y - (3x_1 + 4y_1 - 5) = 0$$', 'Write the polar equation S1 = 0 at (x1, y1).'),
+      s(2, 'Step 2 (Compare Coefficients)', 'Compare with $3x + 4y - 45 = 0$:\n$$\\frac{x_1 - 3}{3} = \\frac{y_1 - 4}{4} = \\frac{3x_1 + 4y_1 - 5}{45} = m$$', 'Equate proportional coefficients to parameter m.'),
+      s(3, 'Final Answer', 'From the first two ratios: $x_1 = 3m + 3$, $y_1 = 4m + 4$.\nSubstitute into the third ratio:\n$$3(3m + 3) + 4(4m + 4) - 5 = 45m \\implies 25m + 20 = 45m \\implies 20m = 20 \\implies m = 1$$\nThus $x_1 = 6$, $y_1 = 8$. Pole $= (6, 8)$.', 'Solve for m = 1 to get the pole (6, 8).'),
+    ]
+  ),
+  'iib-1-p9': sol(
+    'Show that the four points $(1, 1)$, $(-6, 0)$, $(-2, 2)$, and $(-2, -8)$ are concyclic and find the equation of the circle.',
+    [
+      s(1, 'Step 1 (General Circle)', 'Let the circle through the first three points be $x^2 + y^2 + 2gx + 2fy + c = 0$.\n• At $(1, 1)$: $2g + 2f + c = -2 \\dots (1)$\n• At $(-6, 0)$: $-12g + c = -36 \\implies c = 12g - 36 \\dots (2)$\n• At $(-2, 2)$: $-4g + 4f + c = -8 \\dots (3)$', 'Substitute the first three points into the general circle equation.'),
+      s(2, 'Step 2 (Solve for g, f, c)', 'Subtract $(1)$ from $(3)$: $-6g + 2f = -6 \\implies f = 3g - 3$.\nSubstitute $f$ and $c$ into $(1)$:\n$$2g + 2(3g - 3) + (12g - 36) = -2 \\implies 20g = 40 \\implies g = 2$$\nThen $f = 3(2) - 3 = 3$ and $c = 12(2) - 36 = -12$.\nCircle: $x^2 + y^2 + 4x + 6y - 12 = 0$.', 'Solve the linear system to find g = 2, f = 3, c = -12.'),
+      s(3, 'Final Answer', 'Substitute the fourth point $(-2, -8)$ into the circle equation:\n$$(-2)^2 + (-8)^2 + 4(-2) + 6(-8) - 12 = 4 + 64 - 8 - 48 - 12 = 0$$\nHence the four points are concyclic on $x^2 + y^2 + 4x + 6y - 12 = 0$.', 'Verify (-2, -8) lies on the circle.'),
+    ]
+  ),
+  'iib-1-p10': sol(
+    'Show that the circles $x^2 + y^2 - 4x - 6y - 12 = 0$ and $x^2 + y^2 + 6x + 18y + 26 = 0$ touch each other, and find the point of contact and common tangent.',
+    [
+      s(1, 'Step 1 (Centres & Radii)', 'Circle $1$: $C_1(2, 3)$, $r_1 = \\sqrt{4 + 9 + 12} = 5$.\nCircle $2$: $C_2(-3, -9)$, $r_2 = \\sqrt{9 + 81 - 26} = 8$.\nDistance $C_1 C_2 = \\sqrt{(-3 - 2)^2 + (-9 - 3)^2} = \\sqrt{25 + 144} = 13 = r_1 + r_2$.\nHence the circles touch each other externally.', 'Compare C1C2 = 13 with r1 + r2 = 5 + 8.'),
+      s(2, 'Step 2 (Point of Contact)', 'The point of contact divides $C_1 C_2$ internally in the ratio $r_1 : r_2 = 5 : 8$:\n$$P = \\left(\\frac{5(-3) + 8(2)}{5 + 8},\\ \\frac{5(-9) + 8(3)}{5 + 8}\\right) = \\left(\\frac{1}{13},\\ -\\frac{21}{13}\\right)$$', 'Use internal section formula in ratio 5 : 8.'),
+      s(3, 'Final Answer (Common Tangent)', 'Equation of common tangent at point of contact is $S_1 - S_2 = 0$:\n$$(-4 - 6)x + (-6 - 18)y + (-12 - 26) = 0$$\n$$-10x - 24y - 38 = 0 \\implies 5x + 12y + 19 = 0$$', 'Subtract S2 from S1 to get 5x + 12y + 19 = 0.'),
+    ]
+  ),
+  'iib-2-p6': sol(
+    'Find the angle between the circles $x^2 + y^2 - 4x - 14 = 0$ and $x^2 + y^2 + 4x - 14 = 0$.',
+    [
+      s(1, 'Step 1', 'Circle $1$: $C_1(2, 0)$, $r_1 = \\sqrt{4 + 0 + 14} = \\sqrt{18}$.\nCircle $2$: $C_2(-2, 0)$, $r_2 = \\sqrt{4 + 0 + 14} = \\sqrt{18}$.\nDistance between centres $d = C_1 C_2 = 4$, so $d^2 = 16$.', 'Find centres, radii, and d square.'),
+      s(2, 'Final Answer', '$$\\cos\\theta = \\frac{|d^2 - r_1^2 - r_2^2|}{2r_1 r_2} = \\frac{|16 - 18 - 18|}{2(\\sqrt{18})(\\sqrt{18})} = \\frac{20}{36} = \\frac{5}{9}$$\nAcute angle $\\theta = \\cos^{-1}\\left(\\frac{5}{9}\\right)$ (or $\\cos\\theta = -\\frac{5}{9}$ using standard sign).', 'Apply the angle-between-circles formula to get cos inverse(5/9).'),
+    ]
+  ),
+  'iib-2-p7': sol(
+    'Find the equation of the circle passing through the origin, having its centre on $x + y = 4$, and cutting $x^2 + y^2 - 4x + 2y + 4 = 0$ orthogonally.',
+    [
+      s(1, 'Step 1', 'Let the circle through $(0, 0)$ be $x^2 + y^2 + 2gx + 2fy = 0$ (since $c = 0$).\nIts centre $(-g, -f)$ lies on $x + y = 4 \\implies -g - f = 4 \\dots (1)$.', 'Set c = 0 for passing through origin and apply the line condition on centre.'),
+      s(2, 'Step 2 (Orthogonality)', 'Orthogonal to $x^2 + y^2 - 4x + 2y + 4 = 0$ ($g\' = -2, f\' = 1, c\' = 4$):\n$$2gg\' + 2ff\' = c + c\' \\implies 2g(-2) + 2f(1) = 0 + 4 \\implies -2g + f = 2 \\dots (2)$$', 'Apply 2gg\' + 2ff\' = c + c\'.'),
+      s(3, 'Final Answer', 'Add $(1)$ and $(2)$: $-3g = 6 \\implies g = -2$, then $f = 2 + 2(-2) = -2$.\nRequired circle: $x^2 + y^2 - 4x - 4y = 0$.', 'Solve for g = -2, f = -2 to write the circle equation.'),
+    ]
+  ),
+  'iib-2-p8': sol(
+    'Find the equation of the circle cutting orthogonally the three circles $x^2 + y^2 + 2x + 17y + 4 = 0$, $x^2 + y^2 + 7x + 6y + 11 = 0$, and $x^2 + y^2 - x + 22y + 3 = 0$.',
+    [
+      s(1, 'Step 1 (Radical Centre)', 'Let the three circles be $S_1 = 0, S_2 = 0, S_3 = 0$.\n$S_1 - S_2 = 0 \\implies -5x + 11y - 7 = 0 \\dots (1)$\n$S_2 - S_3 = 0 \\implies 8x - 16y + 8 = 0 \\implies x - 2y + 1 = 0 \\implies x = 2y - 1$.\nSubstitute into $(1)$: $-5(2y - 1) + 11y - 7 = 0 \\implies y = 2$, $x = 3$.\nRadical centre $= (3, 2)$.', 'Find the radical centre (3, 2) by intersecting two radical axes.'),
+      s(2, 'Step 2 (Radius)', 'The orthogonal circle has centre $(3, 2)$ and radius $r = \\sqrt{S_1(3, 2)}$:\n$$r^2 = 3^2 + 2^2 + 2(3) + 17(2) + 4 = 9 + 4 + 6 + 34 + 4 = 57$$', 'Compute r^2 = S1(3, 2) = 57.'),
+      s(3, 'Final Answer', '$$(x - 3)^2 + (y - 2)^2 = 57 \\implies x^2 + y^2 - 6x - 4y - 44 = 0$$', 'Expand the circle with centre (3, 2) and radius root 57.'),
+    ]
+  ),
+  'iib-2-p9': sol(
+    'Find the equation of the radical axis of the circles $2x^2 + 2y^2 + 3x + 6y - 5 = 0$ and $3x^2 + 3y^2 - 7x + 8y - 11 = 0$.',
+    [
+      s(1, 'Step 1 (Standard Form)', 'Make coefficients of $x^2$ and $y^2$ equal to $1$:\n$S_1 : x^2 + y^2 + \\frac{3}{2}x + 3y - \\frac{5}{2} = 0$\n$S_2 : x^2 + y^2 - \\frac{7}{3}x + \\frac{8}{3}y - \\frac{11}{3} = 0$', 'Divide the first equation by 2 and the second by 3 before subtracting.'),
+      s(2, 'Final Answer', 'Radical axis $S_1 - S_2 = 0$:\n$$\\left(\\frac{3}{2} + \\frac{7}{3}\\right)x + \\left(3 - \\frac{8}{3}\\right)y + \\left(-\\frac{5}{2} + \\frac{11}{3}\\right) = 0$$\n$$\\frac{23}{6}x + \\frac{1}{3}y + \\frac{7}{6} = 0 \\implies 23x + 2y + 7 = 0$$', 'Subtract S2 from S1 and clear denominators to get 23x + 2y + 7 = 0.'),
+    ]
+  ),
+  'iib-2-p10': sol(
+    'Find the limiting points of the coaxial system of circles determined by $x^2 + y^2 + 2x - 2y + 1 = 0$ and $x^2 + y^2 - 4x + 4y + 4 = 0$.',
+    [
+      s(1, 'Step 1 (Coaxial Family)', 'Radical axis $S_1 - S_2 = 0$: $(2 + 4)x + (-2 - 4)y + (1 - 4) = 0 \\implies 2x - 2y - 1 = 0$.\nAny circle in the coaxial system is $S_1 + \\lambda(2x - 2y - 1) = 0$:\n$$x^2 + y^2 + 2(1 + \\lambda)x - 2(1 + \\lambda)y + (1 - \\lambda) = 0$$', 'Write the coaxial system using S1 + lambda L = 0.'),
+      s(2, 'Step 2 (Zero Radius Condition)', 'Centre is $(-(1 + \\lambda),\\ 1 + \\lambda)$. For limiting points, set radius $r = 0$:\n$$(1 + \\lambda)^2 + (1 + \\lambda)^2 - (1 - \\lambda) = 0$$\n$$2\\lambda^2 + 5\\lambda + 1 = 0 \\implies \\lambda = \\frac{-5 \\pm \\sqrt{17}}{4}$$', 'Set g^2 + f^2 - c = 0 for point circles.'),
+      s(3, 'Final Answer', 'Since $1 + \\lambda = \\frac{-1 \\pm \\sqrt{17}}{4}$, the limiting points $(-(1 + \\lambda), 1 + \\lambda)$ are:\n$$\\left(\\frac{1 - \\sqrt{17}}{4},\\ \\frac{-1 + \\sqrt{17}}{4}\\right) \\quad \\text{and} \\quad \\left(\\frac{1 + \\sqrt{17}}{4},\\ \\frac{-1 - \\sqrt{17}}{4}\\right)$$', 'Substitute both roots into the centre coordinates.'),
+    ]
+  ),
+  'iib-3-p6': sol(
+    'Find the focus, directrix, and length of the latus rectum of the parabola $3x^2 = -16y$.',
+    [
+      s(1, 'Step 1', 'Rewrite in standard form $x^2 = -4ay$:\n$$x^2 = -\\frac{16}{3}y \\implies 4a = \\frac{16}{3} \\implies a = \\frac{4}{3}$$', 'Identify a = 4/3 from x^2 = -4ay.'),
+      s(2, 'Final Answer', '• Focus $= (0, -a) = \\left(0, -\\frac{4}{3}\\right)$\n• Equation of directrix: $y = a \\implies y = \\frac{4}{3}$ (or $3y - 4 = 0$)\n• Length of latus rectum $= 4a = \\frac{16}{3}$', 'List focus, directrix, and latus rectum.'),
+    ]
+  ),
+  'iib-3-p7': sol(
+    'Find the equations of the tangents and normals at the ends of the latus rectum of the parabola $y^2 = 4ax$.',
+    [
+      s(1, 'Step 1 (Ends of Latus Rectum)', 'The ends of the latus rectum of $y^2 = 4ax$ are $L(a, 2a)$ and $L\'(a, -2a)$.', 'Identify the two endpoints (a, 2a) and (a, -2a).'),
+      s(2, 'Step 2 (Tangents)', 'Using $yy_1 = 2a(x + x_1)$:\n• At $(a, 2a)$: $2ay = 2a(x + a) \\implies x - y + a = 0$.\n• At $(a, -2a)$: $-2ay = 2a(x + a) \\implies x + y + a = 0$.', 'Apply the tangent equation yy1 = 2a(x + x1).'),
+      s(3, 'Final Answer (Normals)', 'Normals are perpendicular to the tangents through $(a, \\pm 2a)$:\n• At $(a, 2a)$: slope $= -1 \\implies y - 2a = -1(x - a) \\implies x + y - 3a = 0$.\n• At $(a, -2a)$: slope $= 1 \\implies y + 2a = 1(x - a) \\implies x - y - 3a = 0$.', 'Write both normal equations using perpendicular slopes.'),
+    ]
+  ),
+  'iib-3-p8': sol(
+    'Find the equation of the tangent to the parabola $y^2 = 16x$ inclined at an angle $60^\\circ$ with its axis, and find its point of contact.',
+    [
+      s(1, 'Step 1', 'Here $4a = 16 \\implies a = 4$, and the axis is the $x$-axis so slope $m = \\tan 60^\\circ = \\sqrt{3}$ (or $-\\sqrt{3}$ for obtuse/opposite inclination; taking principal inclination $60^\\circ$, $m = \\sqrt{3}$).', 'Read a = 4 and m = tan 60 = root 3.'),
+      s(2, 'Final Answer', 'Tangent equation $y = mx + \\frac{a}{m}$:\n$$y = \\sqrt{3}x + \\frac{4}{\\sqrt{3}} \\implies 3x - \\sqrt{3}y + 4 = 0$$\nPoint of contact $= \\left(\\frac{a}{m^2}, \\frac{2a}{m}\\right) = \\left(\\frac{4}{3}, \\frac{8}{\\sqrt{3}}\\right)$.', 'Use the slope form of tangent and point-of-contact formula.'),
+    ]
+  ),
+  'iib-3-p9': sol(
+    'If a focal chord of the parabola $y^2 = 4ax$ has segments $SP$ and $SQ$, prove that $\\frac{1}{SP} + \\frac{1}{SQ} = \\frac{1}{a}$.',
+    [
+      s(1, 'Step 1', 'Let $P(at_1^2, 2at_1)$ and $Q(at_2^2, 2at_2)$ be the endpoints of a focal chord of $y^2 = 4ax$.\nSince $PQ$ passes through focus $S(a, 0)$, we have $t_1 t_2 = -1 \\implies t_2 = -\\frac{1}{t_1}$.', 'Use the focal chord parameter condition t1 t2 = -1.'),
+      s(2, 'Step 2', 'Focal distances: $SP = a + at_1^2 = a(1 + t_1^2)$ and $SQ = a(1 + t_2^2) = a\\left(1 + \\frac{1}{t_1^2}\\right) = \\frac{a(t_1^2 + 1)}{t_1^2}$.', 'Express SP and SQ in terms of t1.'),
+      s(3, 'Final Answer', '$$\\frac{1}{SP} + \\frac{1}{SQ} = \\frac{1}{a(1 + t_1^2)} + \\frac{t_1^2}{a(1 + t_1^2)} = \\frac{1 + t_1^2}{a(1 + t_1^2)} = \\frac{1}{a}$$', 'Add reciprocals to prove the harmonic mean property.'),
+    ]
+  ),
+  'iib-3-p10': sol(
+    'If the normal at point $t_1$ on $y^2 = 4ax$ meets the parabola again at $t_2$, prove that $t_2 = -t_1 - \\frac{2}{t_1}$.',
+    [
+      s(1, 'Step 1', 'Equation of the normal at $P(at_1^2, 2at_1)$ is:\n$$y + t_1 x = 2at_1 + at_1^3$$', 'Write the parametric normal equation at t1.'),
+      s(2, 'Final Answer', 'Since it passes through $Q(at_2^2, 2at_2)$:\n$$2at_2 + at_1 t_2^2 = 2at_1 + at_1^3 \\implies 2(t_2 - t_1) + t_1(t_2^2 - t_1^2) = 0$$\n$$(t_2 - t_1)[2 + t_1(t_2 + t_1)] = 0$$\nSince $t_2 \\neq t_1$, $2 + t_1(t_2 + t_1) = 0 \\implies t_2 + t_1 = -\\frac{2}{t_1} \\implies t_2 = -t_1 - \\frac{2}{t_1}$.', 'Factor out (t2 - t1) and solve for t2.'),
+    ]
+  ),
+  'iib-4-p6': sol(
+    'Find the lengths of major axis, minor axis, latus rectum, and eccentricity of $4x^2 + 9y^2 = 36$.',
+    [
+      s(1, 'Step 1', 'Divide by $36$: $\\frac{x^2}{9} + \\frac{y^2}{4} = 1$. Here $a^2 = 9 \\implies a = 3$ and $b^2 = 4 \\implies b = 2$ ($a > b$).', 'Identify a = 3 and b = 2 from standard form.'),
+      s(2, 'Final Answer', '• Length of major axis $= 2a = 6$\n• Length of minor axis $= 2b = 4$\n• Length of latus rectum $= \\frac{2b^2}{a} = \\frac{8}{3}$\n• Eccentricity $e = \\sqrt{1 - \\frac{b^2}{a^2}} = \\sqrt{1 - \\frac{4}{9}} = \\frac{\\sqrt{5}}{3}$', 'Compute all four standard parameters.'),
+    ]
+  ),
+  'iib-4-p7': sol(
+    'Find the equation of the ellipse in standard form passing through $(-2, 2)$ and $(3, -1)$.',
+    [
+      s(1, 'Step 1', 'Let the ellipse be $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$. Put $u = \\frac{1}{a^2}$ and $v = \\frac{1}{b^2}$.\nPassing through $(-2, 2)$ and $(3, -1)$:\n$$4u + 4v = 1 \\dots (1), \\quad 9u + v = 1 \\dots (2)$$', 'Substitute both points to form linear equations in 1/a^2 and 1/b^2.'),
+      s(2, 'Final Answer', 'Multiply $(2)$ by $4$: $36u + 4v = 4$. Subtract $(1)$: $32u = 3 \\implies u = \\frac{3}{32}$.\nFrom $(2)$: $v = 1 - \\frac{27}{32} = \\frac{5}{32}$.\nThus $\\frac{3x^2}{32} + \\frac{5y^2}{32} = 1 \\implies 3x^2 + 5y^2 = 32$.', 'Solve for u and v to get 3x^2 + 5y^2 = 32.'),
+    ]
+  ),
+  'iib-4-p8': sol(
+    'Find the centre, vertices, eccentricity, foci, and directrices of $9x^2 + 4y^2 - 18x + 16y - 11 = 0$.',
+    [
+      s(1, 'Step 1 (Standard Form)', 'Complete the squares:\n$$9(x^2 - 2x + 1) + 4(y^2 + 4y + 4) = 11 + 9 + 16 = 36$$\n$$\\frac{(x - 1)^2}{4} + \\frac{(y + 2)^2}{9} = 1$$\nHere $a = 2 < b = 3$ (major axis parallel to $y$-axis).', 'Complete squares to get a = 2, b = 3 with centre (1, -2).'),
+      s(2, 'Step 2 (Eccentricity & Vertices)', 'Centre $= (1, -2)$.\n$e = \\sqrt{1 - \\frac{a^2}{b^2}} = \\sqrt{1 - \\frac{4}{9}} = \\frac{\\sqrt{5}}{3}$.\nVertices $= (1, -2 \\pm b) = (1, 1)$ and $(1, -5)$.', 'Compute eccentricity and major-axis vertices.'),
+      s(3, 'Final Answer', '• Foci $= (1, -2 \\pm be) = (1, -2 \\pm \\sqrt{5})$\n• Directrices: $y + 2 = \\pm\\frac{b}{e} = \\pm\\frac{9}{\\sqrt{5}} \\implies \\sqrt{5}y + 2\\sqrt{5} \\pm 9 = 0$', 'Write the foci and directrices.'),
+    ]
+  ),
+  'iib-4-p9': sol(
+    'Find the equations of the tangents to $9x^2 + 16y^2 = 144$ which make equal intercepts on the coordinate axes.',
+    [
+      s(1, 'Step 1', 'Rewrite ellipse as $\\frac{x^2}{16} + \\frac{y^2}{9} = 1$ ($a^2 = 16, b^2 = 9$).\nA line making equal non-zero intercepts has equation $\\frac{x}{k} + \\frac{y}{k} = 1$, so its slope is $m = -1$.', 'Equal intercepts imply slope m = -1.'),
+      s(2, 'Final Answer', 'Tangent formula $y = mx \\pm \\sqrt{a^2 m^2 + b^2}$ with $m = -1$:\n$$y = -x \\pm \\sqrt{16(-1)^2 + 9} = -x \\pm 5$$\nEquations of tangents: $x + y = 5$ and $x + y = -5$.', 'Substitute m = -1 into the slope tangent formula to get x + y = plus or minus 5.'),
+    ]
+  ),
+  'iib-4-p10': sol(
+    'Prove that the product of the perpendicular distances from the two foci to any tangent to the ellipse $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$ is $b^2$.',
+    [
+      s(1, 'Step 1', 'Tangent at any point $(a\\cos\\theta, b\\sin\\theta)$ is $\\frac{x\\cos\\theta}{a} + \\frac{y\\sin\\theta}{b} - 1 = 0$.\nFoci are $S(ae, 0)$ and $S\'(-ae, 0)$, where $a^2 e^2 = a^2 - b^2$.', 'Write the parametric tangent and both foci.'),
+      s(2, 'Step 2', 'Perpendicular distances from $S$ and $S\'$ to the tangent:\n$$p_1 = \\frac{|e\\cos\\theta - 1|}{\\sqrt{\\frac{\\cos^2\\theta}{a^2} + \\frac{\\sin^2\\theta}{b^2}}}, \\quad p_2 = \\frac{|-e\\cos\\theta - 1|}{\\sqrt{\\frac{\\cos^2\\theta}{a^2} + \\frac{\\sin^2\\theta}{b^2}}}$$', 'Compute both perpendicular distances.'),
+      s(3, 'Final Answer', '$$p_1 p_2 = \\frac{1 - e^2\\cos^2\\theta}{\\frac{b^2\\cos^2\\theta + a^2\\sin^2\\theta}{a^2 b^2}} = \\frac{a^2 b^2\\left(1 - \\frac{a^2 - b^2}{a^2}\\cos^2\\theta\\right)}{b^2\\cos^2\\theta + a^2(1 - \\cos^2\\theta)} = \\frac{b^2(a^2 - (a^2 - b^2)\\cos^2\\theta)}{a^2 - (a^2 - b^2)\\cos^2\\theta} = b^2$$', 'Simplify using a^2 e^2 = a^2 - b^2 to obtain b square.'),
+    ]
+  ),
+  'iib-5-p6': sol(
+    'Find the eccentricity of a rectangular hyperbola $x^2 - y^2 = a^2$ and the angle between its asymptotes.',
+    [
+      s(1, 'Step 1 (Eccentricity)', 'For $\\frac{x^2}{a^2} - \\frac{y^2}{a^2} = 1$, $b = a$:\n$$e = \\sqrt{1 + \\frac{b^2}{a^2}} = \\sqrt{1 + 1} = \\sqrt{2}$$', 'Compute eccentricity root 2.'),
+      s(2, 'Final Answer (Asymptotes Angle)', 'The asymptotes are $y = x$ and $y = -x$, with slopes $1$ and $-1$.\nSince $(1)(-1) = -1$, the asymptotes are perpendicular, so the angle between them is $90^\\circ = \\frac{\\pi}{2}$.', 'The asymptotes are perpendicular (angle 90 degrees).'),
+    ]
+  ),
+  'iib-5-p7': sol(
+    'Find the centre, eccentricity, foci, and directrices of the hyperbola $x^2 - 4y^2 + 2x + 16y - 19 = 0$.',
+    [
+      s(1, 'Step 1 (Standard Form)', 'Complete the squares:\n$$(x^2 + 2x + 1) - 4(y^2 - 4y + 4) = 19 + 1 - 16 = 4$$\n$$\\frac{(x + 1)^2}{4} - \\frac{(y - 2)^2}{1} = 1$$\nHere $a = 2, b = 1$, centre $= (-1, 2)$.', 'Rewrite in shifted standard form with a = 2, b = 1.'),
+      s(2, 'Final Answer', '• Eccentricity $e = \\sqrt{1 + \\frac{b^2}{a^2}} = \\sqrt{1 + \\frac{1}{4}} = \\frac{\\sqrt{5}}{2}$\n• Foci $= (-1 \\pm ae, 2) = (-1 \\pm \\sqrt{5}, 2)$\n• Directrices: $x + 1 = \\pm\\frac{a}{e} = \\pm\\frac{4}{\\sqrt{5}}$', 'Compute e, foci, and directrices.'),
+    ]
+  ),
+  'iib-5-p8': sol(
+    'Find the equation of the hyperbola whose foci are $(4, 2)$ and $(8, 2)$ and eccentricity is $2$.',
+    [
+      s(1, 'Step 1 (Centre & Axes)', 'Centre is the midpoint of the foci $(4, 2)$ and $(8, 2)$, which is $(6, 2)$.\nDistance between foci $2ae = 8 - 4 = 4 \\implies ae = 2$.\nSince $e = 2$, $a = 1$, and $b^2 = a^2(e^2 - 1) = 1(4 - 1) = 3$.', 'Find centre (6, 2), a = 1, and b^2 = 3.'),
+      s(2, 'Final Answer', 'Since the foci lie on the horizontal line $y = 2$, the transverse axis is parallel to the $x$-axis:\n$$\\frac{(x - 6)^2}{1} - \\frac{(y - 2)^2}{3} = 1 \\implies 3(x - 6)^2 - (y - 2)^2 = 3$$', 'Write the shifted standard equation.'),
+    ]
+  ),
+  'iib-5-p9': sol(
+    'Find the equation of the tangents to $x^2 - 4y^2 = 4$ which are perpendicular to $x + 2y = 0$.',
+    [
+      s(1, 'Step 1', 'Rewrite hyperbola as $\\frac{x^2}{4} - \\frac{y^2}{1} = 1$ ($a^2 = 4, b^2 = 1$).\nSlope of $x + 2y = 0$ is $-\\frac{1}{2}$, so perpendicular tangent slope is $m = 2$.', 'Find perpendicular slope m = 2.'),
+      s(2, 'Final Answer', 'Tangent formula $y = mx \\pm \\sqrt{a^2 m^2 - b^2}$:\n$$y = 2x \\pm \\sqrt{4(2)^2 - 1} = 2x \\pm \\sqrt{15}$$', 'Substitute m = 2 into the tangent formula to get y = 2x +/- root 15.'),
+    ]
+  ),
+  'iib-5-p10': sol(
+    'Prove that the product of the perpendicular distances from any point on a hyperbola to its asymptotes is a constant equal to $\\frac{a^2 b^2}{a^2 + b^2}$.',
+    [
+      s(1, 'Step 1', 'Let $P(x_0, y_0)$ lie on $\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$, so $\\frac{x_0^2}{a^2} - \\frac{y_0^2}{b^2} = 1$.\nThe asymptotes are $\\frac{x}{a} - \\frac{y}{b} = 0$ and $\\frac{x}{a} + \\frac{y}{b} = 0$.', 'Write the two asymptotes and the curve condition at P(x0, y0).'),
+      s(2, 'Final Answer', 'Perpendicular distances from $P(x_0, y_0)$ are $d_1 = \\frac{|x_0/a - y_0/b|}{\\sqrt{1/a^2 + 1/b^2}}$ and $d_2 = \\frac{|x_0/a + y_0/b|}{\\sqrt{1/a^2 + 1/b^2}}$.\n$$d_1 d_2 = \\frac{\\left|\\frac{x_0^2}{a^2} - \\frac{y_0^2}{b^2}\\right|}{\\frac{1}{a^2} + \\frac{1}{b^2}} = \\frac{1}{\\frac{a^2 + b^2}{a^2 b^2}} = \\frac{a^2 b^2}{a^2 + b^2} \\text{ (constant)}$$', 'Multiply both distances to obtain the constant a^2 b^2 / (a^2 + b^2).'),
+    ]
+  ),
+  'iib-6-p6': sol(
+    'Evaluate $\\int \\frac{dx}{\\sqrt{9 - 4x^2}}$.',
+    [
+      s(1, 'Formula', 'Recall $\\int \\frac{dx}{\\sqrt{a^2 - x^2}} = \\sin^{-1}\\left(\\frac{x}{a}\\right) + C$.', 'Use the standard inverse sine integral.'),
+      s(2, 'Final Answer', '$$\\int \\frac{dx}{\\sqrt{3^2 - (2x)^2}} = \\frac{1}{2}\\sin^{-1}\\left(\\frac{2x}{3}\\right) + C$$', 'Account for the chain factor 1/2 from 2x.'),
+    ]
+  ),
+  'iib-6-p7': sol(
+    'Evaluate $\\int \\frac{1}{x(1 + (\\log x)^2)}\\,dx$.',
+    [
+      s(1, 'Step 1 (Substitution)', 'Put $t = \\log x \\implies dt = \\frac{1}{x}\\,dx$.', 'Substitute t = log x.'),
+      s(2, 'Final Answer', '$$\\int \\frac{dt}{1 + t^2} = \\tan^{-1}(t) + C = \\tan^{-1}(\\log x) + C$$', 'Integrate to tan inverse t and substitute back t = log x.'),
+    ]
+  ),
+  'iib-6-p8': sol(
+    'Evaluate $\\int e^x \\cos x\\,dx$.',
+    [
+      s(1, 'Step 1 (Integration by Parts Twice)', 'Let $I = \\int e^x \\cos x\\,dx$. Taking $u = \\cos x, dv = e^x\\,dx$:\n$$I = e^x\\cos x + \\int e^x\\sin x\\,dx$$\nIntegrating by parts again ($u = \\sin x, dv = e^x\\,dx$):\n$$I = e^x\\cos x + e^x\\sin x - \\int e^x\\cos x\\,dx = e^x(\\sin x + \\cos x) - I$$', 'Integrate by parts twice to recover I on the right-hand side.'),
+      s(2, 'Final Answer', '$$2I = e^x(\\sin x + \\cos x) \\implies I = \\frac{e^x}{2}(\\sin x + \\cos x) + C$$', 'Transpose I and divide by 2.'),
+    ]
+  ),
+  'iib-6-p9': sol(
+    'Evaluate $\\int \\sqrt{x^2 + 4x + 13}\\,dx$.',
+    [
+      s(1, 'Step 1', 'Complete the square: $x^2 + 4x + 13 = (x + 2)^2 + 3^2$.\nUse $\\int \\sqrt{u^2 + a^2}\\,du = \\frac{u}{2}\\sqrt{u^2 + a^2} + \\frac{a^2}{2}\\sinh^{-1}\\left(\\frac{u}{a}\\right) + C$.', 'Rewrite as sum of squares (x + 2)^2 + 3^2.'),
+      s(2, 'Final Answer', '$$\\int \\sqrt{(x + 2)^2 + 3^2}\\,dx = \\frac{x + 2}{2}\\sqrt{x^2 + 4x + 13} + \\frac{9}{2}\\sinh^{-1}\\left(\\frac{x + 2}{3}\\right) + C$$', 'Apply the standard radical integral formula.'),
+    ]
+  ),
+  'iib-6-p10': sol(
+    'Evaluate $\\int \\frac{2x + 5}{\\sqrt{x^2 - 2x + 10}}\\,dx$.',
+    [
+      s(1, 'Step 1 (Split Numerator)', 'Write $2x + 5 = A\\frac{d}{dx}(x^2 - 2x + 10) + B = A(2x - 2) + B$.\nComparing coefficients: $A = 1$, $-2A + B = 5 \\implies B = 7$.\n$$I = \\int \\frac{2x - 2}{\\sqrt{x^2 - 2x + 10}}\\,dx + 7\\int \\frac{dx}{\\sqrt{(x - 1)^2 + 3^2}}$$', 'Express linear numerator as A times derivative of quadratic plus B.'),
+      s(2, 'Final Answer', 'Using $\\int \\frac{f\'(x)}{\\sqrt{f(x)}}\\,dx = 2\\sqrt{f(x)}$ and the $\\sinh^{-1}$ form:\n$$I = 2\\sqrt{x^2 - 2x + 10} + 7\\sinh^{-1}\\left(\\frac{x - 1}{3}\\right) + C$$', 'Evaluate both standard integrals.'),
+    ]
+  ),
+  'iib-7-p6': sol(
+    'Evaluate $\\int_{-\\pi/2}^{\\pi/2} \\sin^7 x\\,dx$.',
+    [
+      s(1, 'Step 1 (Odd Function Check)', 'Let $f(x) = \\sin^7 x$. Then:\n$$f(-x) = (\\sin(-x))^7 = (-\\sin x)^7 = -\\sin^7 x = -f(x)$$\nSo $f(x)$ is an odd function on $[-\\pi/2, \\pi/2]$.', 'Verify f(-x) = -f(x) on the symmetric interval [-pi/2, pi/2].'),
+      s(2, 'Final Answer', 'By symmetry, $\\int_{-a}^a f(x)\\,dx = 0$ for any odd function $f$:\n$$\\int_{-\\pi/2}^{\\pi/2} \\sin^7 x\\,dx = 0$$', 'The definite integral is 0.'),
+    ]
+  ),
+  'iib-7-p7': sol(
+    'Evaluate $\\int_0^{\\pi/2} \\frac{dx}{4 + 5\\cos x}$.',
+    [
+      s(1, 'Step 1 (Half-Angle Tangent Substitution)', 'Put $t = \\tan\\frac{x}{2} \\implies dx = \\frac{2\\,dt}{1 + t^2}$ and $\\cos x = \\frac{1 - t^2}{1 + t^2}$.\nLimits: $x = 0 \\implies t = 0$, $x = \\frac{\\pi}{2} \\implies t = 1$.', 'Convert cos x and dx using t = tan(x/2) and update limits.'),
+      s(2, 'Final Answer', '$$I = \\int_0^1 \\frac{2\\,dt}{4(1 + t^2) + 5(1 - t^2)} = 2\\int_0^1 \\frac{dt}{9 - t^2} = \\frac{2}{2(3)}\\left[\\log\\left|\\frac{3 + t}{3 - t}\\right|\\right]_0^1$$\n$$= \\frac{1}{3}\\left(\\log\\frac{4}{2} - \\log 1\\right) = \\frac{1}{3}\\log 2$$', 'Integrate 1/(9 - t^2) and evaluate from 0 to 1 to get (1/3) log 2.'),
+    ]
+  ),
+  'iib-7-p8': sol(
+    'Evaluate $\\int_0^\\pi \\frac{x\\sin x}{1 + \\cos^2 x}\\,dx$.',
+    [
+      s(1, 'Step 1 (King Property)', 'Let $I = \\int_0^\\pi \\frac{x\\sin x}{1 + \\cos^2 x}\\,dx$.\nReplace $x$ by $\\pi - x$:\n$$I = \\int_0^\\pi \\frac{(\\pi - x)\\sin(\\pi - x)}{1 + \\cos^2(\\pi - x)}\\,dx = \\int_0^\\pi \\frac{(\\pi - x)\\sin x}{1 + \\cos^2 x}\\,dx$$', 'Apply King property on [0, pi].'),
+      s(2, 'Step 2', 'Add both expressions for $I$:\n$$2I = \\pi\\int_0^\\pi \\frac{\\sin x}{1 + \\cos^2 x}\\,dx$$\nPut $u = \\cos x \\implies du = -\\sin x\\,dx$; limits $1$ to $-1$:\n$$2I = \\pi\\int_{-1}^1 \\frac{du}{1 + u^2} = \\pi[\\tan^{-1} u]_{-1}^1 = \\pi\\left(\\frac{\\pi}{4} - \\left(-\\frac{\\pi}{4}\\right)\\right) = \\frac{\\pi^2}{2}$$', 'Eliminate x in the numerator and substitute u = cos x.'),
+      s(3, 'Final Answer', '$$I = \\frac{\\pi^2}{4}$$', 'Divide by 2 to get pi square by 4.'),
+    ]
+  ),
+  'iib-7-p9': sol(
+    'Find the area of the region enclosed by the ellipse $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$ using definite integration.',
+    [
+      s(1, 'Step 1', 'By symmetry across both axes, total area $= 4 \\times$ (first quadrant area).\nIn the first quadrant, $y = \\frac{b}{a}\\sqrt{a^2 - x^2}$ for $0 \\le x \\le a$.', 'Use four-fold symmetry of the ellipse.'),
+      s(2, 'Final Answer', '$$\\text{Area} = 4\\int_0^a \\frac{b}{a}\\sqrt{a^2 - x^2}\\,dx = \\frac{4b}{a}\\left[\\frac{x}{2}\\sqrt{a^2 - x^2} + \\frac{a^2}{2}\\sin^{-1}\\left(\\frac{x}{a}\\right)\\right]_0^a$$\n$$= \\frac{4b}{a}\\left(0 + \\frac{a^2}{2} \\cdot \\frac{\\pi}{2}\\right) = \\pi ab\\text{ sq. units}$$', 'Evaluate the standard radical integral to obtain pi a b.'),
+    ]
+  ),
+  'iib-7-p10': sol(
+    'Find the area enclosed between the parabola $y^2 = 4x$ and the line $y = 2x - 4$.',
+    [
+      s(1, 'Step 1 (Intersections)', 'Substitute $x = \\frac{y + 4}{2}$ into $y^2 = 4x$:\n$$y^2 = 2(y + 4) \\implies y^2 - 2y - 8 = 0 \\implies (y - 4)(y + 2) = 0$$\nSo $y = -2$ and $y = 4$.', 'Solve for y-coordinates of intersection: -2 and 4.'),
+      s(2, 'Final Answer', 'Integrate with respect to $y$ from $-2$ to $4$ (line is to the right of parabola):\n$$\\text{Area} = \\int_{-2}^4 \\left(\\frac{y + 4}{2} - \\frac{y^2}{4}\\right)\\,dy = \\left[\\frac{y^2}{4} + 2y - \\frac{y^3}{12}\\right]_{-2}^4$$\n$$= \\left(4 + 8 - \\frac{16}{3}\\right) - \\left(1 - 4 + \\frac{2}{3}\\right) = \\frac{20}{3} + \\frac{7}{3} = 9\\text{ sq. units}$$', 'Integrate right curve minus left curve to get 9 sq. units.'),
+    ]
+  ),
+  'iib-8-p6': sol(
+    'Form the differential equation corresponding to $y = A\\cos 3x + B\\sin 3x$, where $A, B$ are arbitrary constants.',
+    [
+      s(1, 'Step 1', 'Since there are $2$ arbitrary constants, differentiate twice:\n$$\\frac{dy}{dx} = -3A\\sin 3x + 3B\\cos 3x$$\n$$\\frac{d^2y}{dx^2} = -9A\\cos 3x - 9B\\sin 3x = -9(A\\cos 3x + B\\sin 3x)$$', 'Differentiate twice with respect to x.'),
+      s(2, 'Final Answer', 'Replace $A\\cos 3x + B\\sin 3x$ by $y$:\n$$\\frac{d^2y}{dx^2} + 9y = 0$$', 'Eliminate A and B to obtain d2y/dx2 + 9y = 0.'),
+    ]
+  ),
+  'iib-8-p7': sol(
+    'Solve $\\sec^2 x\\tan y\\,dx + \\sec^2 y\\tan x\\,dy = 0$.',
+    [
+      s(1, 'Step 1 (Separate Variables)', 'Divide throughout by $\\tan x\\tan y$:\n$$\\frac{\\sec^2 x}{\\tan x}\\,dx + \\frac{\\sec^2 y}{\\tan y}\\,dy = 0$$', 'Separate variables by dividing by tan x tan y.'),
+      s(2, 'Final Answer', 'Integrate term by term using $\\int \\frac{f\'(t)}{f(t)}\\,dt = \\log|f(t)|$:\n$$\\log|\\tan x| + \\log|\\tan y| = \\log C \\implies \\tan x \\cdot \\tan y = C$$', 'Combine logarithms to get tan x tan y = C.'),
+    ]
+  ),
+  'iib-8-p8': sol(
+    'Solve $x\\sin\\left(\\frac{y}{x}\\right)\\,dy = \\left[y\\sin\\left(\\frac{y}{x}\\right) - x\\right]\\,dx$.',
+    [
+      s(1, 'Step 1 (Homogeneous Substitution)', 'Write $\\frac{dy}{dx} = \\frac{y}{x} - \\frac{1}{\\sin(y/x)}$. Put $y = vx \\implies \\frac{dy}{dx} = v + x\\frac{dv}{dx}$:\n$$v + x\\frac{dv}{dx} = v - \\frac{1}{\\sin v} \\implies x\\frac{dv}{dx} = -\\frac{1}{\\sin v}$$', 'Substitute y = vx into the homogeneous equation.'),
+      s(2, 'Final Answer', 'Separate variables and integrate:\n$$\\sin v\\,dv = -\\frac{dx}{x} \\implies -\\cos v = -\\log|x| + C$$\nReplace $v = \\frac{y}{x}$:\n$$\\log|x| - \\cos\\left(\\frac{y}{x}\\right) = C$$', 'Integrate and substitute back v = y/x.'),
+    ]
+  ),
+  'iib-8-p9': sol(
+    'Solve $\\frac{dy}{dx} + y = e^{-x}$.',
+    [
+      s(1, 'Step 1 (Integrating Factor)', 'Comparing with $\\frac{dy}{dx} + Py = Q$: $P = 1$, $Q = e^{-x}$.\n$$\\text{I.F.} = e^{\\int 1\\,dx} = e^x$$', 'Compute integrating factor e^x.'),
+      s(2, 'Final Answer', '$$y e^x = \\int e^{-x} \\cdot e^x\\,dx + C = \\int 1\\,dx + C = x + C$$\n$$y = (x + C)e^{-x}$$', 'Multiply and integrate to get y = (x + C) e^(-x).'),
+    ]
+  ),
+  'iib-8-p10': sol(
+    'Solve $(1 + y^2)\\,dx = (\\tan^{-1} y - x)\\,dy$.',
+    [
+      s(1, 'Step 1 (Linear in x)', 'Rewrite as a first-order linear DE in $x$:\n$$\\frac{dx}{dy} + \\frac{1}{1 + y^2}x = \\frac{\\tan^{-1} y}{1 + y^2}$$\nHere $P(y) = \\frac{1}{1 + y^2}$, $Q(y) = \\frac{\\tan^{-1} y}{1 + y^2}$.\n$$\\text{I.F.} = e^{\\int \\frac{dy}{1 + y^2}} = e^{\\tan^{-1} y}$$', 'Arrange as dx/dy + P(y)x = Q(y) and find the integrating factor.'),
+      s(2, 'Step 2 (Integrate)', '$$x e^{\\tan^{-1} y} = \\int \\frac{\\tan^{-1} y}{1 + y^2} e^{\\tan^{-1} y}\\,dy + C$$\nPut $t = \\tan^{-1} y \\implies dt = \\frac{dy}{1 + y^2}$:\n$$\\int t e^t\\,dt = (t - 1)e^t$$', 'Substitute t = tan inverse y and integrate by parts.'),
+      s(3, 'Final Answer', '$$x e^{\\tan^{-1} y} = (\\tan^{-1} y - 1)e^{\\tan^{-1} y} + C$$\n$$x = \\tan^{-1} y - 1 + C e^{-\\tan^{-1} y}$$', 'Substitute back t = tan inverse y to get the general solution.'),
+    ]
+  ),
 };

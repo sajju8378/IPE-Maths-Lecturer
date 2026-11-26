@@ -7,6 +7,7 @@ export type PlaybackSpeed = 0.75 | 1 | 1.25;
 export interface Problem {
   id: string;
   chapterId: string;
+  topic: string;
   type: QuestionType;
   marks: 2 | 4 | 7;
   title: string;

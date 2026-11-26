@@ -476,4 +476,442 @@ export const SOLUTIONS_IA: Record<string, LectureSolution> = {
       s(3, 'Final Answer', '$$(r_1 + r_2) + (r_3 - r) = 4R\\left(\\cos^2\\frac{C}{2} + \\sin^2\\frac{C}{2}\\right) = 4R(1) = 4R$$', 'Adding both pairs gives 4R times 1 equals 4R.'),
     ]
   ),
+  'ia-1-p6': sol(
+    'Write the set $A = \\{x \\in \\mathbb{Z} : x^2 < 10\\}$ in roster form and find $n(A)$.',
+    [
+      s(1, 'Given', 'The set-builder form is $A = \\{x \\in \\mathbb{Z} : x^2 < 10\\}$.', 'We need all integers x whose square is strictly less than 10.'),
+      s(2, 'Step 1', 'Testing integers: $(-3)^2 = 9 < 10$, while $(\\pm 4)^2 = 16 \\nless 10$.\nThus $x \\in \\{-3, -2, -1, 0, 1, 2, 3\\}$.', 'Check squares of integers around 0. Values from minus 3 to plus 3 satisfy x square less than 10.'),
+      s(3, 'Final Answer', 'Roster form: $A = \\{-3, -2, -1, 0, 1, 2, 3\\}$.\nCardinality: $n(A) = 7$.', 'So A has 7 elements from minus 3 to 3.'),
+    ]
+  ),
+  'ia-1-p7': sol(
+    'For any two sets $A$ and $B$, prove that $P(A \\cap B) = P(A) \\cap P(B)$.',
+    [
+      s(1, 'Definition', 'Recall that $X \\in P(S) \\iff X \\subseteq S$.', 'An element belongs to a power set if and only if it is a subset of the original set.'),
+      s(2, 'Step 1', 'Let $X$ be any set.\n$$X \\in P(A \\cap B) \\iff X \\subseteq A \\cap B \\iff X \\subseteq A \\text{ and } X \\subseteq B$$', 'X is a subset of A intersection B precisely when X is a subset of both A and B.'),
+      s(3, 'Final Answer', '$$\\iff X \\in P(A) \\text{ and } X \\in P(B) \\iff X \\in P(A) \\cap P(B)$$\nHence $P(A \\cap B) = P(A) \\cap P(B)$.', 'Since every equivalence holds both ways, the two power sets are equal.'),
+    ]
+  ),
+  'ia-1-p8': sol(
+    'For any three sets $A, B, C$, prove that $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$.',
+    [
+      s(1, 'Step 1', 'Let $x$ be any element. Then:\n$$x \\in A \\cap (B \\cup C) \\iff x \\in A \\text{ and } x \\in (B \\cup C)$$\n$$\\iff x \\in A \\text{ and } (x \\in B \\text{ or } x \\in C)$$', 'Take an arbitrary element x and expand intersection and union definitions.'),
+      s(2, 'Step 2', 'By logical distributivity:\n$$\\iff (x \\in A \\text{ and } x \\in B) \\text{ or } (x \\in A \\text{ and } x \\in C)$$\n$$\\iff x \\in (A \\cap B) \\text{ or } x \\in (A \\cap C)$$', 'Distribute and over or.'),
+      s(3, 'Final Answer', '$$\\iff x \\in (A \\cap B) \\cup (A \\cap C)$$\nTherefore, $A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)$.', 'This completes the proof of the distributive law.'),
+    ]
+  ),
+  'ia-1-p9': sol(
+    'Let $A = \\{1, 2, 3, 4, 5, 6\\}$ and $R = \\{(x, y) : y = x + 1\\}$ on $A$. Write $R$ in roster form and find its domain and range.',
+    [
+      s(1, 'Given', 'For $x \\in A = \\{1, 2, 3, 4, 5, 6\\}$, we need $y = x + 1 \\in A$.', 'Only pairs where both x and x plus 1 are in A belong to R.'),
+      s(2, 'Step 1', 'For $x = 1, 2, 3, 4, 5$, we get $y = 2, 3, 4, 5, 6 \\in A$.\nFor $x = 6$, $y = 7 \\notin A$.\n$$R = \\{(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)\\}$$', 'List all valid ordered pairs.'),
+      s(3, 'Final Answer', 'Domain of $R = \\{1, 2, 3, 4, 5\\}$.\nRange of $R = \\{2, 3, 4, 5, 6\\}$.', 'First coordinates form the domain and second coordinates form the range.'),
+    ]
+  ),
+  'ia-1-p10': sol(
+    'Let $R$ be a relation on $\\mathbb{N} \\times \\mathbb{N}$ defined by $(a, b)\\,R\\,(c, d) \\iff ad = bc$. Prove that $R$ is an equivalence relation.',
+    [
+      s(1, 'Reflexive', 'For any $(a, b) \\in \\mathbb{N} \\times \\mathbb{N}$, $ab = ba \\implies (a, b)\\,R\\,(a, b)$.\nSo $R$ is reflexive.', 'First verify reflexivity using commutativity of multiplication.'),
+      s(2, 'Symmetric', 'Suppose $(a, b)\\,R\\,(c, d)$, so $ad = bc$.\nThen $cb = da \\implies (c, d)\\,R\\,(a, b)$.\nSo $R$ is symmetric.', 'Reversing the equality shows symmetry.'),
+      s(3, 'Transitive & Final Answer', 'Suppose $(a, b)\\,R\\,(c, d)$ and $(c, d)\\,R\\,(e, f)$, so $ad = bc$ and $cf = de$.\nMultiplying: $(ad)(cf) = (bc)(de) \\implies af = be$ (since $c, d \\in \\mathbb{N}$, $cd \\neq 0$).\nThus $(a, b)\\,R\\,(e, f)$, so $R$ is transitive.\nHence $R$ is an equivalence relation.', 'Multiplying and cancelling non-zero cd proves transitivity, so R is an equivalence relation.'),
+    ]
+  ),
+  'ia-2-p6': sol(
+    'Find the domain of the real-valued function $f(x) = \\sqrt{9 - x^2} + \\frac{1}{x - 1}$.',
+    [
+      s(1, 'Conditions', 'For $f(x) \\in \\mathbb{R}$, we need $9 - x^2 \\ge 0$ and $x - 1 \\neq 0$.', 'The expression inside the square root must be non-negative and the denominator non-zero.'),
+      s(2, 'Step 1', '$9 - x^2 \\ge 0 \\implies x^2 \\le 9 \\implies -3 \\le x \\le 3$.\nAlso $x - 1 \\neq 0 \\implies x \\neq 1$.', 'Solve the inequality and exclude x equals 1.'),
+      s(3, 'Final Answer', 'Domain of $f = [-3, 3] - \\{1\\} = [-3, 1) \\cup (1, 3]$.', 'The domain is the closed interval minus 3 to 3 excluding 1.'),
+    ]
+  ),
+  'ia-2-p7': sol(
+    'If $f : \\mathbb{R} \\to \\mathbb{R}$ is defined by $f(x) = \\begin{cases} 3x - 2, & x > 3 \\\\ x^2 - 2, & -2 \\le x \\le 2 \\\\ 2x + 1, & x < -3 \\end{cases}$, find $f(4) + f(0) - f(-4)$.',
+    [
+      s(1, 'Step 1', 'For $x = 4 > 3$: $f(4) = 3(4) - 2 = 10$.\nFor $x = 0 \\in [-2, 2]$: $f(0) = 0^2 - 2 = -2$.\nFor $x = -4 < -3$: $f(-4) = 2(-4) + 1 = -7$.', 'Select the matching branch for each input value.'),
+      s(2, 'Final Answer', '$$f(4) + f(0) - f(-4) = 10 + (-2) - (-7) = 8 + 7 = 15$$', 'Combine the three evaluated values to get 15.'),
+    ]
+  ),
+  'ia-2-p8': sol(
+    'If $f(x) = 2x$, $g(x) = x^2$, and $h(x) = x + 1$, verify that $(h \\circ (g \\circ f))(x) = ((h \\circ g) \\circ f)(x)$.',
+    [
+      s(1, 'Step 1 (LHS)', '$$(g \\circ f)(x) = g(f(x)) = g(2x) = (2x)^2 = 4x^2$$\n$$(h \\circ (g \\circ f))(x) = h(4x^2) = 4x^2 + 1$$', 'Compute g of f first, then apply h.'),
+      s(2, 'Final Answer (RHS)', '$$(h \\circ g)(x) = h(g(x)) = h(x^2) = x^2 + 1$$\n$$((h \\circ g) \\circ f)(x) = (h \\circ g)(2x) = (2x)^2 + 1 = 4x^2 + 1$$\nThus $\\text{LHS} = \\text{RHS}$, verifying associativity.', 'Both sides simplify to 4x square plus 1.'),
+    ]
+  ),
+  'ia-2-p9': sol(
+    'Check whether $f : \\mathbb{R} \\to \\mathbb{R}$ defined by $f(x) = x^3 + 2$ is one-one and onto (bijective).',
+    [
+      s(1, 'One-One Check', 'Let $f(x_1) = f(x_2)$ for $x_1, x_2 \\in \\mathbb{R}$:\n$$x_1^3 + 2 = x_2^3 + 2 \\implies x_1^3 = x_2^3 \\implies x_1 = x_2$$\nThus $f$ is one-one (injective).', 'Equating outputs yields equal inputs, so f is one-one.'),
+      s(2, 'Onto Check & Final Answer', 'For any $y \\in \\mathbb{R}$, set $y = x^3 + 2 \\implies x = (y - 2)^{1/3} \\in \\mathbb{R}$.\nThen $f((y - 2)^{1/3}) = (y - 2) + 2 = y$, so $f$ is onto (surjective).\nTherefore, $f$ is a bijection.', 'Every real y has a real cube-root preimage, so f is both one-one and onto.'),
+    ]
+  ),
+  'ia-2-p10': sol(
+    'If $f : [1, \\infty) \\to [2, \\infty)$ is defined by $f(x) = x^2 - 2x + 3$, show that $f$ is a bijection and find $f^{-1}(x)$.',
+    [
+      s(1, 'Step 1 (Complete the Square)', '$$f(x) = (x^2 - 2x + 1) + 2 = (x - 1)^2 + 2$$', 'Rewrite f(x) in vertex form.'),
+      s(2, 'Step 2 (One-One & Onto)', 'For $x_1, x_2 \\in [1, \\infty)$, $f(x_1) = f(x_2) \\implies (x_1 - 1)^2 = (x_2 - 1)^2$. Since $x_1 - 1 \\ge 0$ and $x_2 - 1 \\ge 0$, $x_1 = x_2$ (one-one).\nFor any $y \\in [2, \\infty)$, $x = 1 + \\sqrt{y - 2} \\in [1, \\infty)$ satisfies $f(x) = y$ (onto).', 'Use x >= 1 to take the positive square root cleanly.'),
+      s(3, 'Final Answer', 'Therefore $f$ is a bijection and its inverse is:\n$$f^{-1}(x) = 1 + \\sqrt{x - 2}, \\quad x \\in [2, \\infty)$$', 'Interchanging x and y gives f inverse of x equals 1 plus root x minus 2.'),
+    ]
+  ),
+  'ia-3-p6': sol(
+    'Find the sum of the first $20$ terms of the arithmetic progression $3, 7, 11, 15, \\dots$',
+    [
+      s(1, 'Given', 'First term $a = 3$, common difference $d = 7 - 3 = 4$, number of terms $n = 20$.', 'Identify a, d, and n from the given A.P.'),
+      s(2, 'Final Answer', '$$S_n = \\frac{n}{2}[2a + (n - 1)d]$$\n$$S_{20} = \\frac{20}{2}[2(3) + (20 - 1)(4)] = 10[6 + 76] = 10(82) = 820$$', 'Substitute into the sum formula to get 820.'),
+    ]
+  ),
+  'ia-3-p7': sol(
+    'Insert $5$ arithmetic means between $8$ and $26$, and find their sum.',
+    [
+      s(1, 'Step 1 (Common Difference)', 'Let the $5$ arithmetic means be $A_1, A_2, A_3, A_4, A_5$.\nThen $8, A_1, A_2, A_3, A_4, A_5, 26$ is an A.P. with $7$ terms.\n$$T_7 = a + 6d = 26 \\implies 8 + 6d = 26 \\implies 6d = 18 \\implies d = 3$$', 'Find the common difference d of the 7-term A.P.'),
+      s(2, 'Final Answer', 'The $5$ arithmetic means are:\n$A_1 = 11,\\ A_2 = 14,\\ A_3 = 17,\\ A_4 = 20,\\ A_5 = 23$.\nSum of the $5$ means $= 5 \\times \\frac{8 + 26}{2} = 5 \\times 17 = 85$.', 'List the five means and compute their sum as 85.'),
+    ]
+  ),
+  'ia-3-p8': sol(
+    'Find the sum of the infinite geometric series $1 + \\frac{1}{3} + \\frac{1}{9} + \\frac{1}{27} + \\dots$ and express $0.\\overline{45}$ as a rational fraction.',
+    [
+      s(1, 'Part 1 (Infinite G.P.)', 'Here $a = 1$ and $r = \\frac{1}{3}$ with $|r| < 1$.\n$$S_\\infty = \\frac{a}{1 - r} = \\frac{1}{1 - 1/3} = \\frac{1}{2/3} = \\frac{3}{2}$$', 'Apply the infinite G.P. sum formula a over 1 minus r.'),
+      s(2, 'Final Answer (Part 2)', '$$0.\\overline{45} = 0.45 + 0.0045 + 0.000045 + \\dots$$\nHere $a = \\frac{45}{100}$ and $r = \\frac{1}{100}$:\n$$0.\\overline{45} = \\frac{45/100}{1 - 1/100} = \\frac{45}{99} = \\frac{5}{11}$$', 'Express the repeating decimal as an infinite G.P. to get 5 by 11.'),
+    ]
+  ),
+  'ia-3-p9': sol(
+    'The sum of three numbers in G.P. is $56$. If we subtract $1, 7, 21$ from these numbers in order, we obtain an A.P. Find the numbers.',
+    [
+      s(1, 'Step 1', 'Let the three numbers in G.P. be $a, ar, ar^2$.\nGiven: $a(1 + r + r^2) = 56 \\dots (1)$.\nSince $a - 1, ar - 7, ar^2 - 21$ are in A.P.:\n$$2(ar - 7) = (a - 1) + (ar^2 - 21) \\implies a(r^2 - 2r + 1) = 8 \\dots (2)$$', 'Set up the two equations from the G.P. sum and A.P. condition.'),
+      s(2, 'Step 2', 'Divide $(1)$ by $(2)$:\n$$\\frac{1 + r + r^2}{r^2 - 2r + 1} = \\frac{56}{8} = 7 \\implies 1 + r + r^2 = 7r^2 - 14r + 7$$\n$$6r^2 - 15r + 6 = 0 \\implies 2r^2 - 5r + 2 = 0 \\implies (2r - 1)(r - 2) = 0$$\nSo $r = 2$ or $r = \\frac{1}{2}$.', 'Solve the quadratic for common ratio r.'),
+      s(3, 'Final Answer', 'If $r = 2$: $a(1 + 2 + 4) = 56 \\implies a = 8$, giving numbers $8, 16, 32$.\nIf $r = \\frac{1}{2}$: $a(1 + \\frac{1}{2} + \\frac{1}{4}) = 56 \\implies a = 32$, giving numbers $32, 16, 8$.', 'The three numbers are 8, 16, 32 (or 32, 16, 8).'),
+    ]
+  ),
+  'ia-3-p10': sol(
+    'Find the sum to $n$ terms of the series $1 + \\frac{4}{5} + \\frac{7}{5^2} + \\frac{10}{5^3} + \\dots$',
+    [
+      s(1, 'Step 1 (Identify AGP)', 'Let $S_n = 1 + \\frac{4}{5} + \\frac{7}{5^2} + \\dots + \\frac{3n - 2}{5^{n-1}}$.\nMultiply by $r = \\frac{1}{5}$:\n$$\\frac{1}{5}S_n = \\frac{1}{5} + \\frac{4}{5^2} + \\dots + \\frac{3n - 5}{5^{n-1}} + \\frac{3n - 2}{5^n}$$', 'Write S_n and (1/5)S_n shifted by one term.'),
+      s(2, 'Step 2 (Subtract)', '$$\\frac{4}{5}S_n = 1 + 3\\left(\\frac{1}{5} + \\frac{1}{5^2} + \\dots + \\frac{1}{5^{n-1}}\\right) - \\frac{3n - 2}{5^n}$$\n$$\\frac{4}{5}S_n = 1 + 3 \\cdot \\frac{\\frac{1}{5}\\left(1 - \\frac{1}{5^{n-1}}\\right)}{1 - \\frac{1}{5}} - \\frac{3n - 2}{5^n} = 1 + \\frac{3}{4}\\left(1 - \\frac{1}{5^{n-1}}\\right) - \\frac{3n - 2}{5^n}$$', 'Subtract to isolate a finite geometric series.'),
+      s(3, 'Final Answer', '$$\\frac{4}{5}S_n = \\frac{7}{4} - \\frac{15 + 12n - 8}{4 \\cdot 5^n} = \\frac{7}{4} - \\frac{12n + 7}{4 \\cdot 5^n}$$\n$$S_n = \\frac{35}{16} - \\frac{12n + 7}{16 \\cdot 5^{n-1}}$$', 'Multiply by 5/4 to obtain the closed-form sum.'),
+    ]
+  ),
+  'ia-4-p6': sol(
+    'Prove by mathematical induction that $1^3 + 2^3 + 3^3 + \\dots + n^3 = \\frac{n^2(n + 1)^2}{4}$ for all $n \\in \\mathbb{N}$.',
+    [
+      s(1, 'Base Case (n = 1)', 'For $n = 1$: $\\text{LHS} = 1^3 = 1$, $\\text{RHS} = \\frac{1^2(2)^2}{4} = 1$. So $P(1)$ is true.', 'Verify the base case n equals 1.'),
+      s(2, 'Inductive Hypothesis', 'Assume $P(k)$ is true for some $k \\in \\mathbb{N}$:\n$$1^3 + 2^3 + \\dots + k^3 = \\frac{k^2(k + 1)^2}{4}$$', 'Assume the formula holds for k.'),
+      s(3, 'Inductive Step & Final Answer', 'Add $(k + 1)^3$ to both sides:\n$$\\text{LHS} = \\frac{k^2(k + 1)^2}{4} + (k + 1)^3 = \\frac{(k + 1)^2}{4}[k^2 + 4k + 4] = \\frac{(k + 1)^2(k + 2)^2}{4}$$\nHence $P(k + 1)$ is true. By mathematical induction, $P(n)$ holds for all $n \\in \\mathbb{N}$.', 'Factor out (k+1)^2/4 to complete the induction.'),
+    ]
+  ),
+  'ia-4-p7': sol(
+    'Using mathematical induction, prove that $1 + (1 + 2) + (1 + 2 + 3) + \\dots$ to $n$ terms $= \\frac{n(n + 1)(n + 2)}{6}$.',
+    [
+      s(1, 'Base Case & General Term', 'The $k^{\\text{th}}$ term is $t_k = 1 + 2 + \\dots + k = \\frac{k(k + 1)}{2}$.\nFor $n = 1$: $\\text{LHS} = 1$, $\\text{RHS} = \\frac{1 \\cdot 2 \\cdot 3}{6} = 1$.', 'Note the kth term and verify n equals 1.'),
+      s(2, 'Inductive Step & Final Answer', 'Assume true for $k$: $S_k = \\frac{k(k + 1)(k + 2)}{6}$.\nFor $k + 1$:\n$$S_{k+1} = \\frac{k(k + 1)(k + 2)}{6} + \\frac{(k + 1)(k + 2)}{2} = \\frac{(k + 1)(k + 2)}{6}[k + 3]$$\n$$= \\frac{(k + 1)(k + 2)(k + 3)}{6}$$\nBy induction, the formula holds for all $n \\in \\mathbb{N}$.', 'Add the (k+1)th term and factor out (k+1)(k+2)/6.'),
+    ]
+  ),
+  'ia-4-p8': sol(
+    'Verify $P(n) : 1 \\cdot 2 + 2 \\cdot 3 + \\dots + n(n + 1) = \\frac{n(n + 1)(n + 2)}{3}$ for $n = 1$ and $n = 2$.',
+    [
+      s(1, 'Check n = 1', 'For $n = 1$:\n$$\\text{LHS} = 1 \\cdot 2 = 2, \\quad \\text{RHS} = \\frac{1(2)(3)}{3} = 2$$\nSo $P(1)$ is true.', 'Verify both sides for n equals 1.'),
+      s(2, 'Check n = 2 & Final Answer', 'For $n = 2$:\n$$\\text{LHS} = 1 \\cdot 2 + 2 \\cdot 3 = 2 + 6 = 8, \\quad \\text{RHS} = \\frac{2(3)(4)}{3} = 8$$\nHence $P(n)$ is verified for both $n = 1$ and $n = 2$.', 'Verify both sides equal 8 for n equals 2.'),
+    ]
+  ),
+  'ia-4-p9': sol(
+    'Prove by mathematical induction that $1 \\cdot 2 \\cdot 3 + 2 \\cdot 3 \\cdot 4 + \\dots + n(n + 1)(n + 2) = \\frac{n(n + 1)(n + 2)(n + 3)}{4}$ for all $n \\in \\mathbb{N}$.',
+    [
+      s(1, 'Base Case (n = 1)', 'For $n = 1$: $\\text{LHS} = 1 \\cdot 2 \\cdot 3 = 6$, $\\text{RHS} = \\frac{1 \\cdot 2 \\cdot 3 \\cdot 4}{4} = 6$. True.', 'Check the base case n equals 1.'),
+      s(2, 'Inductive Step & Final Answer', 'Assume true for $k$: $S_k = \\frac{k(k + 1)(k + 2)(k + 3)}{4}$.\nFor $k + 1$:\n$$S_{k+1} = \\frac{k(k + 1)(k + 2)(k + 3)}{4} + (k + 1)(k + 2)(k + 3)$$\n$$= \\frac{(k + 1)(k + 2)(k + 3)}{4}(k + 4)$$\nBy mathematical induction, the result holds for all $n \\in \\mathbb{N}$.', 'Factor out (k+1)(k+2)(k+3)/4 to obtain the formula for k plus 1.'),
+    ]
+  ),
+  'ia-4-p10': sol(
+    'Prove by mathematical induction that $5^{2n} - 1$ is divisible by $24$ for all $n \\in \\mathbb{N}$.',
+    [
+      s(1, 'Base Case (n = 1)', 'For $n = 1$: $5^2 - 1 = 24$, which is divisible by $24$.', 'Verify n equals 1.'),
+      s(2, 'Inductive Hypothesis', 'Assume $5^{2k} - 1 = 24m$ for some integer $m \\ge 1$, so $5^{2k} = 24m + 1$.', 'Assume 5 power 2k minus 1 is a multiple of 24.'),
+      s(3, 'Inductive Step & Final Answer', 'For $n = k + 1$:\n$$5^{2(k+1)} - 1 = 25 \\cdot 5^{2k} - 1 = 25(24m + 1) - 1 = 24(25m) + 24 = 24(25m + 1)$$\nThis is clearly divisible by $24$. By mathematical induction, $5^{2n} - 1$ is divisible by $24$ for all $n \\in \\mathbb{N}$.', 'Substitute 5 power 2k and factor out 24.'),
+    ]
+  ),
+  'ia-5-p6': sol(
+    'Express $A = \\begin{pmatrix} 2 & 3 \\\\ 5 & 4 \\end{pmatrix}$ as the sum of a symmetric matrix and a skew-symmetric matrix.',
+    [
+      s(1, 'Formula', 'Any square matrix $A = P + Q$, where $P = \\frac{1}{2}(A + A^T)$ is symmetric and $Q = \\frac{1}{2}(A - A^T)$ is skew-symmetric.', 'Use the standard symmetric and skew-symmetric decomposition.'),
+      s(2, 'Step 1', '$A^T = \\begin{pmatrix} 2 & 5 \\\\ 3 & 4 \\end{pmatrix}$\n$$P = \\frac{1}{2}\\begin{pmatrix} 4 & 8 \\\\ 8 & 8 \\end{pmatrix} = \\begin{pmatrix} 2 & 4 \\\\ 4 & 4 \\end{pmatrix}, \\quad Q = \\frac{1}{2}\\begin{pmatrix} 0 & -2 \\\\ 2 & 0 \\end{pmatrix} = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$$', 'Compute P and Q.'),
+      s(3, 'Final Answer', '$$A = \\begin{pmatrix} 2 & 4 \\\\ 4 & 4 \\end{pmatrix} + \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}$$', 'Verify that P is symmetric, Q is skew-symmetric, and P plus Q equals A.'),
+    ]
+  ),
+  'ia-5-p7': sol(
+    'If $A = \\begin{pmatrix} 1 & -2 & 3 \\\\ -4 & 2 & 5 \\end{pmatrix}$ and $B = \\begin{pmatrix} 2 & 3 \\\\ 4 & 5 \\\\ 2 & 1 \\end{pmatrix}$, find $AB$ and $BA$.',
+    [
+      s(1, 'Step 1 (Compute AB)', '$A$ is $2 \\times 3$ and $B$ is $3 \\times 2$, so $AB$ is $2 \\times 2$:\n$$AB = \\begin{pmatrix} 1(2) - 2(4) + 3(2) & 1(3) - 2(5) + 3(1) \\\\ -4(2) + 2(4) + 5(2) & -4(3) + 2(5) + 5(1) \\end{pmatrix} = \\begin{pmatrix} 0 & -4 \\\\ 10 & 3 \\end{pmatrix}$$', 'Multiply rows of A by columns of B.'),
+      s(2, 'Final Answer (Compute BA)', '$BA$ is $3 \\times 3$:\n$$BA = \\begin{pmatrix} 2 - 12 & -4 + 6 & 6 + 15 \\\\ 4 - 20 & -8 + 10 & 12 + 25 \\\\ 2 - 4 & -4 + 2 & 6 + 5 \\end{pmatrix} = \\begin{pmatrix} -10 & 2 & 21 \\\\ -16 & 2 & 37 \\\\ -2 & -2 & 11 \\end{pmatrix}$$', 'Multiply rows of B by columns of A to get the 3 by 3 product.'),
+    ]
+  ),
+  'ia-5-p8': sol(
+    'Evaluate the determinant $\\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 3 & 4 \\\\ 3 & 5 & 7 \\end{vmatrix}$ without expanding directly.',
+    [
+      s(1, 'Step 1 (Row Operation)', 'Observe that row $3$ equals the sum of row $1$ and row $2$ ($1+2=3,\\; 2+3=5,\\; 3+4=7$). Apply $R_3 \\to R_3 - (R_1 + R_2)$:\n$$\\Delta = \\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 3 & 4 \\\\ 3-(1+2) & 5-(2+3) & 7-(3+4) \\end{vmatrix}$$', 'Observe that row 3 equals row 1 plus row 2, so subtract R1 and R2 from R3.'),
+      s(2, 'Final Answer', 'Apply $R_3 \\to R_3 - R_1 - R_2$:\n$$\\Delta = \\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 3 & 4 \\\\ 3-1-2 & 5-2-3 & 7-3-4 \\end{vmatrix} = \\begin{vmatrix} 1 & 2 & 3 \\\\ 2 & 3 & 4 \\\\ 0 & 0 & 0 \\end{vmatrix} = 0$$', 'Row 3 becomes all zeros, so the determinant is 0.'),
+    ]
+  ),
+  'ia-5-p9': sol(
+    'Show that $\\begin{vmatrix} a + b + 2c & a & b \\\\ c & b + c + 2a & b \\\\ c & a & c + a + 2b \\end{vmatrix} = 2(a + b + c)^3$.',
+    [
+      s(1, 'Step 1', 'Apply $C_1 \\to C_1 + C_2 + C_3$. Every entry in $C_1$ becomes $2(a + b + c)$. Take $2(a + b + c)$ common:\n$$\\Delta = 2(a + b + c)\\begin{vmatrix} 1 & a & b \\\\ 1 & b + c + 2a & b \\\\ 1 & a & c + a + 2b \\end{vmatrix}$$', 'Add columns 2 and 3 to column 1 and factor out 2(a+b+c).'),
+      s(2, 'Final Answer', 'Apply $R_2 \\to R_2 - R_1$ and $R_3 \\to R_3 - R_1$:\n$$\\Delta = 2(a + b + c)\\begin{vmatrix} 1 & a & b \\\\ 0 & a + b + c & 0 \\\\ 0 & 0 & a + b + c \\end{vmatrix} = 2(a + b + c)(a + b + c)^2 = 2(a + b + c)^3$$', 'Subtract R1 from R2 and R3 to make an upper-triangular determinant.'),
+    ]
+  ),
+  'ia-5-p10': sol(
+    'Solve the system $2x - y + 3z = 9$, $x + y + z = 6$, $x - y + z = 2$ by matrix inversion method.',
+    [
+      s(1, 'Step 1 (Matrix Equation)', 'Write $AX = B$ where $A = \\begin{pmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{pmatrix}$, $B = \\begin{pmatrix} 9 \\\\ 6 \\\\ 2 \\end{pmatrix}$.\n$$|A| = 2(1 + 1) - (-1)(1 - 1) + 3(-1 - 1) = 4 - 6 = -2 \\neq 0$$', 'Compute determinant of A equals minus 2.'),
+      s(2, 'Step 2 (Adjoint & Inverse)', 'Cofactor matrix $C = \\begin{pmatrix} 2 & 0 & -2 \\\\ -2 & -1 & 1 \\\\ -4 & 1 & 3 \\end{pmatrix}$, so $\\operatorname{Adj}(A) = C^T = \\begin{pmatrix} 2 & -2 & -4 \\\\ 0 & -1 & 1 \\\\ -2 & 1 & 3 \\end{pmatrix}$.\n$$A^{-1} = \\frac{1}{|A|}\\operatorname{Adj}(A) = -\\frac{1}{2}\\begin{pmatrix} 2 & -2 & -4 \\\\ 0 & -1 & 1 \\\\ -2 & 1 & 3 \\end{pmatrix}$$', 'Find cofactors and transpose to get the adjoint and inverse.'),
+      s(3, 'Final Answer', '$$X = A^{-1}B = -\\frac{1}{2}\\begin{pmatrix} 18 - 12 - 8 \\\\ 0 - 6 + 2 \\\\ -18 + 6 + 6 \\end{pmatrix} = -\\frac{1}{2}\\begin{pmatrix} -2 \\\\ -4 \\\\ -6 \\end{pmatrix} = \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}$$\nSolution: $x = 1,\\ y = 2,\\ z = 3$.', 'Multiply A inverse by B to get x=1, y=2, z=3.'),
+    ]
+  ),
+  'ia-6-p6': sol(
+    'Find the position vector of the point dividing the line joining $2\\hat{i} + \\hat{j} - \\hat{k}$ and $4\\hat{i} - 3\\hat{j} + 2\\hat{k}$ internally in the ratio $2 : 1$.',
+    [
+      s(1, 'Formula', 'Internal section formula in ratio $m : n$ is $\\vec{r} = \\frac{m\\vec{b} + n\\vec{a}}{m + n}$.', 'Recall the internal section formula for position vectors.'),
+      s(2, 'Final Answer', 'With $\\vec{a} = 2\\hat{i} + \\hat{j} - \\hat{k}$, $\\vec{b} = 4\\hat{i} - 3\\hat{j} + 2\\hat{k}$, $m = 2, n = 1$:\n$$\\vec{r} = \\frac{2(4\\hat{i} - 3\\hat{j} + 2\\hat{k}) + 1(2\\hat{i} + \\hat{j} - \\hat{k})}{2 + 1} = \\frac{10\\hat{i} - 5\\hat{j} + 3\\hat{k}}{3}$$', 'Substitute m=2, n=1 and simplify.'),
+    ]
+  ),
+  'ia-6-p7': sol(
+    'Show that the points with position vectors $\\hat{i} - 2\\hat{j} + 3\\hat{k}$, $2\\hat{i} + 3\\hat{j} - 4\\hat{k}$, and $-7\\hat{j} + 10\\hat{k}$ are collinear.',
+    [
+      s(1, 'Step 1', 'Let $A, B, C$ be the given points.\n$$\\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA} = (2 - 1)\\hat{i} + (3 + 2)\\hat{j} + (-4 - 3)\\hat{k} = \\hat{i} + 5\\hat{j} - 7\\hat{k}$$\n$$\\overrightarrow{BC} = \\overrightarrow{OC} - \\overrightarrow{OB} = (0 - 2)\\hat{i} + (-7 - 3)\\hat{j} + (10 + 4)\\hat{k} = -2\\hat{i} - 10\\hat{j} + 14\\hat{k}$$', 'Compute vectors AB and BC.'),
+      s(2, 'Final Answer', 'Observe that $\\overrightarrow{BC} = -2(\\hat{i} + 5\\hat{j} - 7\\hat{k}) = -2\\overrightarrow{AB}$.\nSince $\\overrightarrow{AB}$ and $\\overrightarrow{BC}$ are parallel with $B$ as a common point, $A, B, C$ are collinear.', 'Since BC is a scalar multiple of AB, the three points are collinear.'),
+    ]
+  ),
+  'ia-6-p8': sol(
+    'Let $\\vec{a}, \\vec{b}, \\vec{c}$ be non-coplanar vectors. Show that $\\vec{a} - 2\\vec{b} + 3\\vec{c}$, $-2\\vec{a} + 3\\vec{b} - 4\\vec{c}$, and $\\vec{a} - 3\\vec{b} + 5\\vec{c}$ are coplanar.',
+    [
+      s(1, 'Criterion', 'Three vectors expressed in terms of non-coplanar $\\vec{a}, \\vec{b}, \\vec{c}$ are coplanar if the determinant of their coefficients is $0$.', 'Check the determinant of the coefficient matrix.'),
+      s(2, 'Final Answer', '$$\\begin{vmatrix} 1 & -2 & 3 \\\\ -2 & 3 & -4 \\\\ 1 & -3 & 5 \\end{vmatrix} = 1(15 - 12) + 2(-10 + 4) + 3(6 - 3) = 3 - 12 + 9 = 0$$\nHence the three given vectors are coplanar.', 'The determinant evaluates to 0, proving coplanarity.'),
+    ]
+  ),
+  'ia-6-p9': sol(
+    'Prove by vector method that the line segments joining the midpoints of the opposite sides of a quadrilateral bisect each other.',
+    [
+      s(1, 'Step 1', 'Let $ABCD$ be a quadrilateral with vertices having position vectors $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}$.\nMidpoints of $AB, BC, CD, DA$ are:\n$P = \\frac{\\vec{a} + \\vec{b}}{2},\\ Q = \\frac{\\vec{b} + \\vec{c}}{2},\\ R = \\frac{\\vec{c} + \\vec{d}}{2},\\ S = \\frac{\\vec{d} + \\vec{a}}{2}$.', 'Write position vectors of the four midpoints P, Q, R, S.'),
+      s(2, 'Final Answer', 'Midpoint of $PR$ has position vector $\\frac{1}{2}\\left(\\frac{\\vec{a}+\\vec{b}}{2} + \\frac{\\vec{c}+\\vec{d}}{2}\\right) = \\frac{\\vec{a} + \\vec{b} + \\vec{c} + \\vec{d}}{4}$.\nMidpoint of $QS$ has position vector $\\frac{1}{2}\\left(\\frac{\\vec{b}+\\vec{c}}{2} + \\frac{\\vec{d}+\\vec{a}}{2}\\right) = \\frac{\\vec{a} + \\vec{b} + \\vec{c} + \\vec{d}}{4}$.\nSince both midpoints coincide, $PR$ and $QS$ bisect each other.', 'Both segments share the exact same midpoint.'),
+    ]
+  ),
+  'ia-6-p10': sol(
+    'Find the vector equation of the line passing through the points $2\\hat{i} + \\hat{j} + 3\\hat{k}$ and $-4\\hat{i} + 3\\hat{j} - \\hat{k}$.',
+    [
+      s(1, 'Formula', 'Vector equation of the line through $\\vec{a}$ and $\\vec{b}$ is $\\vec{r} = \\vec{a} + t(\\vec{b} - \\vec{a})$, $t \\in \\mathbb{R}$.', 'Use the two-point vector equation of a line.'),
+      s(2, 'Final Answer', '$\\vec{b} - \\vec{a} = (-4 - 2)\\hat{i} + (3 - 1)\\hat{j} + (-1 - 3)\\hat{k} = -6\\hat{i} + 2\\hat{j} - 4\\hat{k}$.\nHence:\n$$\\vec{r} = (2\\hat{i} + \\hat{j} + 3\\hat{k}) + t(-6\\hat{i} + 2\\hat{j} - 4\\hat{k}), \\quad t \\in \\mathbb{R}$$', 'Compute b minus a and write the parametric vector equation.'),
+    ]
+  ),
+  'ia-7-p6': sol(
+    'Find $\\lambda$ if the vectors $\\vec{a} = 2\\hat{i} + \\lambda\\hat{j} + \\hat{k}$ and $\\vec{b} = \\hat{i} - 2\\hat{j} + 3\\hat{k}$ are perpendicular.',
+    [
+      s(1, 'Condition', 'Two non-zero vectors are perpendicular iff $\\vec{a} \\cdot \\vec{b} = 0$.', 'Set the dot product equal to zero.'),
+      s(2, 'Final Answer', '$$2(1) + \\lambda(-2) + 1(3) = 0 \\implies 5 - 2\\lambda = 0 \\implies \\lambda = \\frac{5}{2}$$', 'Solve 5 minus 2 lambda equals 0 to get lambda equals 5 by 2.'),
+    ]
+  ),
+  'ia-7-p7': sol(
+    'Find the scalar and vector projections of $\\vec{a} = 2\\hat{i} + 3\\hat{j} + 2\\hat{k}$ on $\\vec{b} = \\hat{i} + 2\\hat{j} + \\hat{k}$.',
+    [
+      s(1, 'Formula', 'Scalar projection $= \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|}$; Vector projection $= \\left(\\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{b}|^2}\\right)\\vec{b}$.', 'Write both projection formulas.'),
+      s(2, 'Step 1', '$\\vec{a} \\cdot \\vec{b} = 2(1) + 3(2) + 2(1) = 10$, and $|\\vec{b}| = \\sqrt{1^2 + 2^2 + 1^2} = \\sqrt{6}$.', 'Compute the dot product and magnitude of b.'),
+      s(3, 'Final Answer', 'Scalar projection $= \\frac{10}{\\sqrt{6}}$.\nVector projection $= \\frac{10}{6}(\\hat{i} + 2\\hat{j} + \\hat{k}) = \\frac{5}{3}(\\hat{i} + 2\\hat{j} + \\hat{k})$.', 'Substitute into both formulas to get the scalar and vector projections.'),
+    ]
+  ),
+  'ia-7-p8': sol(
+    'Find the area of the triangle having vertices $A(1, 2, 3)$, $B(2, 3, 1)$, and $C(3, 1, 2)$.',
+    [
+      s(1, 'Step 1', '$$\\overrightarrow{AB} = \\hat{i} + \\hat{j} - 2\\hat{k}, \\quad \\overrightarrow{AC} = 2\\hat{i} - \\hat{j} - \\hat{k}$$', 'Form two adjacent side vectors from vertex A.'),
+      s(2, 'Step 2', '$$\\overrightarrow{AB} \\times \\overrightarrow{AC} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & 1 & -2 \\\\ 2 & -1 & -1 \\end{vmatrix} = (-1 - 2)\\hat{i} - (-1 + 4)\\hat{j} + (-1 - 2)\\hat{k} = -3\\hat{i} - 3\\hat{j} - 3\\hat{k}$$', 'Evaluate the cross product.'),
+      s(3, 'Final Answer', '$$\\text{Area} = \\frac{1}{2}|\\overrightarrow{AB} \\times \\overrightarrow{AC}| = \\frac{1}{2}\\sqrt{9 + 9 + 9} = \\frac{3\\sqrt{3}}{2}\\text{ sq. units}$$', 'Half the magnitude of the cross product gives 3 root 3 by 2.'),
+    ]
+  ),
+  'ia-7-p9': sol(
+    'Find the volume of the parallelepiped whose coterminous edges are $\\vec{a} = \\hat{i} + \\hat{j} + \\hat{k}$, $\\vec{b} = \\hat{i} - \\hat{j} + \\hat{k}$, and $\\vec{c} = \\hat{i} + 2\\hat{j} - \\hat{k}$.',
+    [
+      s(1, 'Formula', 'Volume $V = |[\\vec{a}\\ \\vec{b}\\ \\vec{c}]|$.', 'The volume equals the absolute value of the scalar triple product.'),
+      s(2, 'Final Answer', '$$[\\vec{a}\\ \\vec{b}\\ \\vec{c}] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ 1 & 2 & -1 \\end{vmatrix} = 1(1 - 2) - 1(-1 - 1) + 1(2 + 1) = -1 + 2 + 3 = 4$$\nVolume $= 4\\text{ cubic units}$.', 'Evaluate the 3 by 3 determinant to get 4 cubic units.'),
+    ]
+  ),
+  'ia-7-p10': sol(
+    'If $\\vec{a} = \\hat{i} - 2\\hat{j} + 3\\hat{k}$, $\\vec{b} = 2\\hat{i} + \\hat{j} - \\hat{k}$, and $\\vec{c} = \\hat{j} + \\hat{k}$, find $(\\vec{a} \\times \\vec{b}) \\times \\vec{c}$.',
+    [
+      s(1, 'Formula', 'Use the vector triple product identity:\n$$(\\vec{a} \\times \\vec{b}) \\times \\vec{c} = (\\vec{a} \\cdot \\vec{c})\\vec{b} - (\\vec{b} \\cdot \\vec{c})\\vec{a}$$', 'Apply the BAC-CAB expansion.'),
+      s(2, 'Final Answer', '$\\vec{a} \\cdot \\vec{c} = 1(0) - 2(1) + 3(1) = 1$, and $\\vec{b} \\cdot \\vec{c} = 2(0) + 1(1) - 1(1) = 0$.\n$$(\\vec{a} \\times \\vec{b}) \\times \\vec{c} = 1\\vec{b} - 0\\vec{a} = 2\\hat{i} + \\hat{j} - \\hat{k}$$', 'Compute the dot products to get 2i plus j minus k.'),
+    ]
+  ),
+  'ia-8-p6': sol(
+    'Find the maximum and minimum values of $3\\cos x + 4\\sin x + 5$.',
+    [
+      s(1, 'Formula', 'For $a\\cos x + b\\sin x + c$, range is $[c - \\sqrt{a^2 + b^2},\\ c + \\sqrt{a^2 + b^2}]$.', 'Use the amplitude formula root(a^2 + b^2).'),
+      s(2, 'Final Answer', '$\\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = 5$.\nMaximum value $= 5 + 5 = 10$.\nMinimum value $= 5 - 5 = 0$.', 'Adding and subtracting amplitude 5 from 5 gives max 10 and min 0.'),
+    ]
+  ),
+  'ia-8-p7': sol(
+    'Prove that $\\cos 20^\\circ \\cos 40^\\circ \\cos 60^\\circ \\cos 80^\\circ = \\frac{1}{16}$.',
+    [
+      s(1, 'Step 1', 'Put $\\cos 60^\\circ = \\frac{1}{2}$:\n$$\\text{LHS} = \\frac{1}{2}\\cos 20^\\circ \\cdot \\frac{1}{2}(2\\cos 40^\\circ \\cos 80^\\circ) = \\frac{1}{4}\\cos 20^\\circ(\\cos 120^\\circ + \\cos 40^\\circ)$$', 'Substitute cos 60 equals 1/2 and apply 2 cos A cos B.'),
+      s(2, 'Final Answer', 'Since $\\cos 120^\\circ = -\\frac{1}{2}$:\n$$\\text{LHS} = -\\frac{1}{8}\\cos 20^\\circ + \\frac{1}{8}(2\\cos 40^\\circ \\cos 20^\\circ) = -\\frac{1}{8}\\cos 20^\\circ + \\frac{1}{8}(\\cos 60^\\circ + \\cos 20^\\circ) = \\frac{1}{8}\\left(\\frac{1}{2}\\right) = \\frac{1}{16}$$', 'Apply 2 cos A cos B once more; cos 20 cancels leaving 1 by 16.'),
+    ]
+  ),
+  'ia-8-p8': sol(
+    'Find the exact value of $\\sin 18^\\circ$ and hence deduce $\\cos 36^\\circ$.',
+    [
+      s(1, 'Step 1', 'Let $\\theta = 18^\\circ$. Then $5\\theta = 90^\\circ \\implies 2\\theta = 90^\\circ - 3\\theta$.\nTaking sine: $\\sin 2\\theta = \\cos 3\\theta \\implies 2\\sin\\theta\\cos\\theta = 4\\cos^3\\theta - 3\\cos\\theta$.\nDividing by $\\cos\\theta \\neq 0$:\n$$2\\sin\\theta = 4(1 - \\sin^2\\theta) - 3 \\implies 4\\sin^2\\theta + 2\\sin\\theta - 1 = 0$$', 'Use 2 theta equals 90 minus 3 theta to form a quadratic in sin theta.'),
+      s(2, 'Step 2', '$$\\sin 18^\\circ = \\frac{-2 + \\sqrt{4 + 16}}{8} = \\frac{\\sqrt{5} - 1}{4} \\quad (\\text{since } \\sin 18^\\circ > 0)$$', 'Keep the positive root since 18 degrees lies in the first quadrant.'),
+      s(3, 'Final Answer', '$$\\cos 36^\\circ = 1 - 2\\sin^2 18^\\circ = 1 - 2\\left(\\frac{6 - 2\\sqrt{5}}{16}\\right) = \\frac{8 - 6 + 2\\sqrt{5}}{8} = \\frac{\\sqrt{5} + 1}{4}$$', 'Use cos 2 theta equals 1 minus 2 sin square theta to deduce cos 36 degrees.'),
+    ]
+  ),
+  'ia-8-p9': sol(
+    'Prove that $\\tan A \\tan(60^\\circ - A) \\tan(60^\\circ + A) = \\tan 3A$, and deduce $\\tan 20^\\circ \\tan 40^\\circ \\tan 80^\\circ = \\sqrt{3}$.',
+    [
+      s(1, 'Step 1', '$$\\tan(60^\\circ - A)\\tan(60^\\circ + A) = \\frac{\\sqrt{3} - \\tan A}{1 + \\sqrt{3}\\tan A} \\cdot \\frac{\\sqrt{3} + \\tan A}{1 - \\sqrt{3}\\tan A} = \\frac{3 - \\tan^2 A}{1 - 3\\tan^2 A}$$', 'Expand tan(60 - A) and tan(60 + A) using tan 60 equals root 3.'),
+      s(2, 'Final Answer', 'Multiply by $\\tan A$:\n$$\\text{LHS} = \\frac{3\\tan A - \\tan^3 A}{1 - 3\\tan^2 A} = \\tan 3A$$\nPutting $A = 20^\\circ$:\n$$\\tan 20^\\circ \\tan 40^\\circ \\tan 80^\\circ = \\tan 60^\\circ = \\sqrt{3}$$', 'Recognize the tan 3A formula and substitute A equals 20 degrees.'),
+    ]
+  ),
+  'ia-8-p10': sol(
+    'If $A + B + C = \\pi$, prove that $\\cos A + \\cos B + \\cos C = 1 + 4\\sin\\frac{A}{2}\\sin\\frac{B}{2}\\sin\\frac{C}{2}$.',
+    [
+      s(1, 'Step 1', '$$\\text{LHS} = (\\cos A + \\cos B) + \\cos C = 2\\cos\\frac{A+B}{2}\\cos\\frac{A-B}{2} + 1 - 2\\sin^2\\frac{C}{2}$$', 'Apply sum-to-product on cos A plus cos B and half-angle on cos C.'),
+      s(2, 'Final Answer', 'Since $\\frac{A + B}{2} = \\frac{\\pi}{2} - \\frac{C}{2}$, $\\cos\\frac{A+B}{2} = \\sin\\frac{C}{2}$:\n$$\\text{LHS} = 1 + 2\\sin\\frac{C}{2}\\left(\\cos\\frac{A-B}{2} - \\cos\\frac{A+B}{2}\\right) = 1 + 4\\sin\\frac{A}{2}\\sin\\frac{B}{2}\\sin\\frac{C}{2}$$', 'Factor out 2 sin(C/2) and apply cos(X-Y) minus cos(X+Y).'),
+    ]
+  ),
+  'ia-9-p6': sol(
+    'Find the general solution of $\\sin 3x = \\frac{1}{2}$.',
+    [
+      s(1, 'Formula', 'If $\\sin\\theta = \\sin\\alpha$, then $\\theta = n\\pi + (-1)^n\\alpha$, $n \\in \\mathbb{Z}$.', 'Recall the general solution of sin theta equals sin alpha.'),
+      s(2, 'Final Answer', '$$\\sin 3x = \\sin\\frac{\\pi}{6} \\implies 3x = n\\pi + (-1)^n\\frac{\\pi}{6}$$\n$$x = \\frac{n\\pi}{3} + (-1)^n\\frac{\\pi}{18}, \\quad n \\in \\mathbb{Z}$$', 'Divide by 3 to obtain the general solution for x.'),
+    ]
+  ),
+  'ia-9-p7': sol(
+    'Solve $\\sec^2\\theta = 1 - \\tan\\theta$ for $\\theta$.',
+    [
+      s(1, 'Step 1', 'Use $\\sec^2\\theta = 1 + \\tan^2\\theta$:\n$$1 + \\tan^2\\theta = 1 - \\tan\\theta \\implies \\tan\\theta(\\tan\\theta + 1) = 0$$', 'Convert sec square to 1 plus tan square and factor.'),
+      s(2, 'Final Answer', 'Either $\\tan\\theta = 0 \\implies \\theta = n\\pi$, or $\\tan\\theta = -1 = \\tan\\left(-\\frac{\\pi}{4}\\right) \\implies \\theta = n\\pi - \\frac{\\pi}{4}$, $n \\in \\mathbb{Z}$.', 'Write both branches of general solutions.'),
+    ]
+  ),
+  'ia-9-p8': sol(
+    'Solve $\\tan\\theta + \\tan 2\\theta + \\sqrt{3}\\tan\\theta\\tan 2\\theta = \\sqrt{3}$.',
+    [
+      s(1, 'Step 1', 'Rearrange terms:\n$$\\tan\\theta + \\tan 2\\theta = \\sqrt{3}(1 - \\tan\\theta\\tan 2\\theta)$$\n$$\\frac{\\tan\\theta + \\tan 2\\theta}{1 - \\tan\\theta\\tan 2\\theta} = \\sqrt{3} \\implies \\tan 3\\theta = \\sqrt{3}$$', 'Group terms to recognize the tan(theta + 2 theta) identity.'),
+      s(2, 'Final Answer', '$$\\tan 3\\theta = \\tan\\frac{\\pi}{3} \\implies 3\\theta = n\\pi + \\frac{\\pi}{3} \\implies \\theta = \\frac{n\\pi}{3} + \\frac{\\pi}{9}, \\quad n \\in \\mathbb{Z}$$', 'Note that 3 theta equals n pi plus pi by 3 avoids undefined tan theta or tan 2 theta.'),
+    ]
+  ),
+  'ia-9-p9': sol(
+    'Solve $\\sin\\theta + \\sin 3\\theta + \\sin 5\\theta = 0$.',
+    [
+      s(1, 'Step 1', 'Group $\\sin 5\\theta + \\sin\\theta$:\n$$(\\sin 5\\theta + \\sin\\theta) + \\sin 3\\theta = 2\\sin 3\\theta\\cos 2\\theta + \\sin 3\\theta = \\sin 3\\theta(2\\cos 2\\theta + 1) = 0$$', 'Apply sum-to-product on sin 5 theta plus sin theta and factor sin 3 theta.'),
+      s(2, 'Final Answer', 'Case 1: $\\sin 3\\theta = 0 \\implies \\theta = \\frac{n\\pi}{3}$, $n \\in \\mathbb{Z}$.\nCase 2: $\\cos 2\\theta = -\\frac{1}{2} = \\cos\\frac{2\\pi}{3} \\implies 2\\theta = 2n\\pi \\pm \\frac{2\\pi}{3} \\implies \\theta = n\\pi \\pm \\frac{\\pi}{3}$, $n \\in \\mathbb{Z}$.', 'Both families combine into general solutions for theta.'),
+    ]
+  ),
+  'ia-9-p10': sol(
+    'Solve $\\cos 3\\theta - \\cos\\theta = \\sin 2\\theta$.',
+    [
+      s(1, 'Step 1', 'Apply $\\cos C - \\cos D = -2\\sin\\frac{C+D}{2}\\sin\\frac{C-D}{2}$:\n$$-2\\sin 2\\theta\\sin\\theta = \\sin 2\\theta \\implies \\sin 2\\theta(2\\sin\\theta + 1) = 0$$', 'Convert cos 3 theta minus cos theta and factor out sin 2 theta.'),
+      s(2, 'Final Answer', 'Case 1: $\\sin 2\\theta = 0 \\implies 2\\theta = n\\pi \\implies \\theta = \\frac{n\\pi}{2}$, $n \\in \\mathbb{Z}$.\nCase 2: $\\sin\\theta = -\\frac{1}{2} = \\sin\\left(-\\frac{\\pi}{6}\\right) \\implies \\theta = n\\pi + (-1)^{n+1}\\frac{\\pi}{6}$, $n \\in \\mathbb{Z}$.', 'Solve both factors for all integer n.'),
+    ]
+  ),
+  'ia-10-p6': sol(
+    'Evaluate $\\cos\\left(\\tan^{-1}\\left(\\frac{3}{4}\\right)\\right)$.',
+    [
+      s(1, 'Step 1', 'Let $\\theta = \\tan^{-1}\\left(\\frac{3}{4}\\right) \\in \\left(0, \\frac{\\pi}{2}\\right)$, so $\\tan\\theta = \\frac{3}{4}$.\nIn a right triangle with opposite $= 3$, adjacent $= 4$, hypotenuse $= \\sqrt{3^2 + 4^2} = 5$.', 'Use a 3-4-5 right triangle for the acute angle theta.'),
+      s(2, 'Final Answer', '$$\\cos\\theta = \\frac{\\text{adjacent}}{\\text{hypotenuse}} = \\frac{4}{5}$$', 'Thus cos of tan inverse 3 by 4 equals 4 by 5.'),
+    ]
+  ),
+  'ia-10-p7': sol(
+    'Prove that $\\tan^{-1}\\left(\\frac{1}{2}\\right) + \\tan^{-1}\\left(\\frac{1}{5}\\right) + \\tan^{-1}\\left(\\frac{1}{8}\\right) = \\frac{\\pi}{4}$.',
+    [
+      s(1, 'Step 1', 'Combine the first two terms (since $\\frac{1}{2} \\cdot \\frac{1}{5} = \\frac{1}{10} < 1$):\n$$\\tan^{-1}\\left(\\frac{1}{2}\\right) + \\tan^{-1}\\left(\\frac{1}{5}\\right) = \\tan^{-1}\\left(\\frac{\\frac{1}{2} + \\frac{1}{5}}{1 - \\frac{1}{10}}\\right) = \\tan^{-1}\\left(\\frac{7/10}{9/10}\\right) = \\tan^{-1}\\left(\\frac{7}{9}\\right)$$', 'Add the first two inverse tangents.'),
+      s(2, 'Final Answer', 'Now add $\\tan^{-1}\\left(\\frac{1}{8}\\right)$ (since $\\frac{7}{9} \\cdot \\frac{1}{8} = \\frac{7}{72} < 1$):\n$$\\tan^{-1}\\left(\\frac{7}{9}\\right) + \\tan^{-1}\\left(\\frac{1}{8}\\right) = \\tan^{-1}\\left(\\frac{\\frac{7}{9} + \\frac{1}{8}}{1 - \\frac{7}{72}}\\right) = \\tan^{-1}\\left(\\frac{65/72}{65/72}\\right) = \\tan^{-1}(1) = \\frac{\\pi}{4}$$', 'The ratio reduces to 1, giving pi by 4.'),
+    ]
+  ),
+  'ia-10-p8': sol(
+    'If $\\tan^{-1} x + \\tan^{-1} y + \\tan^{-1} z = \\pi$, prove that $x + y + z = xyz$.',
+    [
+      s(1, 'Step 1', 'Let $\\alpha = \\tan^{-1} x$, $\\beta = \\tan^{-1} y$, $\\gamma = \\tan^{-1} z$, so $\\alpha + \\beta + \\gamma = \\pi$ and $\\tan\\alpha = x, \\tan\\beta = y, \\tan\\gamma = z$.', 'Write the inverse tangents as angles summing to pi.'),
+      s(2, 'Final Answer', '$\\alpha + \\beta = \\pi - \\gamma$. Taking $\\tan$ on both sides:\n$$\\tan(\\alpha + \\beta) = \\tan(\\pi - \\gamma) \\implies \\frac{\\tan\\alpha + \\tan\\beta}{1 - \\tan\\alpha\\tan\\beta} = -\\tan\\gamma$$\n$$\\frac{x + y}{1 - xy} = -z \\implies x + y = -z + xyz \\implies x + y + z = xyz$$', 'Take tangent of both sides and cross-multiply.'),
+    ]
+  ),
+  'ia-10-p9': sol(
+    'Solve $\\sin^{-1}(1 - x) - 2\\sin^{-1} x = \\frac{\\pi}{2}$.',
+    [
+      s(1, 'Step 1', 'Let $\\theta = \\sin^{-1} x$, so $x = \\sin\\theta$. Rewrite the equation:\n$$\\sin^{-1}(1 - x) = \\frac{\\pi}{2} + 2\\theta$$\nTaking sine on both sides:\n$$1 - x = \\sin\\left(\\frac{\\pi}{2} + 2\\theta\\right) = \\cos 2\\theta = 1 - 2\\sin^2\\theta = 1 - 2x^2$$', 'Isolate sin inverse (1 - x) and take sine of both sides.'),
+      s(2, 'Step 2', '$$1 - x = 1 - 2x^2 \\implies 2x^2 - x = 0 \\implies x(2x - 1) = 0 \\implies x = 0 \\text{ or } x = \\frac{1}{2}$$', 'Solve for candidate values of x.'),
+      s(3, 'Final Answer', 'Verify in original equation:\nFor $x = 0$: $\\sin^{-1}(1) - 0 = \\frac{\\pi}{2}$ (Valid).\nFor $x = \\frac{1}{2}$: $\\sin^{-1}\\left(\\frac{1}{2}\\right) - 2\\sin^{-1}\\left(\\frac{1}{2}\\right) = -\\frac{\\pi}{6} \\neq \\frac{\\pi}{2}$ (Extraneous).\nHence the only solution is $x = 0$.', 'Always check inverse trig solutions; only x equals 0 satisfies the equation.', 'Discard x = 1/2 because it yields -pi/6 instead of pi/2.'),
+    ]
+  ),
+  'ia-10-p10': sol(
+    'If $\\cos^{-1} p + \\cos^{-1} q + \\cos^{-1} r = \\pi$, prove that $p^2 + q^2 + r^2 + 2pqr = 1$.',
+    [
+      s(1, 'Step 1', 'Write $\\cos^{-1} p + \\cos^{-1} q = \\pi - \\cos^{-1} r$.\nTake $\\cos$ on both sides:\n$$pq - \\sqrt{1 - p^2}\\sqrt{1 - q^2} = -r$$', 'Transpose cos inverse r and take cosine of both sides.'),
+      s(2, 'Final Answer', '$$pq + r = \\sqrt{(1 - p^2)(1 - q^2)}$$\nSquaring both sides:\n$$p^2q^2 + 2pqr + r^2 = 1 - p^2 - q^2 + p^2q^2$$\n$$p^2 + q^2 + r^2 + 2pqr = 1$$', 'Isolate the radical, square both sides, and cancel p^2 q^2.'),
+    ]
+  ),
+  'ia-11-p6': sol(
+    'Prove that $\\cosh^2 x - \\sinh^2 x = 1$ using exponential definitions.',
+    [
+      s(1, 'Definition', '$\\cosh x = \\frac{e^x + e^{-x}}{2}$ and $\\sinh x = \\frac{e^x - e^{-x}}{2}$.', 'Recall the exponential definitions of cosh x and sinh x.'),
+      s(2, 'Final Answer', '$$\\cosh^2 x - \\sinh^2 x = \\left(\\frac{e^x + e^{-x}}{2}\\right)^2 - \\left(\\frac{e^x - e^{-x}}{2}\\right)^2$$\n$$= \\frac{(e^{2x} + 2 + e^{-2x}) - (e^{2x} - 2 + e^{-2x})}{4} = \\frac{4}{4} = 1$$', 'Expand both squares and simplify to 1.'),
+    ]
+  ),
+  'ia-11-p7': sol(
+    'If $\\cosh x = \\frac{5}{2}$, find the values of $\\cosh 2x$ and $\\sinh 2x$.',
+    [
+      s(1, 'Step 1 (cosh 2x)', '$$\\cosh 2x = 2\\cosh^2 x - 1 = 2\\left(\\frac{25}{4}\\right) - 1 = \\frac{25}{2} - 1 = \\frac{23}{2}$$', 'Use cosh 2x equals 2 cosh square x minus 1.'),
+      s(2, 'Final Answer (sinh 2x)', '$\\sinh^2 x = \\cosh^2 x - 1 = \\frac{25}{4} - 1 = \\frac{21}{4} \\implies \\sinh x = \\pm\\frac{\\sqrt{21}}{2}$.\n$$\\sinh 2x = 2\\sinh x\\cosh x = 2\\left(\\pm\\frac{\\sqrt{21}}{2}\\right)\\left(\\frac{5}{2}\\right) = \\pm\\frac{5\\sqrt{21}}{2}$$', 'Keep both plus and minus signs for sinh 2x since x can be positive or negative.'),
+    ]
+  ),
+  'ia-11-p8': sol(
+    'Prove that $\\tanh^{-1}(x) = \\frac{1}{2}\\log_e\\left(\\frac{1 + x}{1 - x}\\right)$ for $|x| < 1$.',
+    [
+      s(1, 'Step 1', 'Let $y = \\tanh^{-1}(x)$, so $x = \\tanh y = \\frac{e^y - e^{-y}}{e^y + e^{-y}} = \\frac{e^{2y} - 1}{e^{2y} + 1}$.', 'Express x in terms of e power 2y.'),
+      s(2, 'Final Answer', 'By componendo and dividendo:\n$$\\frac{1 + x}{1 - x} = \\frac{(e^{2y} + 1) + (e^{2y} - 1)}{(e^{2y} + 1) - (e^{2y} - 1)} = \\frac{2e^{2y}}{2} = e^{2y}$$\nTaking $\\log_e$ on both sides: $2y = \\log_e\\left(\\frac{1 + x}{1 - x}\\right) \\implies \\tanh^{-1}(x) = \\frac{1}{2}\\log_e\\left(\\frac{1 + x}{1 - x}\\right)$.', 'Apply componendo and dividendo, then take the natural logarithm.'),
+    ]
+  ),
+  'ia-11-p9': sol(
+    'Prove that $\\sinh(x + y) = \\sinh x\\cosh y + \\cosh x\\sinh y$.',
+    [
+      s(1, 'Step 1', '$$\\text{RHS} = \\left(\\frac{e^x - e^{-x}}{2}\\right)\\left(\\frac{e^y + e^{-y}}{2}\\right) + \\left(\\frac{e^x + e^{-x}}{2}\\right)\\left(\\frac{e^y - e^{-y}}{2}\\right)$$', 'Substitute exponential definitions on the right-hand side.'),
+      s(2, 'Final Answer', '$$\\text{RHS} = \\frac{1}{4}[(e^{x+y} + e^{x-y} - e^{-x+y} - e^{-x-y}) + (e^{x+y} - e^{x-y} + e^{-x+y} - e^{-x-y})]$$\n$$= \\frac{2e^{x+y} - 2e^{-(x+y)}}{4} = \\frac{e^{x+y} - e^{-(x+y)}}{2} = \\sinh(x + y)$$', 'Cross terms cancel, leaving sinh(x + y).'),
+    ]
+  ),
+  'ia-11-p10': sol(
+    'If $\\sinh x = \\tan\\theta$, prove that $x = \\log_e(\\sec\\theta + \\tan\\theta)$ and $\\cosh x = \\sec\\theta$.',
+    [
+      s(1, 'Step 1 (cosh x)', 'For principal angle $\\theta \\in \\left(-\\frac{\\pi}{2}, \\frac{\\pi}{2}\\right)$, $\\sec\\theta > 0$:\n$$\\cosh^2 x = 1 + \\sinh^2 x = 1 + \\tan^2\\theta = \\sec^2\\theta \\implies \\cosh x = \\sec\\theta$$', 'Since cosh x is always positive, take the positive square root sec theta.'),
+      s(2, 'Final Answer', 'Adding $\\cosh x + \\sinh x$:\n$$e^x = \\cosh x + \\sinh x = \\sec\\theta + \\tan\\theta$$\nTaking $\\log_e$ on both sides: $x = \\log_e(\\sec\\theta + \\tan\\theta)$.', 'Use cosh x plus sinh x equals e power x and take natural log.'),
+    ]
+  ),
+  'ia-12-p6': sol(
+    'In $\\triangle ABC$, if $a, b, c$ are in A.P., prove that $\\cot\\frac{A}{2}, \\cot\\frac{B}{2}, \\cot\\frac{C}{2}$ are in A.P.',
+    [
+      s(1, 'Step 1', 'Given $a, b, c$ are in A.P., so $2b = a + c$, or equivalently $b - a = c - b$.\nSubtracting from $s$: $(s - a) - (s - b) = (s - b) - (s - c)$, meaning $s - a, s - b, s - c$ are in A.P.', 'Show that s-a, s-b, s-c are also in A.P.'),
+      s(2, 'Final Answer', 'Multiply each term by the constant $\\frac{s}{\\Delta} > 0$:\n$$\\frac{s(s - a)}{\\Delta},\\ \\frac{s(s - b)}{\\Delta},\\ \\frac{s(s - c)}{\\Delta} \\text{ are in A.P.}$$\nUsing $\\cot\\frac{A}{2} = \\frac{s(s-a)}{\\Delta}$, etc., we conclude $\\cot\\frac{A}{2}, \\cot\\frac{B}{2}, \\cot\\frac{C}{2}$ are in A.P.', 'Multiplying an A.P. by s over delta yields the three half-angle cotangents.'),
+    ]
+  ),
+  'ia-12-p7': sol(
+    'In $\\triangle ABC$, prove using projection rule that $(b + c)\\cos A + (c + a)\\cos B + (a + b)\\cos C = a + b + c$.',
+    [
+      s(1, 'Step 1', 'Expand the LHS and regroup terms:\n$$\\text{LHS} = (b\\cos C + c\\cos B) + (c\\cos A + a\\cos C) + (a\\cos B + b\\cos A)$$', 'Regroup terms to match the projection rule.'),
+      s(2, 'Final Answer', 'By projection formulas: $b\\cos C + c\\cos B = a$, $c\\cos A + a\\cos C = b$, and $a\\cos B + b\\cos A = c$.\n$$\\text{LHS} = a + b + c = \\text{RHS}$$', 'Apply each projection identity to get a plus b plus c.'),
+    ]
+  ),
+  'ia-12-p8': sol(
+    'In $\\triangle ABC$, prove that $\\tan\\frac{A}{2} + \\tan\\frac{B}{2} + \\tan\\frac{C}{2} = \\frac{ab + bc + ca - s^2}{\\Delta}$.',
+    [
+      s(1, 'Formula', 'Recall $\\tan\\frac{A}{2} = \\frac{\\Delta}{s(s - a)}$, $\\tan\\frac{B}{2} = \\frac{\\Delta}{s(s - b)}$, $\\tan\\frac{C}{2} = \\frac{\\Delta}{s(s - c)}$.', 'Write half-angle tangents using delta and semiperimeter s.'),
+      s(2, 'Step 1', '$$\\text{LHS} = \\frac{\\Delta}{s}\\left[\\frac{1}{s-a} + \\frac{1}{s-b} + \\frac{1}{s-c}\\right] = \\frac{\\Delta}{s} \\cdot \\frac{(s-b)(s-c) + (s-c)(s-a) + (s-a)(s-b)}{(s-a)(s-b)(s-c)}$$\nNote $(s-a)(s-b)(s-c) = \\frac{\\Delta^2}{s}$.', 'Combine fractions over the common denominator delta square by s.'),
+      s(3, 'Final Answer', 'Numerator $= 3s^2 - 2s(a + b + c) + (ab + bc + ca) = 3s^2 - 4s^2 + ab + bc + ca = ab + bc + ca - s^2$.\n$$\\text{LHS} = \\frac{\\Delta}{s} \\cdot \\frac{ab + bc + ca - s^2}{\\Delta^2 / s} = \\frac{ab + bc + ca - s^2}{\\Delta}$$', 'Replace a+b+c by 2s and cancel delta/s.'),
+    ]
+  ),
+  'ia-12-p9': sol(
+    'In $\\triangle ABC$, prove that $r\\cdot r_1\\cdot r_2\\cdot r_3 = \\Delta^2$.',
+    [
+      s(1, 'Formula', '$r = \\frac{\\Delta}{s}$, $r_1 = \\frac{\\Delta}{s - a}$, $r_2 = \\frac{\\Delta}{s - b}$, $r_3 = \\frac{\\Delta}{s - c}$.', 'Write the standard formulas for inradius and exradii.'),
+      s(2, 'Final Answer', '$$r \\cdot r_1 \\cdot r_2 \\cdot r_3 = \\frac{\\Delta^4}{s(s - a)(s - b)(s - c)} = \\frac{\\Delta^4}{\\Delta^2} = \\Delta^2$$', 'Use Heron formula s(s-a)(s-b)(s-c) equals delta square to simplify to delta square.'),
+    ]
+  ),
+  'ia-12-p10': sol(
+    'In $\\triangle ABC$, prove that $\\cos A + \\cos B + \\cos C = 1 + \\frac{r}{R}$.',
+    [
+      s(1, 'Step 1', 'Using conditional triangle transformation:\n$$\\cos A + \\cos B + \\cos C = 1 + 4\\sin\\frac{A}{2}\\sin\\frac{B}{2}\\sin\\frac{C}{2}$$', 'Start from the standard triangle cosine-sum identity.'),
+      s(2, 'Final Answer', 'Since $r = 4R\\sin\\frac{A}{2}\\sin\\frac{B}{2}\\sin\\frac{C}{2}$, we have $4\\sin\\frac{A}{2}\\sin\\frac{B}{2}\\sin\\frac{C}{2} = \\frac{r}{R}$.\nTherefore:\n$$\\cos A + \\cos B + \\cos C = 1 + \\frac{r}{R}$$', 'Substitute the inradius formula to obtain 1 plus r over R.'),
+    ]
+  ),
 };

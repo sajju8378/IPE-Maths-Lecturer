@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
   BookOpen,
@@ -63,10 +63,43 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoMimeType, setPhotoMimeType] = useState<string>('image/jpeg');
   const [formError, setFormError] = useState<string | null>(null);
+  const [groupBy, setGroupBy] = useState<'topic' | 'marks'>('topic');
+  const [selectedTopic, setSelectedTopic] = useState<string>('ALL');
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const paper = SYLLABUS_PAPERS[paperId];
   const papersForYear: PaperId[] = year === '1st' ? ['IA', 'IB'] : ['IIA', 'IIB'];
+
+  useEffect(() => {
+    setSelectedTopic('ALL');
+  }, [selectedChapter?.id]);
+
+  const chapterTopics = useMemo(() => {
+    if (!selectedChapter) return [];
+    const seen = new Set<string>();
+    const list: string[] = [];
+    for (const prob of selectedChapter.problems) {
+      if (!seen.has(prob.topic)) {
+        seen.add(prob.topic);
+        list.push(prob.topic);
+      }
+    }
+    return list;
+  }, [selectedChapter]);
+
+  const topicCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    if (!selectedChapter) return counts;
+    for (const prob of selectedChapter.problems) {
+      counts.set(prob.topic, (counts.get(prob.topic) ?? 0) + 1);
+    }
+    return counts;
+  }, [selectedChapter]);
+
+  const activeTopic =
+    selectedTopic === 'ALL' || chapterTopics.includes(selectedTopic)
+      ? selectedTopic
+      : 'ALL';
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -504,37 +537,45 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {paper.chapters.map((chapter) => (
-                    <button
-                      key={chapter.id}
-                      onClick={() => onSelectChapter(chapter)}
-                      className="group rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F] p-4 text-left transition-colors flex flex-col justify-between gap-3 cursor-pointer"
-                    >
-                      <div>
-                        <p className="text-xs text-[#526058] font-mono tabular-nums mb-1">
-                          Chapter {String(chapter.number).padStart(2, '0')} · {chapter.problems.length} Practice Problems
-                        </p>
-                        <h3 className="text-base font-semibold text-[#18221D] group-hover:text-[#14452F] transition-colors">
-                          {chapter.name}
-                        </h3>
-                      </div>
+                  {paper.chapters.map((chapter) => {
+                    const topics = Array.from(new Set(chapter.problems.map((p) => p.topic)));
+                    return (
+                      <button
+                        key={chapter.id}
+                        onClick={() => onSelectChapter(chapter)}
+                        className="group rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F] p-4 text-left transition-colors flex flex-col justify-between gap-3 cursor-pointer"
+                      >
+                        <div className="space-y-1.5">
+                          <p className="text-xs text-[#526058] font-mono tabular-nums">
+                            Chapter {String(chapter.number).padStart(2, '0')} · {topics.length} Topics · {chapter.problems.length} Problems
+                          </p>
+                          <h3 className="text-base font-semibold text-[#18221D] group-hover:text-[#14452F] transition-colors">
+                            {chapter.name}
+                          </h3>
+                          {topics.length > 0 && (
+                            <p className="text-xs text-[#526058] leading-relaxed line-clamp-2">
+                              {topics.join(' · ')}
+                            </p>
+                          )}
+                        </div>
 
-                      <div className="flex items-center justify-between text-xs font-medium text-[#14452F] pt-2 border-t border-[#F0EFE9]">
-                        <span>VSAQ · SAQ · LAQ</span>
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                      </div>
-                    </button>
-                  ))}
+                        <div className="flex items-center justify-between text-xs font-medium text-[#14452F] pt-2 border-t border-[#F0EFE9]">
+                          <span>VSAQ · SAQ · LAQ</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
           </section>
         )}
 
-        {/* STEP 4: SELECT PROBLEM (GROUPED BY VSAQ / SAQ / LAQ) */}
+        {/* STEP 4: SELECT PROBLEM (TOPIC-WISE OR BY MARKS) */}
         {selectedChapter && (
           <section className="space-y-6">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <button
                 onClick={() => onSelectChapter(null)}
                 className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-semibold text-[#14452F] hover:underline cursor-pointer"
@@ -542,75 +583,207 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
                 <ChevronLeft className="w-4 h-4" />
                 <span>All {paper.title} Chapters</span>
               </button>
-              <span className="text-xs text-[#526058]">
-                All items below are Practice Problems
+              <span className="text-xs font-medium text-[#526058] tabular-nums">
+                {chapterTopics.length} Topics · {selectedChapter.problems.length} Practice Problems
               </span>
             </div>
 
-            {(['VSAQ', 'SAQ', 'LAQ'] as QuestionType[]).map((qType) => {
-              const groupProblems = selectedChapter.problems.filter((p) => p.type === qType);
-              if (groupProblems.length === 0) return null;
-              const meta = QUESTION_TYPE_META[qType];
+            {/* Topic Filter & Grouping Controls */}
+            <div className="rounded-2xl bg-white border border-[#E2E0D8] p-3 sm:p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filter problems by topic">
+                <button
+                  type="button"
+                  onClick={() => setSelectedTopic('ALL')}
+                  className={`min-h-[40px] px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    activeTopic === 'ALL'
+                      ? 'bg-[#14452F] text-white'
+                      : 'bg-[#F7F6F2] text-[#526058] hover:text-[#18221D] hover:bg-[#ECEAE1]'
+                  }`}
+                >
+                  All Topics ({selectedChapter.problems.length})
+                </button>
+                {chapterTopics.map((topic) => {
+                  const isActive = activeTopic === topic;
+                  const count = topicCounts.get(topic) ?? 0;
+                  return (
+                    <button
+                      key={topic}
+                      type="button"
+                      onClick={() => setSelectedTopic(topic)}
+                      className={`min-h-[40px] px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#14452F] text-white'
+                          : 'bg-[#F7F6F2] text-[#526058] hover:text-[#18221D] hover:bg-[#ECEAE1]'
+                      }`}
+                    >
+                      {topic} ({count})
+                    </button>
+                  );
+                })}
+              </div>
 
-              return (
-                <div key={qType} className="space-y-2.5">
-                  <div className="flex items-baseline justify-between gap-2 border-b border-[#E2E0D8] pb-2">
-                    <h2 className="text-base sm:text-lg font-bold text-[#18221D]">
-                      {meta.label}
-                    </h2>
-                    <span className="text-xs font-medium text-[#526058] tabular-nums">
-                      {meta.marksLabel} · {groupProblems.length}{' '}
-                      {groupProblems.length === 1 ? 'problem' : 'problems'}
-                    </span>
-                  </div>
+              <div className="inline-flex p-1 bg-[#E8E6DD] rounded-xl self-start lg:self-auto shrink-0" role="group" aria-label="Group problems">
+                <button
+                  type="button"
+                  onClick={() => setGroupBy('topic')}
+                  className={`min-h-[40px] px-3 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    groupBy === 'topic'
+                      ? 'bg-white text-[#14452F] shadow-xs'
+                      : 'text-[#526058] hover:text-[#18221D]'
+                  }`}
+                >
+                  By Topic
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGroupBy('marks')}
+                  className={`min-h-[40px] px-3 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                    groupBy === 'marks'
+                      ? 'bg-white text-[#14452F] shadow-xs'
+                      : 'text-[#526058] hover:text-[#18221D]'
+                  }`}
+                >
+                  By Marks
+                </button>
+              </div>
+            </div>
 
-                  <div className="space-y-2.5">
-                    {groupProblems.map((prob, idx) => (
-                      <div
-                        key={prob.id}
-                        className="w-full rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F]/45 p-4 sm:p-5 text-left transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4"
-                      >
-                        <div className="space-y-1.5 min-w-0">
-                          <div className="flex flex-wrap items-center gap-2 text-xs text-[#526058]">
-                            <span className="font-semibold text-[#18221D]">
-                              {idx + 1}. {prob.title}
-                            </span>
-                            <span aria-hidden="true">·</span>
-                            <span>{prob.sourceLabel}</span>
-                            <span aria-hidden="true">·</span>
-                            <span className="tabular-nums">{prob.marks} Marks</span>
-                          </div>
-                          <div className="text-sm sm:text-base text-[#18221D] leading-relaxed">
-                            <MathText text={prob.questionLatex} />
-                          </div>
-                        </div>
+            {groupBy === 'topic'
+              ? (activeTopic === 'ALL' ? chapterTopics : [activeTopic]).map((topicName, topicIdx) => {
+                  const topicProblems = selectedChapter.problems.filter(
+                    (p) => p.topic === topicName
+                  );
+                  if (topicProblems.length === 0) return null;
 
-                        <div className="shrink-0 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
-                          <button
-                            type="button"
-                            onClick={() => onShowSolution(prob)}
-                            className="min-h-[44px] flex-1 sm:flex-initial px-3.5 rounded-xl border border-[#14452F]/25 bg-[#F7F6F2] text-xs sm:text-sm font-semibold text-[#14452F] hover:bg-[#ECEAE1] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
-                          >
-                            <Eye className="w-4 h-4 shrink-0" />
-                            <span>Show Solution</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => onStartProblem(prob)}
-                            className="min-h-[44px] flex-1 sm:flex-initial px-4 rounded-xl bg-[#14452F] text-white text-xs sm:text-sm font-semibold hover:bg-[#0F3624] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
-                          >
-                            <FileText className="w-4 h-4 shrink-0" />
-                            <span>Teach on Board</span>
-                            <ArrowRight className="w-4 h-4 shrink-0" />
-                          </button>
-                        </div>
+                  return (
+                    <div key={topicName} className="space-y-2.5">
+                      <div className="flex items-baseline justify-between gap-2 border-b border-[#E2E0D8] pb-2">
+                        <h2 className="text-base sm:text-lg font-bold text-[#18221D]">
+                          {activeTopic === 'ALL' ? `${topicIdx + 1}. ${topicName}` : topicName}
+                        </h2>
+                        <span className="text-xs font-medium text-[#526058] tabular-nums shrink-0">
+                          {topicProblems.length}{' '}
+                          {topicProblems.length === 1 ? 'problem' : 'problems'}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+
+                      <div className="space-y-2.5">
+                        {topicProblems.map((prob, idx) => (
+                          <div
+                            key={prob.id}
+                            className="w-full rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F]/45 p-4 sm:p-5 text-left transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4"
+                          >
+                            <div className="space-y-1.5 min-w-0">
+                              <div className="flex flex-wrap items-center gap-2 text-xs text-[#526058]">
+                                <span className="font-semibold text-[#18221D] tabular-nums">
+                                  {idx + 1}. {prob.title}
+                                </span>
+                                <span aria-hidden="true">·</span>
+                                <span className="tabular-nums">
+                                  {QUESTION_TYPE_META[prob.type].shortLabel}
+                                </span>
+                                <span aria-hidden="true">·</span>
+                                <span>{prob.sourceLabel}</span>
+                              </div>
+                              <div className="text-sm sm:text-base text-[#18221D] leading-relaxed">
+                                <MathText text={prob.questionLatex} />
+                              </div>
+                            </div>
+
+                            <div className="shrink-0 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+                              <button
+                                type="button"
+                                onClick={() => onShowSolution(prob)}
+                                className="min-h-[44px] flex-1 sm:flex-initial px-3.5 rounded-xl border border-[#14452F]/25 bg-[#F7F6F2] text-xs sm:text-sm font-semibold text-[#14452F] hover:bg-[#ECEAE1] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                              >
+                                <Eye className="w-4 h-4 shrink-0" />
+                                <span>Show Solution</span>
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={() => onStartProblem(prob)}
+                                className="min-h-[44px] flex-1 sm:flex-initial px-4 rounded-xl bg-[#14452F] text-white text-xs sm:text-sm font-semibold hover:bg-[#0F3624] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                              >
+                                <FileText className="w-4 h-4 shrink-0" />
+                                <span>Teach on Board</span>
+                                <ArrowRight className="w-4 h-4 shrink-0" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })
+              : (['VSAQ', 'SAQ', 'LAQ'] as QuestionType[]).map((qType) => {
+                  const groupProblems = selectedChapter.problems.filter(
+                    (p) =>
+                      p.type === qType &&
+                      (activeTopic === 'ALL' || p.topic === activeTopic)
+                  );
+                  if (groupProblems.length === 0) return null;
+                  const meta = QUESTION_TYPE_META[qType];
+
+                  return (
+                    <div key={qType} className="space-y-2.5">
+                      <div className="flex items-baseline justify-between gap-2 border-b border-[#E2E0D8] pb-2">
+                        <h2 className="text-base sm:text-lg font-bold text-[#18221D]">
+                          {meta.label}
+                        </h2>
+                        <span className="text-xs font-medium text-[#526058] tabular-nums shrink-0">
+                          {meta.marksLabel} · {groupProblems.length}{' '}
+                          {groupProblems.length === 1 ? 'problem' : 'problems'}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2.5">
+                        {groupProblems.map((prob, idx) => (
+                          <div
+                            key={prob.id}
+                            className="w-full rounded-2xl bg-white border border-[#E2E0D8] hover:border-[#14452F]/45 p-4 sm:p-5 text-left transition-colors flex flex-col lg:flex-row lg:items-center justify-between gap-4"
+                          >
+                            <div className="space-y-1.5 min-w-0">
+                              <div className="flex flex-wrap items-center gap-2 text-xs text-[#526058]">
+                                <span className="font-semibold text-[#18221D] tabular-nums">
+                                  {idx + 1}. {prob.title}
+                                </span>
+                                <span aria-hidden="true">·</span>
+                                <span>{prob.topic}</span>
+                                <span aria-hidden="true">·</span>
+                                <span className="tabular-nums">{prob.marks} Marks</span>
+                              </div>
+                              <div className="text-sm sm:text-base text-[#18221D] leading-relaxed">
+                                <MathText text={prob.questionLatex} />
+                              </div>
+                            </div>
+
+                            <div className="shrink-0 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+                              <button
+                                type="button"
+                                onClick={() => onShowSolution(prob)}
+                                className="min-h-[44px] flex-1 sm:flex-initial px-3.5 rounded-xl border border-[#14452F]/25 bg-[#F7F6F2] text-xs sm:text-sm font-semibold text-[#14452F] hover:bg-[#ECEAE1] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                              >
+                                <Eye className="w-4 h-4 shrink-0" />
+                                <span>Show Solution</span>
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={() => onStartProblem(prob)}
+                                className="min-h-[44px] flex-1 sm:flex-initial px-4 rounded-xl bg-[#14452F] text-white text-xs sm:text-sm font-semibold hover:bg-[#0F3624] inline-flex items-center justify-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer"
+                              >
+                                <FileText className="w-4 h-4 shrink-0" />
+                                <span>Teach on Board</span>
+                                <ArrowRight className="w-4 h-4 shrink-0" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
           </section>
         )}
       </main>

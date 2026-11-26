@@ -401,4 +401,366 @@ export const SOLUTIONS_IB: Record<string, LectureSolution> = {
       s(3, 'Final Answer', 'Second derivative check:\n$$V\'\'(x) = 24x - 440 \\implies V\'\'\\left(\\frac{20}{3}\\right) = 160 - 440 = -280 < 0$$\nTherefore, the volume is greatest when $x = \\frac{20}{3}\\text{ cm}$.', 'Since V double prime is negative, volume is maximum at x equals 20 by 3 cm.'),
     ]
   ),
+  'ib-1-p6': sol(
+    'Find the equation of the locus of a point $P$ which is equidistant from the coordinate axes.',
+    [
+      s(1, 'Given', 'Let $P(x, y)$ be any point on the locus.\nDistance from $P$ to $X$-axis $= |y|$, and distance from $P$ to $Y$-axis $= |x|$.', 'The perpendicular distances to the two axes are mod y and mod x.'),
+      s(2, 'Final Answer', 'By the given condition: $|x| = |y| \\implies x^2 = y^2 \\implies x^2 - y^2 = 0$.', 'Squaring both sides gives x square minus y square equals 0.'),
+    ]
+  ),
+  'ib-1-p7': sol(
+    'Find the equation of the locus of a point $P$ such that the area of $\\triangle PAB$ is $9$, where $A(5, 3)$ and $B(3, -2)$.',
+    [
+      s(1, 'Formula', 'Area of $\\triangle PAB = \\frac{1}{2}|x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2)| = 9$.', 'Use the triangle area formula with P(x, y), A(5, 3), and B(3, -2).'),
+      s(2, 'Step 1', '$$\\frac{1}{2}|x(3 - (-2)) + 5(-2 - y) + 3(y - 3)| = 9$$\n$$|5x - 10 - 5y + 3y - 9| = 18 \\implies |5x - 2y - 19| = 18$$', 'Simplify the determinant inside the absolute value.'),
+      s(3, 'Final Answer', 'Squaring both sides:\n$$(5x - 2y - 19)^2 = 324$$\nor equivalently $(5x - 2y - 1)(5x - 2y - 37) = 0$.', 'This gives the pair of parallel lines forming the locus.'),
+    ]
+  ),
+  'ib-1-p8': sol(
+    'Find the locus of $P$ if $PA^2 - PB^2 = 2k^2$, where $A(a, 0)$ and $B(-a, 0)$.',
+    [
+      s(1, 'Step 1', 'Let $P(x, y)$ be on the locus.\n$PA^2 = (x - a)^2 + y^2$, and $PB^2 = (x + a)^2 + y^2$.', 'Write PA square and PB square using the distance formula.'),
+      s(2, 'Final Answer', '$$[(x - a)^2 + y^2] - [(x + a)^2 + y^2] = 2k^2$$\n$$(x^2 - 2ax + a^2) - (x^2 + 2ax + a^2) = 2k^2 \\implies -4ax = 2k^2 \\implies 2ax + k^2 = 0$$', 'Expand and cancel x^2, y^2, and a^2 to get 2ax plus k square equals 0.'),
+    ]
+  ),
+  'ib-1-p9': sol(
+    'Find the locus of $P$ such that $PA : PB = 2 : 3$ where $A(2, 3)$ and $B(2, -3)$.',
+    [
+      s(1, 'Step 1', '$\\frac{PA}{PB} = \\frac{2}{3} \\implies 3PA = 2PB \\implies 9PA^2 = 4PB^2$.\n$$9[(x - 2)^2 + (y - 3)^2] = 4[(x - 2)^2 + (y + 3)^2]$$', 'Cross-multiply and square both sides.'),
+      s(2, 'Final Answer', '$$9(x^2 - 4x + 4 + y^2 - 6y + 9) = 4(x^2 - 4x + 4 + y^2 + 6y + 9)$$\n$$5x^2 + 5y^2 - 20x - 78y + 65 = 0$$', 'Expand and collect like terms to obtain the circle equation.'),
+    ]
+  ),
+  'ib-1-p10': sol(
+    'If the sum of the squares of the distances of $P$ from $(a, 0)$ and $(-a, 0)$ is $2c^2$, find the locus of $P$.',
+    [
+      s(1, 'Step 1', 'Let $P(x, y)$ be on the locus. Then $PA^2 + PB^2 = 2c^2$:\n$$[(x - a)^2 + y^2] + [(x + a)^2 + y^2] = 2c^2$$', 'Write the sum of squared distances.'),
+      s(2, 'Final Answer', '$$2(x^2 + y^2 + a^2) = 2c^2 \\implies x^2 + y^2 = c^2 - a^2$$', 'Divide by 2 to get x square plus y square equals c square minus a square.'),
+    ]
+  ),
+  'ib-2-p6': sol(
+    'When the origin is shifted to $(3, -4)$, a point has new coordinates $(1, 5)$. Find its original coordinates.',
+    [
+      s(1, 'Formula', 'Under translation to $(h, k)$, original coordinates $(x, y)$ relate to new coordinates $(X, Y)$ by $x = X + h$, $y = Y + k$.', 'Use the inverse translation formulas.'),
+      s(2, 'Final Answer', 'Here $(h, k) = (3, -4)$ and $(X, Y) = (1, 5)$:\n$$x = 1 + 3 = 4, \\quad y = 5 + (-4) = 1$$\nOriginal coordinates: $(4, 1)$.', 'Substitute to find the original point (4, 1).'),
+    ]
+  ),
+  'ib-2-p7': sol(
+    'When the origin is shifted to $(-1, 2)$ by translation of axes, find the transformed equation of $2x^2 + y^2 - 4x + 4y = 0$.',
+    [
+      s(1, 'Step 1', 'Substitute $x = X - 1$ and $y = Y + 2$ into the equation:\n$$2(X - 1)^2 + (Y + 2)^2 - 4(X - 1) + 4(Y + 2) = 0$$', 'Apply translation equations for (h, k) = (-1, 2).'),
+      s(2, 'Final Answer', '$$2(X^2 - 2X + 1) + (Y^2 + 4Y + 4) - 4X + 4 + 4Y + 8 = 0$$\n$$2X^2 + Y^2 - 8X + 8Y + 18 = 0$$', 'Expand and simplify all terms.'),
+    ]
+  ),
+  'ib-2-p8': sol(
+    'When the axes are rotated through an angle $30^\\circ$, find the new coordinates of the point $(0, 5)$.',
+    [
+      s(1, 'Formula', '$X = x\\cos\\theta + y\\sin\\theta$, $Y = -x\\sin\\theta + y\\cos\\theta$.', 'Recall the rotation transformation for new coordinates (X, Y).'),
+      s(2, 'Final Answer', 'With $(x, y) = (0, 5)$ and $\\theta = 30^\\circ$:\n$$X = 0\\cos 30^\\circ + 5\\sin 30^\\circ = \\frac{5}{2}$$\n$$Y = -0\\sin 30^\\circ + 5\\cos 30^\\circ = \\frac{5\\sqrt{3}}{2}$$\nNew coordinates: $\\left(\\frac{5}{2}, \\frac{5\\sqrt{3}}{2}\\right)$.', 'Evaluate using sin 30 = 1/2 and cos 30 = root 3 by 2.'),
+    ]
+  ),
+  'ib-2-p9': sol(
+    'When the axes are rotated through an angle $45^\\circ$, find the transformed equation of $3x^2 + 10xy + 3y^2 = 9$.',
+    [
+      s(1, 'Step 1', 'For $\\theta = 45^\\circ$, $x = \\frac{X - Y}{\\sqrt{2}}$ and $y = \\frac{X + Y}{\\sqrt{2}}$.\nSubstitute into $3x^2 + 10xy + 3y^2 = 9$:\n$$3\\left(\\frac{X - Y}{\\sqrt{2}}\\right)^2 + 10\\left(\\frac{X^2 - Y^2}{2}\\right) + 3\\left(\\frac{X + Y}{\\sqrt{2}}\\right)^2 = 9$$', 'Substitute the 45-degree rotation formulas.'),
+      s(2, 'Final Answer', '$$\\frac{3(X^2 - 2XY + Y^2) + 10(X^2 - Y^2) + 3(X^2 + 2XY + Y^2)}{2} = 9$$\n$$\\frac{16X^2 - 4Y^2}{2} = 9 \\implies 8X^2 - 2Y^2 = 9$$', 'The XY terms cancel cleanly, leaving 8X square minus 2Y square equals 9.'),
+    ]
+  ),
+  'ib-2-p10': sol(
+    'Find the point to which the origin should be shifted to remove the first-degree terms from $x^2 + 2y^2 - 6x + 8y + 1 = 0$.',
+    [
+      s(1, 'Step 1', 'Group $x$ and $y$ terms and complete the squares:\n$$(x^2 - 6x + 9) + 2(y^2 + 4y + 4) + 1 - 9 - 8 = 0$$\n$$(x - 3)^2 + 2(y + 2)^2 = 16$$', 'Complete the squares for x and y.'),
+      s(2, 'Final Answer', 'Comparing with $X = x - h$, $Y = y - k$, the origin must be shifted to $(h, k) = (3, -2)$.', 'Shifting the origin to (3, -2) removes both linear terms.'),
+    ]
+  ),
+  'ib-3-p6': sol(
+    'Write the equation of the line passing through $(3, 4)$ and making an angle $60^\\circ$ with the positive $x$-axis in symmetric form.',
+    [
+      s(1, 'Formula', 'Symmetric form of a line through $(x_1, y_1)$ at inclination $\\theta$ is $\\frac{x - x_1}{\\cos\\theta} = \\frac{y - y_1}{\\sin\\theta}$.', 'Use the standard symmetric (parametric) form.'),
+      s(2, 'Final Answer', 'With $(x_1, y_1) = (3, 4)$ and $\\theta = 60^\\circ$:\n$$\\frac{x - 3}{\\cos 60^\\circ} = \\frac{y - 4}{\\sin 60^\\circ} \\implies \\frac{x - 3}{1/2} = \\frac{y - 4}{\\sqrt{3}/2}$$', 'Substitute cos 60 = 1/2 and sin 60 = root 3 by 2.'),
+    ]
+  ),
+  'ib-3-p7': sol(
+    'Find the equation of the straight line passing through $(2, 3)$ and making non-zero intercepts on the axes whose sum is $0$.',
+    [
+      s(1, 'Step 1', 'Let the $x$-intercept be $a$ ($a \\neq 0$). Since $a + b = 0$, the $y$-intercept is $b = -a$.\nEquation in intercept form: $\\frac{x}{a} + \\frac{y}{-a} = 1 \\implies x - y = a$.', 'Set b equals minus a in the intercept form.'),
+      s(2, 'Final Answer', 'Since the line passes through $(2, 3)$:\n$$2 - 3 = a \\implies a = -1$$\nTherefore, the equation is $x - y = -1$, or $x - y + 1 = 0$.', 'Substitute (2, 3) to find a = -1 and write x - y + 1 = 0.'),
+    ]
+  ),
+  'ib-3-p8': sol(
+    'Find the equations of the straight lines passing through $(1, 2)$ and making an angle $45^\\circ$ with the line $2x - y + 3 = 0$.',
+    [
+      s(1, 'Step 1', 'Slope of $2x - y + 3 = 0$ is $m_1 = 2$. Let the required line have slope $m$.\n$$\\tan 45^\\circ = \\left|\\frac{m - 2}{1 + 2m}\\right| = 1 \\implies m - 2 = \\pm(1 + 2m)$$', 'Use the angle formula between two lines with tan 45 = 1.'),
+      s(2, 'Step 2', 'Case 1: $m - 2 = 1 + 2m \\implies m = -3$.\nCase 2: $m - 2 = -1 - 2m \\implies 3m = 1 \\implies m = \\frac{1}{3}$.', 'Solve for both slopes m = -3 and m = 1/3.'),
+      s(3, 'Final Answer', 'Using $y - 2 = m(x - 1)$:\nFor $m = -3$: $y - 2 = -3(x - 1) \\implies 3x + y - 5 = 0$.\nFor $m = \\frac{1}{3}$: $3(y - 2) = x - 1 \\implies x - 3y + 5 = 0$.', 'Write both line equations through (1, 2).'),
+    ]
+  ),
+  'ib-3-p9': sol(
+    'Show that the three straight lines $ax + by + c = 0$, $bx + cy + a = 0$, and $cx + ay + b = 0$ are concurrent if $a + b + c = 0$.',
+    [
+      s(1, 'Condition', 'Three lines $a_i x + b_i y + c_i = 0$ are concurrent if their coefficient determinant $\\Delta = 0$.', 'Set up the 3 by 3 concurrency determinant.'),
+      s(2, 'Final Answer', '$$\\Delta = \\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix}$$\nApply $C_1 \\to C_1 + C_2 + C_3$:\n$$\\Delta = (a + b + c)\\begin{vmatrix} 1 & b & c \\\\ 1 & c & a \\\\ 1 & a & b \\end{vmatrix}$$\nWhen $a + b + c = 0$, $\\Delta = 0$ (and all three lines pass through $(1, 1)$ since $a + b + c = 0$). Hence the lines are concurrent.', 'Factor out a + b + c to show the determinant vanishes whenever a + b + c = 0.'),
+    ]
+  ),
+  'ib-3-p10': sol(
+    'Find the orthocentre of the triangle whose vertices are $(-2, -1)$, $(6, -1)$, and $(2, 5)$.',
+    [
+      s(1, 'Step 1 (Altitude from C)', 'Let $A(-2, -1)$, $B(6, -1)$, $C(2, 5)$.\nSince $y_A = y_B = -1$, side $AB$ is horizontal, so the altitude from $C(2, 5)$ to $AB$ is vertical:\n$$x = 2 \\dots (1)$$', 'Notice AB is horizontal, making the first altitude x = 2.'),
+      s(2, 'Step 2 (Altitude from A)', 'Slope of $BC = \\frac{5 - (-1)}{2 - 6} = \\frac{6}{-4} = -\\frac{3}{2}$.\nSlope of altitude from $A$ to $BC$ is $\\frac{2}{3}$.\nEquation through $A(-2, -1)$: $y + 1 = \\frac{2}{3}(x + 2) \\dots (2)$.', 'Find the perpendicular slope and equation of the second altitude.'),
+      s(3, 'Final Answer', 'Substitute $x = 2$ into $(2)$:\n$$y + 1 = \\frac{2}{3}(2 + 2) = \\frac{8}{3} \\implies y = \\frac{5}{3}$$\nOrthocentre $= \\left(2, \\frac{5}{3}\\right)$.', 'Solving both altitude equations gives (2, 5/3).'),
+    ]
+  ),
+  'ib-4-p6': sol(
+    'Find $k$ if $4x^2 + kxy + 9y^2 = 0$ represents a pair of coincident lines.',
+    [
+      s(1, 'Condition', 'The homogeneous pair $ax^2 + 2hxy + by^2 = 0$ represents coincident lines iff $h^2 = ab$.', 'Apply the coincident lines discriminant condition h square equals ab.'),
+      s(2, 'Final Answer', 'Here $a = 4$, $2h = k \\implies h = \\frac{k}{2}$, $b = 9$.\n$$\\left(\\frac{k}{2}\\right)^2 = 4(9) = 36 \\implies \\frac{k^2}{4} = 36 \\implies k^2 = 144 \\implies k = \\pm 12$$', 'Solve for k to get plus or minus 12.'),
+    ]
+  ),
+  'ib-4-p7': sol(
+    'Prove that the acute angle $\\theta$ between the pair of lines $ax^2 + 2hxy + by^2 = 0$ is given by $\\cos\\theta = \\frac{|a + b|}{\\sqrt{(a - b)^2 + 4h^2}}$.',
+    [
+      s(1, 'Step 1', 'Let $ax^2 + 2hxy + by^2 \\equiv (l_1 x + m_1 y)(l_2 x + m_2 y)$.\nComparing coefficients: $l_1 l_2 = a$, $m_1 m_2 = b$, and $l_1 m_2 + l_2 m_1 = 2h$.', 'Factor the homogeneous quadratic into two lines through the origin.'),
+      s(2, 'Step 2', 'The acute angle $\\theta$ between the two lines satisfies:\n$$\\cos\\theta = \\frac{|l_1 l_2 + m_1 m_2|}{\\sqrt{l_1^2 + m_1^2}\\sqrt{l_2^2 + m_2^2}}$$\nCompute the product inside the denominator:\n$$(l_1^2 + m_1^2)(l_2^2 + m_2^2) = (l_1 l_2 - m_1 m_2)^2 + (l_1 m_2 + l_2 m_1)^2 = (a - b)^2 + (2h)^2$$', 'Use the angle formula and algebraic identity for the denominator.'),
+      s(3, 'Final Answer', '$$\\cos\\theta = \\frac{|a + b|}{\\sqrt{(a - b)^2 + 4h^2}}$$', 'Substitute back a, b, and 2h to complete the proof.'),
+    ]
+  ),
+  'ib-4-p8': sol(
+    'Show that the product of perpendicular distances from $(\\alpha, \\beta)$ to the pair of lines $ax^2 + 2hxy + by^2 = 0$ is $\\frac{|a\\alpha^2 + 2h\\alpha\\beta + b\\beta^2|}{\\sqrt{(a - b)^2 + 4h^2}}$.',
+    [
+      s(1, 'Step 1', 'Let $ax^2 + 2hxy + by^2 \\equiv (l_1 x + m_1 y)(l_2 x + m_2 y)$, so $l_1 l_2 = a$, $m_1 m_2 = b$, $l_1 m_2 + l_2 m_1 = 2h$.', 'Write the two component lines through the origin.'),
+      s(2, 'Step 2', 'Perpendicular distances from $(\\alpha, \\beta)$ to the two lines are $d_1 = \\frac{|l_1\\alpha + m_1\\beta|}{\\sqrt{l_1^2 + m_1^2}}$ and $d_2 = \\frac{|l_2\\alpha + m_2\\beta|}{\\sqrt{l_2^2 + m_2^2}}$.', 'Apply the point-to-line distance formula for each line.'),
+      s(3, 'Final Answer', '$$d_1 d_2 = \\frac{|(l_1\\alpha + m_1\\beta)(l_2\\alpha + m_2\\beta)|}{\\sqrt{(l_1 l_2 - m_1 m_2)^2 + (l_1 m_2 + l_2 m_1)^2}} = \\frac{|a\\alpha^2 + 2h\\alpha\\beta + b\\beta^2|}{\\sqrt{(a - b)^2 + 4h^2}}$$', 'Multiply numerators and denominators to get the required formula.'),
+    ]
+  ),
+  'ib-4-p9': sol(
+    'Show that $2x^2 - 13xy - 7y^2 + x + 23y - 6 = 0$ represents a pair of straight lines and find the angle between them.',
+    [
+      s(1, 'Step 1 (Check Pair Condition)', 'Comparing with $ax^2 + 2hxy + by^2 + 2gx + 2fy + c = 0$:\n$a = 2, h = -\\frac{13}{2}, b = -7, g = \\frac{1}{2}, f = \\frac{23}{2}, c = -6$.\n$$\\Delta = abc + 2fgh - af^2 - bg^2 - ch^2$$\n$$= 2(-7)(-6) + 2\\left(\\frac{23}{2}\\right)\\left(\\frac{1}{2}\\right)\\left(-\\frac{13}{2}\\right) - 2\\left(\\frac{529}{4}\\right) - (-7)\\left(\\frac{1}{4}\\right) - (-6)\\left(\\frac{169}{4}\\right)$$\n$$= 84 - \\frac{299}{4} - \\frac{529}{2} + \\frac{7}{4} + \\frac{507}{2} = 84 - 73 - 11 = 0$$\nAlso $h^2 - ab = \\frac{169}{4} + 14 > 0$, so it represents a pair of intersecting lines.', 'Verify abc + 2fgh - af^2 - bg^2 - ch^2 = 0 and h^2 - ab > 0.'),
+      s(2, 'Final Answer (Angle)', '$$\\tan\\theta = \\frac{2\\sqrt{h^2 - ab}}{|a + b|} = \\frac{2\\sqrt{\\frac{169}{4} + 14}}{|2 - 7|} = \\frac{2\\left(\\frac{15}{2}\\right)}{5} = 3$$\nTherefore, the acute angle between the lines is $\\theta = \\tan^{-1}(3)$.', 'Compute tan theta equals 3, so theta equals tan inverse 3.'),
+    ]
+  ),
+  'ib-4-p10': sol(
+    'Find the condition for the chord $lx + my = 1$ of the circle $x^2 + y^2 = a^2$ to subtend a right angle at the origin.',
+    [
+      s(1, 'Step 1 (Homogenize)', 'Homogenizing $x^2 + y^2 = a^2$ with the line $lx + my = 1$ gives the pair of lines joining the origin to the intersection points:\n$$x^2 + y^2 = a^2(lx + my)^2$$', 'Replace 1 by (lx + my) square to homogenize the circle equation.'),
+      s(2, 'Step 2 (Collect Terms)', '$$(1 - a^2 l^2)x^2 - 2a^2 lm\\,xy + (1 - a^2 m^2)y^2 = 0$$', 'Group coefficients of x^2, xy, and y^2.'),
+      s(3, 'Final Answer', 'For the two lines to be perpendicular, $\\text{coeff}(x^2) + \\text{coeff}(y^2) = 0$:\n$$(1 - a^2 l^2) + (1 - a^2 m^2) = 0 \\implies a^2(l^2 + m^2) = 2$$', 'Set the sum of x^2 and y^2 coefficients to zero.'),
+    ]
+  ),
+  'ib-5-p6': sol(
+    'Show that the points $(0, 7, -10)$, $(1, 6, -6)$, and $(4, 9, -6)$ form an isosceles right-angled triangle.',
+    [
+      s(1, 'Step 1 (Squared Side Lengths)', 'Let $A(0, 7, -10)$, $B(1, 6, -6)$, $C(4, 9, -6)$.\n$$AB^2 = (1 - 0)^2 + (6 - 7)^2 + (-6 + 10)^2 = 1 + 1 + 16 = 18$$\n$$BC^2 = (4 - 1)^2 + (9 - 6)^2 + (-6 + 6)^2 = 9 + 9 + 0 = 18$$\n$$AC^2 = (4 - 0)^2 + (9 - 7)^2 + (-6 + 10)^2 = 16 + 4 + 16 = 36$$', 'Compute squared distances AB^2, BC^2, and AC^2.'),
+      s(2, 'Final Answer', 'Since $AB = BC = \\sqrt{18} = 3\\sqrt{2}$ (isosceles) and $AB^2 + BC^2 = 18 + 18 = 36 = AC^2$ (Pythagoras theorem, $\\angle B = 90^\\circ$), $\\triangle ABC$ is an isosceles right-angled triangle.', 'Equal sides AB = BC and AB^2 + BC^2 = AC^2 prove the triangle is isosceles right-angled.'),
+    ]
+  ),
+  'ib-5-p7': sol(
+    'Find the coordinates of the point which divides the join of $(2, -1, 3)$ and $(4, 3, 1)$ externally in the ratio $3 : 2$.',
+    [
+      s(1, 'Formula', 'External division in ratio $m : n$ gives $\\left(\\frac{mx_2 - nx_1}{m - n}, \\frac{my_2 - ny_1}{m - n}, \\frac{mz_2 - nz_1}{m - n}\\right)$.', 'Use the 3D external section formula.'),
+      s(2, 'Final Answer', 'With $m = 3, n = 2$, $A(2, -1, 3)$, $B(4, 3, 1)$:\n$$P = \\left(\\frac{3(4) - 2(2)}{3 - 2},\\ \\frac{3(3) - 2(-1)}{3 - 2},\\ \\frac{3(1) - 2(3)}{3 - 2}\\right) = (8,\\ 11,\\ -3)$$', 'Substitute values to obtain (8, 11, -3).'),
+    ]
+  ),
+  'ib-5-p8': sol(
+    'Find the ratio in which the $XZ$-plane divides the line segment joining $(-2, 3, 4)$ and $(1, -2, 3)$, and find the point of intersection.',
+    [
+      s(1, 'Step 1 (Ratio)', 'The $XZ$-plane has equation $y = 0$, so it divides $(x_1, y_1, z_1)$ and $(x_2, y_2, z_2)$ in the ratio $-y_1 : y_2$:\n$$\\text{Ratio} = -3 : (-2) = 3 : 2 \\text{ (internally)}$$', 'Use the ratio -y1 : y2 for the XZ-plane.'),
+      s(2, 'Final Answer', 'Point of intersection with $m = 3, n = 2$:\n$$P = \\left(\\frac{3(1) + 2(-2)}{3 + 2},\\ 0,\\ \\frac{3(3) + 2(4)}{3 + 2}\\right) = \\left(-\\frac{1}{5},\\ 0,\\ \\frac{17}{5}\\right)$$', 'Compute x and z coordinates using internal division 3 : 2.'),
+    ]
+  ),
+  'ib-5-p9': sol(
+    'Find the centroid of the tetrahedron whose vertices are $(2, 3, -4)$, $(-3, 3, -2)$, $(-1, 4, 2)$, and $(3, 5, 1)$.',
+    [
+      s(1, 'Formula', 'Centroid $G = \\left(\\frac{\\sum x_i}{4}, \\frac{\\sum y_i}{4}, \\frac{\\sum z_i}{4}\\right)$.', 'Average the four coordinates component-wise.'),
+      s(2, 'Final Answer', '$$G = \\left(\\frac{2 - 3 - 1 + 3}{4},\\ \\frac{3 + 3 + 4 + 5}{4},\\ \\frac{-4 - 2 + 2 + 1}{4}\\right) = \\left(\\frac{1}{4},\\ \\frac{15}{4},\\ -\\frac{3}{4}\\right)$$', 'Sum and divide by 4 to get (1/4, 15/4, -3/4).'),
+    ]
+  ),
+  'ib-5-p10': sol(
+    'If the midpoints of the sides of a triangle are $(1, 5, -1)$, $(0, 4, -2)$, and $(2, 3, 4)$, find its vertices and centroid.',
+    [
+      s(1, 'Step 1 (Vertices Formula)', 'Let midpoints be $D(1, 5, -1)$ of $BC$, $E(0, 4, -2)$ of $CA$, $F(2, 3, 4)$ of $AB$.\nThen $A = E + F - D$, $B = D + F - E$, $C = D + E - F$.', 'Express each vertex from the three midpoints.'),
+      s(2, 'Step 2 (Compute Vertices)', '$$A = (0+2-1,\\ 4+3-5,\\ -2+4+1) = (1,\\ 2,\\ 3)$$\n$$B = (1+2-0,\\ 5+3-4,\\ -1+4+2) = (3,\\ 4,\\ 5)$$\n$$C = (1+0-2,\\ 5+4-3,\\ -1-2-4) = (-1,\\ 6,\\ -7)$$', 'Compute coordinates of A, B, and C.'),
+      s(3, 'Final Answer (Centroid)', 'Centroid $G$ of $\\triangle ABC$ equals centroid of $\\triangle DEF$:\n$$G = \\left(\\frac{1 + 0 + 2}{3},\\ \\frac{5 + 4 + 3}{3},\\ \\frac{-1 - 2 + 4}{3}\\right) = \\left(1,\\ 4,\\ \\frac{1}{3}\\right)$$', 'The vertices are (1, 2, 3), (3, 4, 5), (-1, 6, -7) and centroid is (1, 4, 1/3).'),
+    ]
+  ),
+  'ib-6-p6': sol(
+    'Find the direction cosines of the line joining the points $(1, -2, 3)$ and $(4, 2, -9)$.',
+    [
+      s(1, 'Step 1 (Direction Ratios)', 'Direction ratios $(a, b, c) = (4 - 1,\\ 2 - (-2),\\ -9 - 3) = (3, 4, -12)$.\nMagnitude $= \\sqrt{3^2 + 4^2 + (-12)^2} = \\sqrt{9 + 16 + 144} = \\sqrt{169} = 13$.', 'Subtract coordinates for DRs and find the magnitude.'),
+      s(2, 'Final Answer', 'Direction cosines: $\\left(\\frac{3}{13},\\ \\frac{4}{13},\\ -\\frac{12}{13}\\right)$.', 'Divide each direction ratio by 13.'),
+    ]
+  ),
+  'ib-6-p7': sol(
+    'If a line makes angles $\\alpha, \\beta, \\gamma$ with the positive coordinate axes, prove that $\\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma = 2$.',
+    [
+      s(1, 'Formula', 'Direction cosines are $l = \\cos\\alpha$, $m = \\cos\\beta$, $n = \\cos\\gamma$, satisfying $l^2 + m^2 + n^2 = 1$.', 'Use the fundamental identity cos^2 alpha + cos^2 beta + cos^2 gamma = 1.'),
+      s(2, 'Final Answer', '$$(1 - \\sin^2\\alpha) + (1 - \\sin^2\\beta) + (1 - \\sin^2\\gamma) = 1$$\n$$3 - (\\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma) = 1 \\implies \\sin^2\\alpha + \\sin^2\\beta + \\sin^2\\gamma = 2$$', 'Replace each cos square by 1 minus sin square to obtain 2.'),
+    ]
+  ),
+  'ib-6-p8': sol(
+    'Find $k$ if the lines with direction ratios $(1, -2, k)$ and $(3, 4, -5)$ are perpendicular.',
+    [
+      s(1, 'Condition', 'Lines with DRs $(a_1, b_1, c_1)$ and $(a_2, b_2, c_2)$ are perpendicular iff $a_1 a_2 + b_1 b_2 + c_1 c_2 = 0$.', 'Set the dot product of direction ratios to zero.'),
+      s(2, 'Final Answer', '$$1(3) + (-2)(4) + k(-5) = 0 \\implies 3 - 8 - 5k = 0 \\implies 5k = -5 \\implies k = -1$$', 'Solve to get k equals minus 1.'),
+    ]
+  ),
+  'ib-6-p9': sol(
+    'Find the angle between $\\overrightarrow{AB}$ and $\\overrightarrow{CD}$ where $A(3, 4, 5)$, $B(4, 6, 3)$, $C(-1, 2, 4)$, and $D(1, 0, 5)$.',
+    [
+      s(1, 'Step 1', 'DRs of $\\overrightarrow{AB} = (4 - 3, 6 - 4, 3 - 5) = (1, 2, -2)$, $|AB| = \\sqrt{1 + 4 + 4} = 3$.\nDRs of $\\overrightarrow{CD} = (1 - (-1), 0 - 2, 5 - 4) = (2, -2, 1)$, $|CD| = \\sqrt{4 + 4 + 1} = 3$.', 'Compute direction ratios and magnitudes of both segments.'),
+      s(2, 'Final Answer', '$$\\cos\\theta = \\frac{1(2) + 2(-2) + (-2)(1)}{3 \\cdot 3} = \\frac{2 - 4 - 2}{9} = -\\frac{4}{9}$$\nSo the angle between the directed segments is $\\theta = \\cos^{-1}\\left(-\\frac{4}{9}\\right)$ (and the acute angle between the lines is $\\cos^{-1}\\left(\\frac{4}{9}\\right)$).', 'Compute cos theta equals minus 4 by 9.'),
+    ]
+  ),
+  'ib-6-p10': sol(
+    'Find the angle between the two lines whose direction cosines satisfy $l + m + n = 0$ and $l^2 + m^2 - n^2 = 0$.',
+    [
+      s(1, 'Step 1', 'From $l + m + n = 0$, substitute $n = -(l + m)$ into $l^2 + m^2 - n^2 = 0$:\n$$l^2 + m^2 - (l + m)^2 = 0 \\implies -2lm = 0 \\implies l = 0 \\text{ or } m = 0$$', 'Eliminate n to get lm = 0.'),
+      s(2, 'Step 2', 'If $l = 0$: $m + n = 0 \\implies n = -m$, DRs are $(0, 1, -1)$.\nIf $m = 0$: $l + n = 0 \\implies n = -l$, DRs are $(1, 0, -1)$.', 'Find direction ratios of the two lines.'),
+      s(3, 'Final Answer', '$$\\cos\\theta = \\frac{|0(1) + 1(0) + (-1)(-1)|}{\\sqrt{0 + 1 + 1}\\sqrt{1 + 0 + 1}} = \\frac{1}{2} \\implies \\theta = 60^\\circ = \\frac{\\pi}{3}$$', 'Cos theta equals 1/2 gives angle 60 degrees.'),
+    ]
+  ),
+  'ib-7-p6': sol(
+    'Reduce the equation $x + 2y - 2z - 9 = 0$ to normal form and find the distance from the origin.',
+    [
+      s(1, 'Step 1', 'Write $x + 2y - 2z = 9$ (with positive RHS).\nNormal magnitude $= \\sqrt{1^2 + 2^2 + (-2)^2} = \\sqrt{9} = 3$.', 'Keep constant positive on RHS and compute magnitude of normal vector.'),
+      s(2, 'Final Answer', 'Dividing by $3$:\n$$\\frac{1}{3}x + \\frac{2}{3}y - \\frac{2}{3}z = 3$$\nThis is the normal form. Perpendicular distance from origin $p = 3$ units.', 'Divide through by 3 to obtain normal form and distance p = 3.'),
+    ]
+  ),
+  'ib-7-p7': sol(
+    'Find the equation of the plane passing through $(1, 2, 3)$ whose intercepts on the coordinate axes are equal.',
+    [
+      s(1, 'Step 1', 'Let the equal non-zero intercepts on the axes be $a, a, a$.\nIntercept form of the plane:\n$$\\frac{x}{a} + \\frac{y}{a} + \\frac{z}{a} = 1 \\implies x + y + z = a$$', 'Write the intercept form with equal intercepts a.'),
+      s(2, 'Final Answer', 'Since it passes through $(1, 2, 3)$:\n$$1 + 2 + 3 = a \\implies a = 6$$\nRequired plane equation: $x + y + z = 6$.', 'Substitute (1, 2, 3) to get x + y + z = 6.'),
+    ]
+  ),
+  'ib-7-p8': sol(
+    'Find the equation of the plane passing through $(1, -2, 3)$ and perpendicular to the planes $x - y + 2z = 5$ and $3x + 2y - z = 4$.',
+    [
+      s(1, 'Step 1 (Normal Vector)', 'The normal $(a, b, c)$ is perpendicular to both $(1, -1, 2)$ and $(3, 2, -1)$:\n$$\\vec{n} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & -1 & 2 \\\\ 3 & 2 & -1 \\end{vmatrix} = (1 - 4)\\hat{i} - (-1 - 6)\\hat{j} + (2 + 3)\\hat{k} = -3\\hat{i} + 7\\hat{j} + 5\\hat{k}$$', 'Take the cross product of the two given normals.'),
+      s(2, 'Final Answer', 'Plane through $(1, -2, 3)$ with normal $(-3, 7, 5)$:\n$$-3(x - 1) + 7(y + 2) + 5(z - 3) = 0$$\n$$-3x + 7y + 5z + 2 = 0 \\implies 3x - 7y - 5z - 2 = 0$$', 'Use point-normal form to get 3x - 7y - 5z - 2 = 0.'),
+    ]
+  ),
+  'ib-7-p9': sol(
+    'Show that the four points $(0, -1, 0)$, $(2, 1, -1)$, $(1, 1, 1)$, and $(3, 3, 0)$ are coplanar and find the equation of the plane containing them.',
+    [
+      s(1, 'Step 1 (Plane Through First 3 Points)', 'Equation of the plane through $A(0, -1, 0)$, $B(2, 1, -1)$, $C(1, 1, 1)$:\n$$\\begin{vmatrix} x - 0 & y + 1 & z - 0 \\\\ 2 - 0 & 1 + 1 & -1 - 0 \\\\ 1 - 0 & 1 + 1 & 1 - 0 \\end{vmatrix} = \\begin{vmatrix} x & y + 1 & z \\\\ 2 & 2 & -1 \\\\ 1 & 2 & 1 \\end{vmatrix} = 0$$', 'Use the determinant formula for the plane through A, B, C.'),
+      s(2, 'Step 2', '$$x(2 + 2) - (y + 1)(2 + 1) + z(4 - 2) = 0 \\implies 4x - 3y + 2z - 3 = 0$$', 'Expand the determinant to find the plane equation.'),
+      s(3, 'Final Answer', 'Substitute the fourth point $(3, 3, 0)$ into $4x - 3y + 2z - 3 = 0$:\n$$4(3) - 3(3) + 2(0) - 3 = 12 - 9 - 3 = 0$$\nHence the four points are coplanar, and the plane is $4x - 3y + 2z - 3 = 0$.', 'Verify the fourth point satisfies the plane equation.'),
+    ]
+  ),
+  'ib-7-p10': sol(
+    'Find the image of the point $(1, 2, 3)$ with respect to the plane $2x - y + z = 5$.',
+    [
+      s(1, 'Formula', 'Image $(x, y, z)$ of $(x_1, y_1, z_1)$ in $ax + by + cz + d = 0$ satisfies:\n$$\\frac{x - x_1}{a} = \\frac{y - y_1}{b} = \\frac{z - z_1}{c} = \\frac{-2(ax_1 + by_1 + cz_1 + d)}{a^2 + b^2 + c^2}$$', 'Apply the 3D reflection formula in a plane.'),
+      s(2, 'Final Answer', 'Here $(x_1, y_1, z_1) = (1, 2, 3)$ and $2x - y + z - 5 = 0$:\n$$\\frac{x - 1}{2} = \\frac{y - 2}{-1} = \\frac{z - 3}{1} = \\frac{-2(2(1) - 2 + 3 - 5)}{2^2 + (-1)^2 + 1^2} = \\frac{-2(-2)}{6} = \\frac{2}{3}$$\nThus $x = 1 + \\frac{4}{3} = \\frac{7}{3}$, $y = 2 - \\frac{2}{3} = \\frac{4}{3}$, $z = 3 + \\frac{2}{3} = \\frac{11}{3}$.\nImage point: $\\left(\\frac{7}{3}, \\frac{4}{3}, \\frac{11}{3}\\right)$.', 'Evaluate the coordinates to get (7/3, 4/3, 11/3).'),
+    ]
+  ),
+  'ib-8-p6': sol(
+    'Evaluate $\\lim_{x \\to \\infty} \\frac{3x^2 + 4x - 5}{2x^2 - 7x + 1}$.',
+    [
+      s(1, 'Step 1', 'Divide numerator and denominator by the highest power $x^2$:\n$$\\lim_{x \\to \\infty} \\frac{3 + \\frac{4}{x} - \\frac{5}{x^2}}{2 - \\frac{7}{x} + \\frac{1}{x^2}}$$', 'Divide top and bottom by x square.'),
+      s(2, 'Final Answer', 'As $x \\to \\infty$, $\\frac{1}{x} \\to 0$ and $\\frac{1}{x^2} \\to 0$:\n$$= \\frac{3 + 0 - 0}{2 - 0 + 0} = \\frac{3}{2}$$', 'The limit evaluates to 3 by 2.'),
+    ]
+  ),
+  'ib-8-p7': sol(
+    'Evaluate $\\lim_{x \\to 2} \\frac{x^3 - 8}{x^2 - 4}$.',
+    [
+      s(1, 'Step 1', 'Factor both numerator and denominator ($x \\neq 2$):\n$$\\frac{x^3 - 2^3}{x^2 - 2^2} = \\frac{(x - 2)(x^2 + 2x + 4)}{(x - 2)(x + 2)} = \\frac{x^2 + 2x + 4}{x + 2}$$', 'Cancel the common factor (x - 2).'),
+      s(2, 'Final Answer', 'Substitute $x = 2$:\n$$\\lim_{x \\to 2} \\frac{x^2 + 2x + 4}{x + 2} = \\frac{4 + 4 + 4}{2 + 2} = \\frac{12}{4} = 3$$', 'Evaluate at x equals 2 to get 3.'),
+    ]
+  ),
+  'ib-8-p8': sol(
+    'Evaluate $\\lim_{x \\to 0} \\frac{1 - \\cos mx}{1 - \\cos nx}$ ($n \\neq 0$).',
+    [
+      s(1, 'Step 1', 'Use $1 - \\cos\\theta = 2\\sin^2\\left(\\frac{\\theta}{2}\\right)$:\n$$\\lim_{x \\to 0} \\frac{2\\sin^2(mx/2)}{2\\sin^2(nx/2)} = \\lim_{x \\to 0} \\frac{\\left(\\frac{\\sin(mx/2)}{mx/2}\\right)^2 \\cdot \\frac{m^2 x^2}{4}}{\\left(\\frac{\\sin(nx/2)}{nx/2}\\right)^2 \\cdot \\frac{n^2 x^2}{4}}$$', 'Convert 1 - cos theta to 2 sin^2(theta/2) and match standard limits.'),
+      s(2, 'Final Answer', 'Since $\\lim_{\\theta \\to 0} \\frac{\\sin\\theta}{\\theta} = 1$:\n$$= \\frac{1^2 \\cdot m^2}{1^2 \\cdot n^2} = \\frac{m^2}{n^2}$$', 'The limit simplifies to m square over n square.'),
+    ]
+  ),
+  'ib-8-p9': sol(
+    'Evaluate $\\lim_{x \\to 0} \\frac{a^x - 1}{b^x - 1}$ ($a, b > 0, b \\neq 1$).',
+    [
+      s(1, 'Formula', 'Use $\\lim_{x \\to 0} \\frac{k^x - 1}{x} = \\log_e k$.', 'Recall the standard exponential limit.'),
+      s(2, 'Final Answer', 'Divide numerator and denominator by $x$:\n$$\\lim_{x \\to 0} \\frac{\\frac{a^x - 1}{x}}{\\frac{b^x - 1}{x}} = \\frac{\\log_e a}{\\log_e b} = \\log_b a$$', 'Apply the standard limit to top and bottom to get log a base b.'),
+    ]
+  ),
+  'ib-8-p10': sol(
+    'Find $k$ if $f(x) = \\begin{cases} \\frac{x^2 - 9}{x - 3}, & x \\neq 3 \\\\ k, & x = 3 \\end{cases}$ is continuous at $x = 3$.',
+    [
+      s(1, 'Condition', 'For continuity at $x = 3$, $\\lim_{x \\to 3} f(x) = f(3) = k$.', 'Equate the limit at x = 3 to f(3).'),
+      s(2, 'Final Answer', '$$k = \\lim_{x \\to 3} \\frac{(x - 3)(x + 3)}{x - 3} = \\lim_{x \\to 3} (x + 3) = 3 + 3 = 6$$', 'Factor and cancel (x - 3) to get k = 6.'),
+    ]
+  ),
+  'ib-9-p6': sol(
+    'Find $\\frac{dy}{dx}$ if $y = e^{\\sin^{-1} x}$.',
+    [
+      s(1, 'Step 1', 'Apply the chain rule with $u = \\sin^{-1} x$:\n$$\\frac{dy}{dx} = e^{\\sin^{-1} x} \\cdot \\frac{d}{dx}(\\sin^{-1} x)$$', 'Differentiate the outer exponential function first.'),
+      s(2, 'Final Answer', 'Since $\\frac{d}{dx}(\\sin^{-1} x) = \\frac{1}{\\sqrt{1 - x^2}}$:\n$$\\frac{dy}{dx} = \\frac{e^{\\sin^{-1} x}}{\\sqrt{1 - x^2}} \\quad (|x| < 1)$$', 'Multiply by the derivative of sin inverse x.'),
+    ]
+  ),
+  'ib-9-p7': sol(
+    'Find the derivative of $\\tan 2x$ from the first principle.',
+    [
+      s(1, 'Definition', 'Let $f(x) = \\tan 2x$. By first principles:\n$$f\'(x) = \\lim_{h \\to 0} \\frac{\\tan(2x + 2h) - \\tan 2x}{h}$$', 'Set up the difference quotient.'),
+      s(2, 'Step 1', 'Convert to sine and cosine:\n$$\\tan(2x + 2h) - \\tan 2x = \\frac{\\sin(2x + 2h)\\cos 2x - \\cos(2x + 2h)\\sin 2x}{\\cos(2x + 2h)\\cos 2x} = \\frac{\\sin 2h}{\\cos(2x + 2h)\\cos 2x}$$', 'Simplify the numerator using sin(A - B).'),
+      s(3, 'Final Answer', '$$f\'(x) = \\lim_{h \\to 0} \\left(\\frac{\\sin 2h}{2h}\\right) \\cdot \\frac{2}{\\cos(2x + 2h)\\cos 2x} = 1 \\cdot \\frac{2}{\\cos^2 2x} = 2\\sec^2 2x$$', 'Apply lim (sin 2h)/(2h) = 1 to obtain 2 sec^2 2x.'),
+    ]
+  ),
+  'ib-9-p8': sol(
+    'If $x = a(\\theta - \\sin\\theta)$ and $y = a(1 - \\cos\\theta)$, find $\\frac{dy}{dx}$.',
+    [
+      s(1, 'Step 1', 'Differentiate $x$ and $y$ with respect to parameter $\\theta$:\n$$\\frac{dx}{d\\theta} = a(1 - \\cos\\theta), \\quad \\frac{dy}{d\\theta} = a\\sin\\theta$$', 'Find dx/d theta and dy/d theta.'),
+      s(2, 'Final Answer', '$$\\frac{dy}{dx} = \\frac{dy/d\\theta}{dx/d\\theta} = \\frac{a\\sin\\theta}{a(1 - \\cos\\theta)} = \\frac{2\\sin(\\theta/2)\\cos(\\theta/2)}{2\\sin^2(\\theta/2)} = \\cot\\left(\\frac{\\theta}{2}\\right)$$', 'Use half-angle identities to simplify to cot(theta/2).'),
+    ]
+  ),
+  'ib-9-p9': sol(
+    'Differentiate $\\tan^{-1}\\left(\\frac{\\sqrt{1 + x^2} - 1}{x}\\right)$ with respect to $\\tan^{-1} x$.',
+    [
+      s(1, 'Step 1', 'Let $u = \\tan^{-1}\\left(\\frac{\\sqrt{1 + x^2} - 1}{x}\\right)$ and $v = \\tan^{-1} x$.\nPut $x = \\tan\\theta$, so $\\theta = \\tan^{-1} x = v$ and $\\sqrt{1 + x^2} = \\sec\\theta$.\n$$u = \\tan^{-1}\\left(\\frac{\\sec\\theta - 1}{\\tan\\theta}\\right) = \\tan^{-1}\\left(\\frac{1 - \\cos\\theta}{\\sin\\theta}\\right) = \\tan^{-1}\\left(\\tan\\frac{\\theta}{2}\\right) = \\frac{\\theta}{2}$$', 'Substitute x = tan theta to simplify u to theta/2.'),
+      s(2, 'Final Answer', 'Since $u = \\frac{v}{2}$:\n$$\\frac{du}{dv} = \\frac{1}{2}$$', 'Differentiating v/2 with respect to v gives 1/2.'),
+    ]
+  ),
+  'ib-9-p10': sol(
+    'If $x^y = e^{x - y}$, prove that $\\frac{dy}{dx} = \\frac{\\log x}{(1 + \\log x)^2}$.',
+    [
+      s(1, 'Step 1 (Take Logarithm)', 'Take natural log on both sides ($x > 0$):\n$$y\\log x = x - y \\implies y(1 + \\log x) = x \\implies y = \\frac{x}{1 + \\log x}$$', 'Take log and solve explicitly for y.'),
+      s(2, 'Final Answer', 'Differentiate with respect to $x$ using the quotient rule:\n$$\\frac{dy}{dx} = \\frac{(1 + \\log x)(1) - x\\left(\\frac{1}{x}\\right)}{(1 + \\log x)^2} = \\frac{1 + \\log x - 1}{(1 + \\log x)^2} = \\frac{\\log x}{(1 + \\log x)^2}$$', 'Apply the quotient rule to complete the proof.'),
+    ]
+  ),
+  'ib-10-p6': sol(
+    'Find the approximate value of $\\sqrt{82}$ using differentials.',
+    [
+      s(1, 'Step 1', 'Let $f(x) = \\sqrt{x}$, choose $x = 81$ and $\\Delta x = 1$.\nThen $f\'(x) = \\frac{1}{2\\sqrt{x}}$.', 'Pick the nearest perfect square x = 81 with delta x = 1.'),
+      s(2, 'Final Answer', '$$f(x + \\Delta x) \\approx f(x) + f\'(x)\\Delta x$$\n$$\\sqrt{82} \\approx \\sqrt{81} + \\frac{1}{2\\sqrt{81}}(1) = 9 + \\frac{1}{18} \\approx 9 + 0.0556 = 9.0556$$', 'Apply the linear approximation formula to get 9.0556.'),
+    ]
+  ),
+  'ib-10-p7': sol(
+    'Show that at any point $(x, y)$ on the curve $y = b e^{x/a}$, the subtangent is constant and the subnormal varies as the square of the ordinate.',
+    [
+      s(1, 'Step 1 (Slope)', 'Differentiate $y = be^{x/a}$ with respect to $x$:\n$$\\frac{dy}{dx} = b e^{x/a} \\cdot \\frac{1}{a} = \\frac{y}{a}$$', 'Compute dy/dx = y/a.'),
+      s(2, 'Final Answer', 'Length of subtangent $= \\left|\\frac{y}{dy/dx}\\right| = \\left|\\frac{y}{y/a}\\right| = |a|$ (constant).\nLength of subnormal $= \\left|y\\frac{dy}{dx}\\right| = \\left|y \\cdot \\frac{y}{a}\\right| = \\frac{y^2}{|a|} \\propto y^2$.', 'Subtangent is constant |a|, and subnormal is y square over |a| (proportional to y square).'),
+    ]
+  ),
+  'ib-10-p8': sol(
+    'Show that the condition for the curves $ax^2 + by^2 = 1$ and $a_1 x^2 + b_1 y^2 = 1$ to intersect orthogonally is $\\frac{1}{a} - \\frac{1}{b} = \\frac{1}{a_1} - \\frac{1}{b_1}$.',
+    [
+      s(1, 'Step 1 (Slopes)', 'Let $(x_1, y_1)$ be a point of intersection.\nDifferentiating $ax^2 + by^2 = 1$: $m_1 = -\\frac{ax_1}{by_1}$.\nDifferentiating $a_1 x^2 + b_1 y^2 = 1$: $m_2 = -\\frac{a_1 x_1}{b_1 y_1}$.\nFor orthogonal intersection ($m_1 m_2 = -1$):\n$$\\frac{a a_1 x_1^2}{b b_1 y_1^2} = -1 \\implies a a_1 x_1^2 + b b_1 y_1^2 = 0 \\dots (1)$$', 'Apply m1 m2 = -1 at the common point (x1, y1).'),
+      s(2, 'Step 2', 'Subtract the two curve equations at $(x_1, y_1)$:\n$$(a - a_1)x_1^2 + (b - b_1)y_1^2 = 0 \\implies \\frac{x_1^2}{y_1^2} = -\\frac{b - b_1}{a - a_1} \\dots (2)$$', 'Eliminate the constant 1 to find x1^2 / y1^2.'),
+      s(3, 'Final Answer', 'Substituting $(2)$ into $(1)$:\n$$a a_1(b - b_1) = b b_1(a - a_1)$$\nDivide both sides by $a b a_1 b_1$:\n$$\\frac{1}{b_1} - \\frac{1}{b} = \\frac{1}{a_1} - \\frac{1}{a} \\implies \\frac{1}{a} - \\frac{1}{b} = \\frac{1}{a_1} - \\frac{1}{b_1}$$', 'Divide through by a b a1 b1 to obtain the orthogonality condition.'),
+    ]
+  ),
+  'ib-10-p9': sol(
+    'Find the intervals in which the function $f(x) = x^3 - 6x^2 + 9x + 15$ is strictly increasing or strictly decreasing.',
+    [
+      s(1, 'Step 1 (Critical Points)', '$$f\'(x) = 3x^2 - 12x + 9 = 3(x^2 - 4x + 3) = 3(x - 1)(x - 3)$$\nCritical points: $x = 1$ and $x = 3$.', 'Differentiate and factor f prime of x.'),
+      s(2, 'Final Answer', 'Test signs of $f\'(x)$:\n• On $(-\\infty, 1)$ and $(3, \\infty)$: $f\'(x) > 0 \\implies f$ is strictly increasing.\n• On $(1, 3)$: $f\'(x) < 0 \\implies f$ is strictly decreasing.', 'Check sign intervals of f prime(x) around 1 and 3.'),
+    ]
+  ),
+  'ib-10-p10': sol(
+    'A wire of length $l$ is cut into two parts which are bent respectively in the form of a square and a circle. What are the lengths of the pieces of the wire so that the sum of the areas is the least?',
+    [
+      s(1, 'Step 1 (Area Function)', 'Let $x$ be the length used for the circle and $l - x$ for the square.\nRadius $r = \\frac{x}{2\\pi}$, side $s = \\frac{l - x}{4}$.\nTotal area:\n$$A(x) = \\pi r^2 + s^2 = \\frac{x^2}{4\\pi} + \\frac{(l - x)^2}{16}$$', 'Express combined area A in terms of one variable x.'),
+      s(2, 'Step 2 (Critical Point)', '$$A\'(x) = \\frac{2x}{4\\pi} - \\frac{2(l - x)}{16} = \\frac{x}{2\\pi} - \\frac{l - x}{8} = 0$$\n$$4x = \\pi(l - x) \\implies x(\\pi + 4) = \\pi l \\implies x = \\frac{\\pi l}{\\pi + 4}$$', 'Set A prime(x) = 0 and solve for x.'),
+      s(3, 'Final Answer', 'Second derivative $A\'\'(x) = \\frac{1}{2\\pi} + \\frac{1}{8} > 0$, confirming minimum area.\nLengths of pieces: $\\frac{\\pi l}{\\pi + 4}$ (for circle) and $l - x = \\frac{4l}{\\pi + 4}$ (for square).', 'Since A double prime is positive, these lengths minimize the total area.'),
+    ]
+  ),
 };
