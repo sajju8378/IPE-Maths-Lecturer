@@ -21,6 +21,8 @@ import type {
   YearId,
 } from '../types/lecture';
 import { MathText } from './MathText';
+import { PWAInstallButton } from './PWAInstallButton';
+import appLogo from '../assets/images/ipe_maths_logo_1795678172510.jpg';
 
 interface SelectionFlowProps {
   year: YearId;
@@ -239,9 +241,15 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-8">
           <button
             onClick={() => onSelectChapter(null)}
-            className="text-lg sm:text-xl font-bold tracking-tight text-[#14452F] font-display whitespace-nowrap shrink-0 cursor-pointer"
+            className="inline-flex items-center gap-2.5 text-lg sm:text-xl font-bold tracking-tight text-[#14452F] font-display whitespace-nowrap shrink-0 cursor-pointer"
           >
-            IPE Maths Lecturer
+            <img
+              src={appLogo}
+              alt="IPE Maths Lecturer logo"
+              referrerPolicy="no-referrer"
+              className="w-8 h-8 rounded-lg object-cover border border-[#14452F]/20 shrink-0"
+            />
+            <span>IPE Maths Lecturer</span>
           </button>
 
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#526058]">
@@ -306,12 +314,16 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
             </h1>
           </div>
 
-          {/* Voice & Captions Language Selector */}
-          <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
-            <span className="text-xs font-medium text-[#526058]">
-              Lecturer Voice &amp; Captions
-            </span>
-            <div className="inline-flex p-1 bg-[#E8E6DD] rounded-xl">
+          {/* Voice & Captions Language Selector + Install App */}
+          <div className="flex flex-col sm:items-end gap-2 shrink-0">
+            <div className="flex items-center gap-2">
+              <PWAInstallButton />
+            </div>
+            <div className="flex flex-col sm:items-end gap-1">
+              <span className="text-xs font-medium text-[#526058]">
+                Lecturer Voice &amp; Captions
+              </span>
+              <div className="inline-flex p-1 bg-[#E8E6DD] rounded-xl">
               <button
                 onClick={() => onSelectLanguage('en')}
                 className={`min-h-[40px] px-3.5 text-xs sm:text-sm font-medium rounded-lg transition-colors whitespace-nowrap cursor-pointer ${
@@ -332,6 +344,7 @@ export const SelectionFlow: React.FC<SelectionFlowProps> = ({
               >
                 Telugu + English Mix
               </button>
+              </div>
             </div>
           </div>
         </div>

@@ -26,6 +26,7 @@ import type {
 } from '../types/lecture';
 import { ChalkStepView } from './ChalkStepView';
 import { MathText } from './MathText';
+import { apiUrl, readApiJson } from '../lib/apiBase';
 import { ttsManager } from '../lib/ttsCache';
 
 interface BoardScreenProps {
@@ -428,7 +429,7 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     setClarificationError(null);
     setClarificationLoading(true);
     try {
-      const res = await fetch('/api/explain-simpler', {
+      const res = await fetch(apiUrl('/api/explain-simpler'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -437,11 +438,7 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
           language,
         }),
       });
-      if (!res.ok) {
-        const errData = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(errData.error || 'Could not simplify this step right now.');
-      }
-      const data = (await res.json()) as SimplerExplanation;
+      const data = await readApiJson<SimplerExplanation>(res);
       setClarification({
         kind: 'simpler',
         title: `Simpler Explanation · ${activeStep.section_label}`,
@@ -465,7 +462,7 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
     setClarificationLoading(true);
 
     try {
-      const res = await fetch('/api/ask-doubt', {
+      const res = await fetch(apiUrl('/api/ask-doubt'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -475,11 +472,7 @@ export const BoardScreen: React.FC<BoardScreenProps> = ({
           language,
         }),
       });
-      if (!res.ok) {
-        const errData = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(errData.error || 'Could not answer your doubt right now.');
-      }
-      const data = (await res.json()) as DoubtResponse;
+      const data = await readApiJson<DoubtResponse>(res);
       setClarification({
         kind: 'doubt',
         title: `Doubt Answered · ${activeStep.section_label}`,

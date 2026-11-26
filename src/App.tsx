@@ -4,6 +4,8 @@ import { SYLLABUS_PAPERS } from './data/syllabus';
 import { BoardScreen } from './components/BoardScreen';
 import { SelectionFlow } from './components/SelectionFlow';
 import { MathText } from './components/MathText';
+import { OfflineIndicator } from './components/OfflineIndicator';
+import { apiUrl, readApiJson } from './lib/apiBase';
 import { ttsManager } from './lib/ttsCache';
 import type {
   Chapter,
@@ -44,7 +46,7 @@ export default function App() {
     setIsSolving(true);
 
     try {
-      const response = await fetch('/api/solve', {
+      const response = await fetch(apiUrl('/api/solve'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -58,12 +60,7 @@ export default function App() {
         }),
       });
 
-      if (!response.ok) {
-        const errPayload = (await response.json().catch(() => ({}))) as { error?: string };
-        throw new Error(errPayload.error || 'Could not generate the board solution.');
-      }
-
-      const data = (await response.json()) as LectureSolution;
+      const data = await readApiJson<LectureSolution>(response);
       if (!data.steps || data.steps.length === 0) {
         throw new Error('No solution steps were returned. Please try again.');
       }
@@ -188,36 +185,42 @@ export default function App() {
   // Board Lecture Screen
   if (activeSolution && activeRequest) {
     return (
-      <BoardScreen
-        solution={activeSolution}
-        paperLabel={activeRequest.paperLabel}
-        chapterName={activeRequest.chapterName}
-        language={language}
-        onChangeLanguage={handleLanguageChangeOnBoard}
-        onBackToSelection={() => {
-          setActiveSolution(null);
-          setActiveRequest(null);
-        }}
-      />
+      <>
+        <BoardScreen
+          solution={activeSolution}
+          paperLabel={activeRequest.paperLabel}
+          chapterName={activeRequest.chapterName}
+          language={language}
+          onChangeLanguage={handleLanguageChangeOnBoard}
+          onBackToSelection={() => {
+            setActiveSolution(null);
+            setActiveRequest(null);
+          }}
+        />
+        <OfflineIndicator />
+      </>
     );
   }
 
   // Student Selection Flow (Year -> Paper -> Chapter -> Problems / Custom Question)
   return (
-    <SelectionFlow
-      year={year}
-      paperId={paperId}
-      selectedChapter={selectedChapter}
-      language={language}
-      onSelectYear={setYear}
-      onSelectPaper={(pid) => {
-        setPaperId(pid);
-        setSelectedChapter(null);
-      }}
-      onSelectChapter={setSelectedChapter}
-      onSelectLanguage={setLanguage}
-      onStartProblem={handleStartProblem}
-      onStartCustomQuestion={handleStartCustomQuestion}
-    />
+    <>
+      <SelectionFlow
+        year={year}
+        paperId={paperId}
+        selectedChapter={selectedChapter}
+        language={language}
+        onSelectYear={setYear}
+        onSelectPaper={(pid) => {
+          setPaperId(pid);
+          setSelectedChapter(null);
+        }}
+        onSelectChapter={setSelectedChapter}
+        onSelectLanguage={setLanguage}
+        onStartProblem={handleStartProblem}
+        onStartCustomQuestion={handleStartCustomQuestion}
+      />
+      <OfflineIndicator />
+    </>
   );
 }
