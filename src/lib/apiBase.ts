@@ -11,9 +11,15 @@ export function apiUrl(path: string): string {
 export async function readApiJson<T>(res: Response): Promise<T> {
   const contentType = res.headers.get('content-type') || '';
   if (!contentType.includes('application/json')) {
-    if (res.status === 404 && typeof window !== 'undefined' && window.location.hostname.endsWith('github.io')) {
+    const isStaticHost =
+      typeof window !== 'undefined' &&
+      (window.location.hostname.endsWith('github.io') ||
+        window.location.protocol === 'capacitor:' ||
+        window.location.protocol === 'file:');
+
+    if ((res.status === 404 || res.status === 405) && isStaticHost && !CONFIGURED_BASE) {
       throw new Error(
-        'GitHub Pages hosts the static web interface only. To solve questions with Gemini, set VITE_API_BASE_URL to your deployed backend server or open the full-stack server URL.'
+        'GitHub Pages hosts only the static interface and cannot run the AI solver server (HTTP 405). Open your deployed AI Studio app URL directly, or set the VITE_API_BASE_URL variable to your backend server URL and rebuild.'
       );
     }
     throw new Error(`Server returned an unexpected response (${res.status}).`);

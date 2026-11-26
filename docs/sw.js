@@ -90,7 +90,7 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "revision": "9e490123e591c0bff43b3f5cf88aa606"
   }, {
     "url": "index.html",
-    "revision": "ff451ba517615b72f442fb38e4a30fad"
+    "revision": "1f4667315b8f6e168933598a2eb1e834"
   }, {
     "url": "icon.svg",
     "revision": "5008f07c0b8607220417e1d0f09062db"
@@ -104,7 +104,7 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "url": "assets/index-DxHjmA0_.css",
     "revision": null
   }, {
-    "url": "assets/index-BBbOzHNC.js",
+    "url": "assets/index-BEXgsPYU.js",
     "revision": null
   }, {
     "url": "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
@@ -230,6 +230,9 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "url": "assets/aistudio/image_cbdff388.png",
     "revision": null
   }, {
+    "url": "assets/aistudio/image_bc6ecde8.png",
+    "revision": null
+  }, {
     "url": "assets/aistudio/image_bae638e2.png",
     "revision": null
   }, {
@@ -237,6 +240,9 @@ define(['./workbox-afac4cd2'], (function (workbox) { 'use strict';
     "revision": null
   }, {
     "url": "assets/aistudio/image_9bda1df3.png",
+    "revision": null
+  }, {
+    "url": "assets/aistudio/image_67018e37.png",
     "revision": null
   }, {
     "url": "assets/aistudio/image_2ab1c6f3.png",
